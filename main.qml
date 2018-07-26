@@ -12,8 +12,8 @@ ApplicationWindow {
         anchors.fill: parent
         color: 'gray'
         UK{id:uk}
-        Connections {target: uk;onUkStdChanged: log.text=(''+uk.ukStd).replace(/\n/g, ' ');}
-        Connections {target: uk;onStdErrChanged: log.text=(''+uk.getStdErr()).replace(/\n/g, ' ');}
+        Connections {target: uk;onUkStdChanged: log.text+=(''+uk.ukStd).replace(/\n/g, ' ');}
+        Connections {target: uk;onStdErrChanged: log.text+=(''+uk.getStdErr()).replace(/\n/g, ' ');}
 
         Text{
             id:log
@@ -21,11 +21,11 @@ ApplicationWindow {
             font.pixelSize: 20
             anchors.centerIn: parent
         }
-        /*LogView{
+        LogView{
             id: logView
             width: 500
             height: 300
-        }*/
+        }
     }
     Timer{
         running: true
@@ -33,9 +33,9 @@ ApplicationWindow {
         interval: 1000
         onTriggered: {
             var d = new Date(Date.now())
-            console.log('--->'+d.getTime())
-            uk.setUkStd('---><<>AAA'+d.getTime())
-            uk.log('---><<>'+d.getTime())
+            console.log('000--->'+d.getTime())
+            //uk.setUkStd('---><<>AAA'+d.getTime())
+            //uk.log('---><<>'+d.getTime())
         }
     }
 
