@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
+import LogView 1.0
 
 ApplicationWindow {
     id: app
@@ -9,7 +10,7 @@ ApplicationWindow {
 
     Rectangle{
         anchors.fill: parent
-        color: 'yellow'
+        color: 'red'
     }
 
 }
