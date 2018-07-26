@@ -10,7 +10,12 @@ ApplicationWindow {
 
     Rectangle{
         anchors.fill: parent
-        color: 'red'
+        color: 'blue'
+        LogView{
+            id: logView
+            width: 500
+            height: 300
+        }
     }
 
 }
