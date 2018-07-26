@@ -12,8 +12,8 @@ ApplicationWindow {
         anchors.fill: parent
         color: '#ff8833'
         UK{id:uk}
-        Connections {target: uk;onUkStdChanged: log.text+=(''+uk.ukStd).replace(/\n/g, ' ');}
-        Connections {target: uk;onStdErrChanged: log.text+=(''+uk.getStdErr()).replace(/\n/g, ' ');}
+        //Connections {target: uk;onUkStdChanged: log.text+=(''+uk.ukStd).replace(/\n/g, ' ');}
+        //Connections {target: uk;onStdErrChanged: log.text+=(''+uk.getStdErr()).replace(/\n/g, ' ');}
 
         Text{
             id:log
