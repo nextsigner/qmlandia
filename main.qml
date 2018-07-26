@@ -10,7 +10,7 @@ ApplicationWindow {
 
     Rectangle{
         anchors.fill: parent
-        color: 'blue'
+        color: '#333'
         UK{id:uk}
         Connections {target: uk;onUkStdChanged: log.text=(''+unik.ukStd).replace(/\n/g, ' ');}
         Connections {target: uk;onStdErrChanged: log.text=(''+unik.getStdErr()).replace(/\n/g, ' ');}
@@ -26,6 +26,16 @@ ApplicationWindow {
             width: 500
             height: 300
         }*/
+    }
+    Timer{
+        running: true
+        repeat: true
+        interval: 1000
+        onTriggered: {
+            var d = new Date(Date.now())
+            console.log('--->'+d.getTime())
+            uk.log('--->'+d.getTime())
+        }
     }
 
 }
