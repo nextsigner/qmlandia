@@ -25,7 +25,7 @@ ApplicationWindow {
             id: logView
             width: 500
             height: 300
-            uk:uk
+            uk:unik
         }
     }
     Timer{
