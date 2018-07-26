@@ -10,7 +10,7 @@ ApplicationWindow {
 
     Rectangle{
         anchors.fill: parent
-        color: 'gray'
+        color: 'red'
         UK{id:uk}
         Connections {target: uk;onUkStdChanged: log.text+=(''+uk.ukStd).replace(/\n/g, ' ');}
         Connections {target: uk;onStdErrChanged: log.text+=(''+uk.getStdErr()).replace(/\n/g, ' ');}
@@ -25,6 +25,7 @@ ApplicationWindow {
             id: logView
             width: 500
             height: 300
+            uk:uk
         }
     }
     Timer{
