@@ -10,10 +10,10 @@ ApplicationWindow {
 
     Rectangle{
         anchors.fill: parent
-        color: '#333'
+        color: 'gray'
         UK{id:uk}
-        Connections {target: uk;onUkStdChanged: log.text=(''+unik.ukStd).replace(/\n/g, ' ');}
-        Connections {target: uk;onStdErrChanged: log.text=(''+unik.getStdErr()).replace(/\n/g, ' ');}
+        Connections {target: uk;onUkStdChanged: log.text=(''+uk.ukStd).replace(/\n/g, ' ');}
+        Connections {target: uk;onStdErrChanged: log.text=(''+uk.getStdErr()).replace(/\n/g, ' ');}
 
         Text{
             id:log
@@ -34,7 +34,8 @@ ApplicationWindow {
         onTriggered: {
             var d = new Date(Date.now())
             console.log('--->'+d.getTime())
-            uk.log('--->'+d.getTime())
+            uk.setUkStd('---><<>AAA'+d.getTime())
+            uk.log('---><<>'+d.getTime())
         }
     }
 
