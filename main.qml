@@ -11,21 +11,10 @@ ApplicationWindow {
     Rectangle{
         anchors.fill: parent
         color: '#ff8833'
-        UK{id:uk}
-        //Connections {target: uk;onUkStdChanged: log.text+=(''+uk.ukStd).replace(/\n/g, ' ');}
-        //Connections {target: uk;onStdErrChanged: log.text+=(''+uk.getStdErr()).replace(/\n/g, ' ');}
-
-        Text{
-            id:log
-            color:'white'
-            font.pixelSize: 20
-            anchors.centerIn: parent
-        }
-        /*LogView{
+        LogView{
             id: logView
-            width: 500
-            height: 300
-        }*/
+            anchors.fill: parent
+        }
     }
     Timer{
         running: true
@@ -33,9 +22,7 @@ ApplicationWindow {
         interval: 1000
         onTriggered: {
             var d = new Date(Date.now())
-            console.log('000--->'+d.getTime())
-            //uk.setUkStd('---><<>AAA'+d.getTime())
-            //uk.log('---><<>'+d.getTime())
+            console.log('Qmlandia: '+d.getTime()+'<br>')
         }
     }
 
