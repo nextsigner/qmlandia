@@ -31,7 +31,7 @@ Rectangle {
             b:app.c2
             t:'\uf04a'
             onClicking: back()
-            enabled: app.mod>0&&app.s>0
+            enabled: app.cs&&app.cs.audio&&app.cs.audio.p&&app.mod>0&&app.s>0
             opacity: enabled?1.0:0.5
         }
         Boton{
@@ -78,14 +78,18 @@ Rectangle {
             }else{
                 app.cs.audio.play()
             }
-
         }
     }
     function next(){
         app.s++
     }
     function back(){
-        app.s--
+        if(app.cs.audio.p){
+            app.cs.audio.stop()
+        }else{
+            app.s--
+        }
+
     }
     function toStart(){
         app.s=0
