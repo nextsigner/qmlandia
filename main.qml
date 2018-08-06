@@ -12,6 +12,7 @@ ApplicationWindow {
     property color c1: "#c82d28"
     property color c2: "#cf7171"
     property color c3: "black"
+    property color c4: "white"
 
     property int mod: 0
     property int cantmod: mods.children.length
@@ -33,5 +34,9 @@ ApplicationWindow {
             }
             ControlesPrincipales{id:cp}
         }
+    }
+    function addA(t1, t2, s){
+        var componente = Qt.createComponent('A.qml')
+        var objeto = componente.createObject(app, {"t1":t1, "t2": t2, "source": s})
     }
 }

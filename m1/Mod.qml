@@ -31,7 +31,7 @@ Item {
         onStopped: p=false
     }
     Component.onCompleted: {
-        app.cs=r
+        //app.cs=ss.children[0]
     }
 }
 

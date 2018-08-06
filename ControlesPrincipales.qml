@@ -81,6 +81,9 @@ Rectangle {
         }
     }
     function next(){
+        if(app.cs.audio.p){
+            app.cs.audio.stop()
+        }
         app.s++
     }
     function back(){

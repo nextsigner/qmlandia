@@ -1,34 +1,40 @@
 import QtQuick 2.0
 import QtMultimedia 5.0
+import  "../../"
 Item {
     id: r
     width: app.width
     height: app.height*0.8
     property alias audio: mp
     property bool reproduciendo: mp.p
+    onVisibleChanged: {
+        if(visible){
+            mp.play()
+        }
+    }
     Column{
         anchors.centerIn: parent
         Text {
             id: txt1
-            text: "Declaraciones de importacion"
+            text: "<b>Ejemplo de un Archivo QML</b><br>"
             font.pixelSize: app.fs*2
             color: app.c2
+            textFormat: Text.RichText
         }
         Text {
             id: txt2
-            text: "<b>import</b>"
-            font.pixelSize: app.fs*4
-            color: 'yellow'
-            opacity:mp.position>3000
-            scale: opacity
-            visible: opacity>0.01
-            Behavior on opacity{
-                NumberAnimation{
-                    duration: 1500
-                }
-            }
+            text: "import QtQuick 2.0\nItem{\n    width:300\n    height:300\n}"
+            font.pixelSize: app.fs
+            color: app.c4
+            Marco{}
         }
     }
+    /*A{
+        source: '../../h/h1.m4a'
+        t1:'aaaaaaa'
+        t2:'bbbbb'
+        visible: true
+    }*/
     MediaPlayer {
         id: mp
         source: "a1.m4a"
@@ -36,23 +42,21 @@ Item {
         onPlaying: p=true
         onPaused: p=false
         onStopped: p=false
-        onPositionChanged: {
-
+        onStatusChanged: {
+            if(status===MediaPlayer.EndOfMedia){
+                app.s++
+            }
         }
     }
     Component.onCompleted: {
-        console.log('Base Url: ')
-        var at=' Declaraciones de Importacion'
-        at+='Cada documento QML, al cual denominaremos de ahora en màs, archivo QML, requiere de ciertas declaraciones de importaciòn al principio o comienzo, es decir en sus primeras lineas previas a la escritura del còdigo en el cuàl luego declaramos elementos QML u otros objetos.
+        var at='Documento o Archivo QML
+    El documento o archivo QML es un archivo de texto plano. El mismo puede ser creado desde el editor QML/JS de QtCreator o desde cualquier otro editor de texto o editor de còdigo.
 
-Cuando nos referimos a Declaraciones de Importaciòn, estamos hablando de una solicitud o requerimiento que le hacemos al motor QML, o aplicaciòn que cargarà dicho còdigo, le solicitamos la carga de distintos recursos u objetos que necesitamos que se encuentren disponibles para el funcionamiento pleno de nuestro còdigo.
+Tambièn puede ser creado con el Editor de Diseño de QtCreator. En este curso nos limitaremos unicamente a escribir còdigo QML sin utilizar ningùn editor de diseño para conocer màs en profundidad la sintàxis de QML.
 
-Entonces, para comenzar a programar còdigo QML, es necesario escribir, como mìnimo una lìnea de Declaraciòn de Importaciòn que comienza con la palabra reservada <b>import</b>.
-
-Para saber còmo utilizar la palabra reservada <b>import</b> para importar algùnos recursos bàsicos y crear nuestro primer còdigo QML vayamos al siguiente paso.
+Si ya conoces otros archivos de diferentes tipos, puedes ver que un archivo QML tiene cierto parecido a los archivos JSON.
 '
-        var d0=''
-        d0+='Atenciòn! Las palabras reservadas son identificadores reservados predefinidos que tienen un significado especial y no pueden ser utilizados como identificadores en nuestro còdigo QML o JavaScript.
-'
+
+
     }
 }

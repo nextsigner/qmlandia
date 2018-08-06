@@ -5,7 +5,7 @@ Item {
     height: app.height
     Text {
         id: txt1
-        text: "import QtQuick 2.0\nRectangle{}"
+        text: "import QtQuick 2.0sdfsf"
         font.pixelSize: app.fs
         color: 'white'
     }
