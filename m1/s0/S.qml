@@ -30,14 +30,14 @@ Item {
         }
     }
     /*A{
-        source: '../../h/h1.m4a'
+        source: '../../h/h1.wav'
         t1:'aaaaaaa'
         t2:'bbbbb'
         visible: true
     }*/
     MediaPlayer {
         id: mp
-        source: "a1.m4a"
+        source: "a1.wav"
         property bool p
         onPlaying: p=true
         onPaused: p=false

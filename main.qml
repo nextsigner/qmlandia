@@ -21,7 +21,7 @@ ApplicationWindow {
     property int cants: 0
 
     property var cs
-
+    FontLoader {name: "FontAwesome";source: "qrc:/fontawesome-webfont.ttf";}
     Rectangle{
         color: app.c3
         anchors.fill: parent

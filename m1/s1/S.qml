@@ -59,7 +59,7 @@ Item {
     }
     MediaPlayer {
         id: mp
-        source: "a1.m4a"
+        source: "a1.wav"
         property bool p
         onPlaying: p=true
         onPaused: p=false
@@ -76,7 +76,7 @@ Item {
                 duration: 500
             }
         }
-        BotonA{id: ba1; t1:'¿Que es una Palabra Reservada?';s:'./h/h1.m4a'}
+        BotonA{id: ba1; t1:'¿Que es una Palabra Reservada?';s:'./h/h1.wav'}
 
     }
 
