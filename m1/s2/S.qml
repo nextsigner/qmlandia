@@ -31,7 +31,7 @@ Item {
     }
     MediaPlayer {
         id: mp
-        source: "a1.wav"
+        source: "a1.m4a"
         property bool p
         onPlaying: p=true
         onPaused: p=false
