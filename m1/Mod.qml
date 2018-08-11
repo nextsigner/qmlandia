@@ -6,8 +6,8 @@ import "s2" as S2
 import "s3" as S3
 Item {
     id: r
-    width: app.width
-    height: app.height*0.9
+    width: app.an
+    height: app.al*0.9
     onVisibleChanged: {
         if(visible){
             app.cants=ss.children.length

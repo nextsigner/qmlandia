@@ -16,9 +16,6 @@ Item {
     onSeekPositionChanged: {
         seekControl.playPosition = seekPosition
     }
-
-
-
     Rectangle {
         id: background
         width: parent.width
@@ -56,10 +53,10 @@ Item {
         anchors.bottomMargin: height/2
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        color: "white"
+        color: app.c2
         smooth: true
         text: formatTime(playPosition)
-        font.pixelSize: app.tamanioDeBotones*0.5
+        font.pixelSize: app.fs*0.5
     }
 
     Text {
@@ -69,10 +66,10 @@ Item {
         anchors.bottomMargin: height/2
         horizontalAlignment: Text.AlignRight
         verticalAlignment: Text.AlignVCenter
-        color: "white"
+        color: app.c2
         smooth: true
         text: formatTime(duration)
-        font.pixelSize: app.tamanioDeBotones*0.5
+        font.pixelSize: app.fs*0.5
     }
 
     Rectangle {
