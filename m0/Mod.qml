@@ -15,10 +15,11 @@ Item {
     }
     Row{
         id: ss
-        S0.S{visible:r.visible&&app.s===-1}
+        S0.S{visible:r.visible&&app.s===0}
         //S1.S{visible:r.visible&&app.s===1}
         //S2.S{visible:r.visible&&app.s===2}
         //zS3.S{visible:r.visible&&app.s===3}
     }
+    Component.objectName: app.cants=ss.children.length
 }
 

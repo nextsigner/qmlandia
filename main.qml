@@ -23,7 +23,7 @@ ApplicationWindow {
     property int cantmod: mods.children.length
 
     //Variables Globales    
-    property int s: -1
+    property int s: 0
     property int cants: 0
     property bool verAyuda: false
     property var pa
@@ -38,8 +38,14 @@ ApplicationWindow {
         category: 'conf-qmlandia'
         property int cantRun
         property bool fullScreen
+
+        //Variables de Actualizaciòn
         property string uRS
         property string ucs: ''
+
+        //Variables de Estado
+        property int usec
+        property int umod
     }
 
     FontLoader {name: "FontAwesome";source: "qrc:/fontawesome-webfont.ttf";}
@@ -51,10 +57,10 @@ ApplicationWindow {
         anchors.centerIn: parent
         //anchors.fill: parent
         rotation: app.width>app.height?0:-90
-        Column{
-            Mod0.Mod{visible:app.mod===0}
+        Column{            
             Column{
                 id: mods
+                Mod0.Mod{visible:app.mod===0}
                 Mod1.Mod{visible:app.mod===1}
             }
             ControlesPrincipales{id:controles}
@@ -105,9 +111,14 @@ ApplicationWindow {
         console.log('Ejecuciòn nùmero: '+appSettings.cantRun)
         appSettings.cantRun++
 
+        //app.s=appSettings.usec
+        //app.mod=appSettings.umod
+        //console.log('Ejecuciòn desde el modulo: '+app.mod+' en la secciòn '+app.s)
     }
     function showCab(){
-        app.cb.tit="Modulo "+app.mod+" de "+app.cantmod+" Secciòn "+parseInt(app.s+1)+" de "+app.cants
+        appSettings.usec=app.s
+        appSettings.umod=app.mod
+        app.cb.tit="Modulo "+parseInt(app.mod+1)+" de "+app.cantmod+" Secciòn "+parseInt(app.s+1)+" de "+app.cants
     }
     function addA(t1, t2, s){
         var componente = Qt.createComponent('A.qml')

@@ -36,8 +36,6 @@ Item {
     <p class="'+app.lnl(61, 81)+'">¿Que significa esto entonces? Que asì como en estos momentos estàs ejecutando este contenido, puedes ejecutar luego tu propio còdigo QML desde GitHub.com, desde alguna carpeta local o remota, desde donde tu elijas.</p>
 
     <p class="'+app.lnl(82, 95)+'">A medida que vayas avanzando en cada mòdulo de aprendizaje QML, podras modificar el còdigo de cada secciòn o ejercicio para hacerlo funcionar y probar tus conocimientos.</p>
-
-    <p class="'+app.lnl(96, 102)+'">Ahora si, comencemos. Presiona Play para comenzar.</p>
     '
             txt1.text=c1+c2+c3
         }

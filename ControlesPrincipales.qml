@@ -13,14 +13,24 @@ Rectangle {
     MediaPlayer {
             id: mediaPlayer
             property bool p
-            onPlaying: p=true
-            onPaused: p=false
-            onStopped: p=false
+            property bool paused
+            onPlaying: {
+                p=true
+                paused=false
+            }
+            onPaused: {
+                p=false
+                paused=true
+            }
+            onStopped: {
+                p=false
+                paused=false
+            }
             onStatusChanged: {
                 if(status===MediaPlayer.EndOfMedia){
-                    if(app.s!==-1){
+                    /*if(app.s!==-1){
                         app.s++
-                    }
+                    }*/
 
                 }
             }
@@ -60,8 +70,8 @@ Rectangle {
         anchors.topMargin: 0-app.fs*0.5
         anchors.left: seekSlider.left
         color: app.c4
-        text: 'Modulo '+app.mod+' de '+app.cantmod+'\nSecciòn '+parseInt(app.s+1)+' de '+app.cants
-        visible: app.mod!==0
+        text: 'Modulo '+parseInt(app.mod+1)+' de '+app.cantmod+'\nSecciòn '+parseInt(app.s+1)+' de '+app.cants
+        //visible: app.mod!==0
     }
     Row{
         anchors.centerIn: parent
@@ -118,7 +128,7 @@ Rectangle {
             b:app.c2
             t:'\uf04a'
             onClicking: back()
-            enabled: app.s>0
+            enabled: app.s>0||app.mod>0
             opacity: enabled?1.0:0.5
         }
         Boton{
@@ -128,19 +138,21 @@ Rectangle {
             d:'Reproducir'
             c:app.c3
             b:app.c2
-            t: mediaPlayer.p?'\uf04c':'\uf04b'
-            onClicking: play()
+            t: !mediaPlayer.paused?app.mp.position===app.mp.duration?'\uf0e2':'\uf04c':'\uf04b'
+            onClicking:{
+                play()
+            }
         }
         Boton{
             w:r.height*0.65
             h:w
             tp:3
-            d:'Reproducir'
+            d:'Ir al siguiente'
             c:app.c3
             b:app.c2
             t:'\uf04e'
             onClicking: next()
-            enabled: app.mod>0&&app.s<app.cants
+            enabled: app.mod<app.cantmod-1||app.s<app.cants-1
             opacity: enabled?1.0:0.5
         }
         Boton{
@@ -152,7 +164,7 @@ Rectangle {
             b:app.c2
             t:'\uf050'
             onClicking: toEnd()
-            enabled: app.mod>0&&app.s<app.cants
+            enabled: app.mod<app.cantmod-1
             opacity: enabled?1.0:0.5
         }
         Boton{
@@ -176,17 +188,24 @@ Rectangle {
     }
     function next(){
         mediaPlayer.stop()
-        app.s++
+        if(app.s===app.cants-1){
+            app.s=0
+            app.mod++
+        }else{
+            app.s++
+        }
+
     }
     function back(){
             mediaPlayer.stop()
             if(app.s>0){
                 app.s--
             }else{
-                app.s=0
+
                 if(app.mod>0){
                     app.mod--
                 }
+                app.s=0
             }
 
     }
@@ -196,6 +215,7 @@ Rectangle {
         app.s=0
     }
     function toEnd(){
-        app.s=app.cants-1
+        app.mod=app.cantmod-1
+        app.s=app.cants-1;
     }
 }
