@@ -7,7 +7,7 @@ ApplicationWindow {
     id: app
     objectName: 'qmlandia'
     visible: true
-    visibility: 'Maximized'
+    visibility: Qt.platform.os!=='andriod'?'Maximized':'FullScreen'
     color: app.c3
     property real ffs: Qt.platform.os!=='andriod'?0.022:0.033
     property int fs: app.width>app.height?app.width*ffs:app.height*ffs
