@@ -6,8 +6,8 @@ Rectangle {
     radius: app.fs*0.1
     border.width: 2
     border.color: 'black'
-    width: app.width
-    height: app.height*0.1
+    width: app.an
+    height: app.al*0.1
     property url source: mediaPlayer.source
     property alias btnUD: btnUpdate
     MediaPlayer {
@@ -118,7 +118,7 @@ Rectangle {
             b:app.c2
             t:'\uf04a'
             onClicking: back()
-            enabled: app.mod>0&&app.s>0
+            enabled: app.s>0
             opacity: enabled?1.0:0.5
         }
         Boton{
@@ -168,18 +168,11 @@ Rectangle {
         }
     }
     function play(){
-        if(app.mod===0){
-            app.mod=1
-            app.s=0
-            app.showCab()
-        }else{
            if(mediaPlayer.p){
                 mediaPlayer.pause()
            }else{
                 mediaPlayer.play()
            }
-
-        }
     }
     function next(){
         mediaPlayer.stop()
@@ -187,7 +180,15 @@ Rectangle {
     }
     function back(){
             mediaPlayer.stop()
-           app.s--
+            if(app.s>0){
+                app.s--
+            }else{
+                app.s=0
+                if(app.mod>0){
+                    app.mod--
+                }
+            }
+
     }
     function toStart(){
         mediaPlayer.stop()

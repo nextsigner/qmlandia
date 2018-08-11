@@ -9,13 +9,13 @@ ApplicationWindow {
     visible: true
     visibility: Qt.platform.os!=='android'?'Maximized':'FullScreen'
     color: app.c3
-    property real ffs: Qt.platform.os!=='android'?0.022:0.033
+    property real ffs: Qt.platform.os!=='android'?0.022:0.028
     property int fs: app.width>app.height?app.width*ffs:app.height*ffs
     property int an: app.width>app.height?app.width:app.height
     property int al: app.width>app.height?app.height:app.width
 
-    property color c1: "#c82d28"
-    property color c2: "#cf7171"
+    property color c1: "#62DA06"
+    property color c2: "#8DF73B"
     property color c3: "black"
     property color c4: "white"
 
@@ -107,7 +107,7 @@ ApplicationWindow {
 
     }
     function showCab(){
-        app.cb.tit="Modulo "+app.mod+" de "+app.cantmod+" Secciòn "+app.s+" de "+app.cants
+        app.cb.tit="Modulo "+app.mod+" de "+app.cantmod+" Secciòn "+parseInt(app.s+1)+" de "+app.cants
     }
     function addA(t1, t2, s){
         var componente = Qt.createComponent('A.qml')

@@ -40,7 +40,7 @@ Item {
         id: progressBar
         anchors { left: parent.left;}
         width: seekControl.duration == 0 ? 0 : background.width * seekControl.playPosition / seekControl.duration
-        color: "red"
+        color: app.c2
         opacity: 1.0
         height: parent.height/4
         anchors.verticalCenter: progressHandle.verticalCenter
@@ -74,19 +74,17 @@ Item {
 
     Rectangle {
         id: progressHandle
-        height: seekControl.parent.remoto? parent.height*2 : parent.height
-        //width: parent.height / 2
-        width: parent.height
+        height: parent.height*0.65
+        width: parent.height*0.65
         radius: width*0.5
-        color: "red"
-        opacity: 0.8
+        color: app.c2
         anchors.verticalCenter: progressBar.verticalCenter
         x: seekControl.duration == 0 ? 0 : seekControl.playPosition / seekControl.duration * background.width
         MouseArea {
             id: mouseArea
             anchors { horizontalCenter: parent.horizontalCenter; bottom: parent.bottom }
-            height: parent.height
-            width: parent.height * 2
+            height: parent.height*2
+            width: parent.height* 2
             enabled: seekControl.enabled
             drag {
                 target: progressHandle
