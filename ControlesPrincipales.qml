@@ -79,7 +79,7 @@ Rectangle {
             onClicking: {
                 var j
                 var c
-                if(!up){
+                if(up){
                     j=appsDir+'/temp_config.json'
                     c='{"mode":"-git", "arg1": "https://github.com/nextsigner/qmlandia.git"}'
                     unik.setFile(j, c)
