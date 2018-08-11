@@ -78,19 +78,21 @@ ApplicationWindow {
             }
             //unik.log("Update key control nª"+tu.v+": "+ur+" urs: "+appSettings.uRS)
             if(appSettings.uRS!==ur&&appSettings.cantRun>0){
-                unik.setDebugLog(true)
+                cp.btnUD.up=true
+                /*unik.setDebugLog(true)
                 unik.log("Updating Qmlandia")
                 appSettings.uRS = ur
                 var fd=appsDir
-                var downloaded = unik.downloadGit('https://github.com/nextsigner/unik-tools', fd)
+                var downloaded = unik.downloadGit('https://github.com/nextsigner/qmlandia', fd)
                 appSettings.uRS=''
                 tu.stop()
                 if(downloaded){
                     cp.btnUD.up=true
                 }else{
                     tu.start()
-                }
+                }*/
             }else{
+                cp.btnUD.up=false
                 //appSettings.uRS=ur
             }
             unik.setDebugLog(true)
