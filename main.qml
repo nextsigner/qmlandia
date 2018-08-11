@@ -9,7 +9,11 @@ ApplicationWindow {
     visible: true
     visibility: 'Maximized'
     color: app.c3
-    property int fs: app.width>app.height?app.width*0.02:app.height*0.02
+    property real ffs: Qt.platform.os!=='andriod'?0.022:0.033
+    property int fs: app.width>app.height?app.width*ffs:app.height*ffs
+    property int an: app.width>app.height?app.width:app.height
+    property int al: app.width<app.height?app.width:app.height
+
     property color c1: "#c82d28"
     property color c2: "#cf7171"
     property color c3: "black"
@@ -18,7 +22,7 @@ ApplicationWindow {
     property int mod: 0
     property int cantmod: mods.children.length
 
-    //Variables Globales
+    //Variables Globales    
     property int s: -1
     property int cants: 0
     property bool verAyuda: false

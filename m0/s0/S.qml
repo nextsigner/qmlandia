@@ -2,8 +2,8 @@ import QtQuick 2.0
 import  "../../"
 Item {
     id: r
-    width: app.width
-    height: app.height*0.8
+    width: app.an
+    height: app.al*0.9
     //property alias audio: mp
     //property bool reproduciendo: mp.p
     Column{
