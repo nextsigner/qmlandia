@@ -7,12 +7,12 @@ ApplicationWindow {
     id: app
     objectName: 'qmlandia'
     visible: true
-    visibility: Qt.platform.os!=='andriod'?'Maximized':'FullScreen'
+    visibility: Qt.platform.os!=='android'?'Maximized':'FullScreen'
     color: app.c3
-    property real ffs: Qt.platform.os!=='andriod'?0.022:0.033
+    property real ffs: Qt.platform.os!=='android'?0.022:0.033
     property int fs: app.width>app.height?app.width*ffs:app.height*ffs
     property int an: app.width>app.height?app.width:app.height
-    property int al: app.width<app.height?app.width:app.height
+    property int al: app.width>app.height?app.height:app.width
 
     property color c1: "#c82d28"
     property color c2: "#cf7171"
@@ -46,8 +46,8 @@ ApplicationWindow {
     Rectangle{
         id:xApp
         color: app.c3
-        width: app.width>app.height?app.width:app.height
-        height: app.width>app.height?app.height:app.width
+        width: app.an
+        height: app.al
         anchors.centerIn: parent
         //anchors.fill: parent
         rotation: app.width>app.height?0:-90
