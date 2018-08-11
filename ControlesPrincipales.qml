@@ -76,6 +76,7 @@ Rectangle {
             b: up ? 'red':app.c2
             c: up ? 'white':'#000'
             property bool up: false
+            visible: up
             onClicking: {
                 var j
                 var c
