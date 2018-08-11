@@ -6,15 +6,8 @@ Item {
     width: parent.width*0.6
     height: parent.height*0.6
     anchors.centerIn: parent
-    onVisibleChanged: {
-        if(visible){
-            mp.source=r.source
-            mp.play()
-        }else{
-            mp.stop()
-        }
-    }
-    property alias source: mp.source
+
+    property url source
     property alias t1: txt1.text
     property alias t2: txt2.text
     Rectangle{
@@ -35,7 +28,7 @@ Item {
             boundsBehavior: Flickable.StopAtBounds
             Column{
                 spacing: app.fs
-                anchors.horizontalCenter: p
+                anchors.horizontalCenter: parent
                 Text {
                     id: txt1
                     text: "<b>Ejemplo de un Archivo QML</b><br>"
@@ -69,12 +62,9 @@ Item {
             onClicking: r.visible=false
         }
     }
-    MediaPlayer {
-        id: mp
-        onPositionChanged: app.cs.audio.stop()
-    }
+
     Component.onCompleted: {
-        mp.source=r.source
-        mp.play()
+        app.mp.source=r.source
+        app.mp.play()
     }
 }

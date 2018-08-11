@@ -4,13 +4,12 @@ import '../../'
 Item {
     id: r
     width: app.width
-    height: app.height*0.8
-    property alias audio: mp
-    property bool reproduciendo: mp.p
+    height: app.height*0.9
     onVisibleChanged: {
         if(visible){
-            app.cs=r
-            mp.play()
+            app.mp.source="./a1.m4a"
+            app.pa=pa
+            //app.mp.play()
         }
     }
     Column{
@@ -24,7 +23,7 @@ Item {
         }
         Text {
             id: txt2
-            text: mp.position>1000*73 ? '<b style="color:red;">import</b> QtQuick 2.0':'import QtQuick 2.0'
+            text: app.mp.position>1000*73 ? '<b style="color:red;">import</b> QtQuick 2.0':'import QtQuick 2.0'
             font.pixelSize: app.fs
             color: app.c4
             textFormat: Text.RichText
@@ -36,7 +35,7 @@ Item {
                     anchors.bottom: parent.top
                     color: app.c2
                 }
-                opacity:mp.position>1000*8 ? 1.0 : 0.0
+                opacity:app.mp.position>1000*8 ? 1.0 : 0.0
                 Behavior on opacity{
                     NumberAnimation{
                         duration: 1500
@@ -49,35 +48,27 @@ Item {
             text: "Item{\n    width:300\n    height:300\n}"
             font.pixelSize: app.fs
             color: app.c4
-            opacity:mp.position>1000*5 ? 0.5 : 1.0
+            opacity:app.mp.position>1000*5 ? 0.5 : 1.0
             Behavior on opacity{
                 NumberAnimation{
                     duration: 1500
                 }
             }
         }
-    }
-    MediaPlayer {
-        id: mp
-        source: "a1.m4a"
-        property bool p
-        onPlaying: p=true
-        onPaused: p=false
-        onStopped: p=false
-        onPositionChanged: {
-
-        }
-    }
-    Row{
+    }    
+    Column{
+        id:pa
         anchors.horizontalCenter: r.horizontalCenter
-        y:!mp.p?r.height-children[0].height:r.height
+        spacing: app.fs*0.5
+        y:app.height-height
+        height: (app.fs*2+app.fs*0.5)*children.length
+        visible:app.verAyuda
         Behavior on y{
             NumberAnimation{
                 duration: 500
             }
         }
-        BotonA{id: ba1; t1:'¿Que es una Palabra Reservada?';s:'./h/h1.m4a'}
-
+        BotonA{id: ba1; t1:'¿Que es una Palabra Reservada?';s:'./h/h1.m4a'}        
     }
 
     Component.onCompleted: {

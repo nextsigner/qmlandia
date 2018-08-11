@@ -1,15 +1,15 @@
 import QtQuick 2.0
-import QtMultimedia 5.0
 import  "../../"
 Item {
     id: r
     width: app.width
     height: app.height*0.8
-    property alias audio: mp
+    //property alias audio: mp
     property bool reproduciendo: mp.p
     onVisibleChanged: {
         if(visible){
-            mp.play()
+            app.mp.source="./a1.m4a"
+            //app.mp.play()
         }
     }
     Column{
@@ -35,7 +35,7 @@ Item {
         t2:'bbbbb'
         visible: true
     }*/
-    MediaPlayer {
+    /*MediaPlayer {
         id: mp
         source: "a1.m4a"
         property bool p
@@ -47,7 +47,7 @@ Item {
                 app.s++
             }
         }
-    }
+    }*/
     Component.onCompleted: {
         var at='Documento o Archivo QML
     El documento o archivo QML es un archivo de texto plano. El mismo puede ser creado desde el editor QML/JS de QtCreator o desde cualquier otro editor de texto o editor de còdigo.

@@ -2,7 +2,7 @@ import QtQuick 2.0
 Item {
     id: r
     width: app.width
-    height: app.height*0.8
+    height: app.height*0.9
     Column{
         spacing: app.fs*2
         anchors.centerIn: parent

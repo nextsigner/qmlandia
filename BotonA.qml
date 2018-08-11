@@ -6,8 +6,8 @@ Rectangle {
     border.width: 2
     border.color: app.c1
     width: a.contentWidth+app.fs
-    height: a.contentHeight+app.fs
-    anchors.centerIn: parent
+    height: app.fs*2
+    //anchors.verticalCenter: parent.verticalCenter
     property alias t1: a.text
     property string t2
     property string s
