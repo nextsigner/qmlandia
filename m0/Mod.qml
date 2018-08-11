@@ -1,37 +1,24 @@
 import QtQuick 2.0
+import QtMultimedia 5.0
+import "s0" as S0
+//import "s1" as S1
+//import "s2" as S2
+//import "s3" as S3
 Item {
     id: r
     width: app.width
     height: app.height*0.9
-    Column{
-        spacing: app.fs*2
-        anchors.centerIn: parent
-        Text {
-            id: txt1
-            font.pixelSize: app.fs*2
-            color: app.c2
-            textFormat: Text.RichText
-        }
-        Text {
-            id: txt2
-            font.pixelSize: app.fs
-            color: app.c2
-            textFormat: Text.RichText
-        }
-        Text {
-            id: txt3
-            font.pixelSize: app.fs
-            color: app.c2
-            textFormat: Text.RichText
+    onVisibleChanged: {
+        if(visible){
+            app.cants=ss.children.length
         }
     }
-    Component.onCompleted: {
-        var t1='<b>Tutorial QML</b>'
-        txt1.text=t1
-        var t2='<b>Bienvenido al Curso sobre QML</b>'
-        txt2.text=t2
-        var t3='Este curso cuenta con '+app.cantmod+' modulos.'
-        txt3.text=t3
+    Row{
+        id: ss
+        S0.S{visible:r.visible&&app.s===-1}
+        //S1.S{visible:r.visible&&app.s===1}
+        //S2.S{visible:r.visible&&app.s===2}
+        //zS3.S{visible:r.visible&&app.s===3}
     }
 }
 

@@ -9,6 +9,7 @@ Rectangle {
     width: app.width
     height: app.height*0.1
     property url source: mediaPlayer.source
+    property alias btnUD: btnUpdate
     MediaPlayer {
             id: mediaPlayer
             property bool p
@@ -17,7 +18,10 @@ Rectangle {
             onStopped: p=false
             onStatusChanged: {
                 if(status===MediaPlayer.EndOfMedia){
-                    app.s++
+                    if(app.s!==-1){
+                        app.s++
+                    }
+
                 }
             }
             onPositionChanged: {
@@ -33,8 +37,7 @@ Rectangle {
         width: parent.width*0.8
         anchors.horizontalCenter: parent.horizontalCenter
         //anchors.bottom: parent.bottom
-        verFondo: true
-        visible: app.mod>0
+        verFondo: true         
         onClickSeek: {
             mediaPlayer.seek(position);
         }
@@ -47,7 +50,7 @@ Rectangle {
         }
 
         onSeekPositionChanged: {
-            mediaPlayer.position= playPosition
+            mediaPlayer.seek(playPosition)
         }
     }
     Text {
@@ -63,6 +66,36 @@ Rectangle {
     Row{
         anchors.centerIn: parent
         spacing: app.fs*0.5
+        Boton{//Actualizar Qmlandia
+            id:btnUpdate
+            w:r.height*0.65
+            tp:3
+            h: w
+            t: '\uf021'
+            d:'Actualizar Qmlandia desde GitHub.com'
+            b: up ? 'red':app.c2
+            c: up ? 'white':'#000'
+            property bool up: false
+            onClicking: {
+                var j
+                var c
+                if(!up){
+                    j=appsDir+'/temp_config.json'
+                    c='{"mode":"-git", "arg1": "https://github.com/nextsigner/qmlandia.git"}'
+                    unik.setFile(j, c)
+                    unik.restartApp()
+                }else{
+                    j=appsDir+'/config.json'
+                    c='{"mode":"-folder", "arg1": "'+appsDir+'/qmlandia'+'"}'
+                    unik.setFile(j, c)
+                    unik.restartApp()
+                }
+            }
+        }
+        Item{
+            width: r.height*0.65
+            height: width
+        }
         Boton{
             w:r.height*0.65
             h:w
