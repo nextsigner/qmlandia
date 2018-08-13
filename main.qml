@@ -27,6 +27,7 @@ ApplicationWindow {
     property int cants: 0
     property bool verAyuda: false
     property var pa
+    property var ma//Mod Activo
 
     property alias cb: cab
     property alias cp: controles
@@ -60,8 +61,8 @@ ApplicationWindow {
         Column{            
             Column{
                 id: mods
-                Mod0.Mod{visible:app.mod===0}
-                Mod1.Mod{visible:app.mod===1}
+                Mod0.Mod{id:mod0;visible:app.mod===0}
+                Mod1.Mod{id:mod1;visible:app.mod===1}
             }
             ControlesPrincipales{id:controles}
         }
@@ -111,9 +112,9 @@ ApplicationWindow {
         console.log('Ejecuciòn nùmero: '+appSettings.cantRun)
         appSettings.cantRun++
 
-        //app.s=appSettings.usec
-        //app.mod=appSettings.umod
-        //console.log('Ejecuciòn desde el modulo: '+app.mod+' en la secciòn '+app.s)
+        app.s=appSettings.usec
+        app.mod=appSettings.umod
+        console.log('Ejecuciòn desde el modulo: '+app.mod+' en la secciòn '+app.s)
     }
     function showCab(){
         appSettings.usec=app.s

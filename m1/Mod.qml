@@ -17,6 +17,9 @@ Item {
         S0.S{visible:r.visible&&app.s===0}
         S1.S{visible:r.visible&&app.s===1}
         S2.S{visible:r.visible&&app.s===2}
-    }    
+    }
+    function getC(){
+        return ss.children.length-1
+    }
 }
 

@@ -42,15 +42,14 @@ Item {
         width: seekControl.duration == 0 ? 0 : background.width * seekControl.playPosition / seekControl.duration
         color: app.c2
         opacity: 1.0
-        height: parent.height/4
+        height: seekControl.height/4
         anchors.verticalCenter: progressHandle.verticalCenter
     }
 
     Text {
-        width: 90
-        anchors { left: parent.left; leftMargin: 10 }
-        anchors.bottom: parent.top
-        anchors.bottomMargin: height/2
+        width: contentWidth
+        anchors { right: parent.left; rightMargin: 10 }
+        anchors.verticalCenter: progressBar.verticalCenter
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
         color: app.c2
@@ -60,10 +59,9 @@ Item {
     }
 
     Text {
-        width: 90
-        anchors { right: parent.right; rightMargin: 10 }
-        anchors.bottom: parent.top
-        anchors.bottomMargin: height/2
+        width: contentWidth
+        anchors { left: parent.right; leftMargin: 10 }
+        anchors.verticalCenter: progressBar.verticalCenter
         horizontalAlignment: Text.AlignRight
         verticalAlignment: Text.AlignVCenter
         color: app.c2
@@ -78,7 +76,7 @@ Item {
         width: parent.height*0.65
         radius: width*0.5
         color: app.c2
-        anchors.verticalCenter: progressBar.verticalCenter
+        anchors.verticalCenter: seekControl.verticalCenter
         x: seekControl.duration == 0 ? 0 : seekControl.playPosition / seekControl.duration * background.width
         MouseArea {
             id: mouseArea

@@ -14,6 +14,7 @@ Rectangle {
             id: mediaPlayer
             property bool p
             property bool paused
+            volume: 0
             onPlaying: {
                 p=true
                 paused=false
@@ -63,22 +64,24 @@ Rectangle {
             mediaPlayer.seek(playPosition)
         }
     }
+
     Text {
         id: txtInfo
         font.pixelSize: app.fs*0.5
-        anchors.top: seekSlider.bottom
-        anchors.topMargin: 0-app.fs*0.5
+        anchors.verticalCenter: r.verticalCenter
         anchors.left: seekSlider.left
         color: app.c4
         text: 'Modulo '+parseInt(app.mod+1)+' de '+app.cantmod+'\nSecciòn '+parseInt(app.s+1)+' de '+app.cants
         //visible: app.mod!==0
     }
     Row{
-        anchors.centerIn: parent
+        anchors.horizontalCenter: r.horizontalCenter
+        anchors.bottom: r.bottom
+        anchors.bottomMargin: app.fs*0.5
         spacing: app.fs*0.5
         Boton{//Actualizar Qmlandia
             id:btnUpdate
-            w:r.height*0.65
+            w:app.fs
             tp:3
             h: w
             t: '\uf021'
@@ -104,11 +107,11 @@ Rectangle {
             }
         }
         Item{
-            width: r.height*0.65
+            width: app.fs
             height: width
         }
         Boton{
-            w:r.height*0.65
+            w:app.fs
             h:w
             tp:3
             d:'Ir al inicio'
@@ -116,11 +119,11 @@ Rectangle {
             b:app.c2
             t:'\uf049'
             onClicking: toStart()
-            enabled: app.mod>0
+            enabled: app.mod!==0||app.s!==0
             opacity: enabled?1.0:0.5
         }
         Boton{
-            w:r.height*0.65
+            w:app.fs
             h:w
             tp:3
             d:'Retroceder'
@@ -128,11 +131,11 @@ Rectangle {
             b:app.c2
             t:'\uf04a'
             onClicking: back()
-            enabled: app.s>0||app.mod>0
+            enabled: app.s!==0||app.mod!==0
             opacity: enabled?1.0:0.5
         }
         Boton{
-            w:r.height*0.65
+            w:app.fs
             h:w
             tp:3
             d:'Reproducir'
@@ -144,7 +147,7 @@ Rectangle {
             }
         }
         Boton{
-            w:r.height*0.65
+            w:app.fs
             h:w
             tp:3
             d:'Ir al siguiente'
@@ -156,7 +159,7 @@ Rectangle {
             opacity: enabled?1.0:0.5
         }
         Boton{
-            w:r.height*0.65
+            w:app.fs
             h:w
             tp:3
             d:'Ir al final'
@@ -168,7 +171,7 @@ Rectangle {
             opacity: enabled?1.0:0.5
         }
         Boton{
-            w:r.height*0.65
+            w:app.fs
             h:w
             tp:3
             d:'Ayuda de esta secciòn'
@@ -201,11 +204,10 @@ Rectangle {
             if(app.s>0){
                 app.s--
             }else{
-
                 if(app.mod>0){
                     app.mod--
                 }
-                app.s=0
+                app.s=mods.children[mod].getC()
             }
 
     }
