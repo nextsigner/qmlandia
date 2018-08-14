@@ -22,7 +22,7 @@ ApplicationWindow {
     property int mod: 0
     property int cantmod: mods.children.length
 
-    //Variables Globales    
+    //Variables Globales
     property int s: 0
     property int cants: 0
     property bool verAyuda: false
@@ -59,12 +59,19 @@ ApplicationWindow {
         anchors.centerIn: parent
         //anchors.fill: parent
         rotation: app.width>app.height?0:-90
-        ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;}
-        Column{
+        ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;z:xM.z+1}
+        Item{
+            id:xM
+            width: parent.width
+            height: parent.height*0.9
+            clip: true
+            Column{
                 id: mods
                 Mod0.Mod{id:mod0;visible:app.mod===0}
                 Mod1.Mod{id:mod1;visible:app.mod===1}
             }
+        }
+
         Cabecera{id:cab;x:0-width;visible:app.s>-1;anchors.bottom: xApp.bottom;anchors.bottomMargin: xApp.height*0.1}
     }
     Timer{

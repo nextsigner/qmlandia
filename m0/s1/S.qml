@@ -11,7 +11,18 @@ Item {
             //app.mp.play()
         }
     }
-    Column{
+    Flickable{
+        id:fk
+        anchors.fill: r
+        contentWidth: r.width
+       contentHeight: txt1.contentHeight+app.fs*10
+       boundsBehavior: Flickable.StopAtBounds
+       contentY: app.mp.p&&txt1.height>r.height?fk.height*(app.mp.position/app.mp.duration):0
+       Behavior on contentY{
+            NumberAnimation{
+                duration: 1000
+            }
+       }
         Text {
             id: txt1
             width: r.width*0.6
@@ -194,10 +205,7 @@ Item {
                 img1.visible=false
                 img2.visible=false
             }
-
-
-
-
+            console.log('--->>'+parseFloat((app.mp.position/app.mp.duration)*100))
         }
     }
     Component.onCompleted: {
