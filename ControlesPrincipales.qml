@@ -10,6 +10,7 @@ Rectangle {
     height: app.al*0.1
     property url source: mediaPlayer.source
     property alias btnUD: btnUpdate
+    property alias mp: mediaPlayer
     MediaPlayer {
             id: mediaPlayer
             property bool p
@@ -213,6 +214,8 @@ Rectangle {
         mediaPlayer.stop()
         app.mod=0
         app.s=0
+        appSettings.umod=0
+        appSettings.ucs=0
     }
     function toEnd(){
         app.mod=app.cantmod-1

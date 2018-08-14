@@ -32,7 +32,7 @@ ApplicationWindow {
     property alias cb: cab
     property alias cp: controles
 
-    property var mp
+    property var mp:controles.mp
 
     Settings{
         id: appSettings
@@ -43,6 +43,7 @@ ApplicationWindow {
         //Variables de Actualizaciòn
         property string uRS
         property string ucs: ''
+        property string umps: ''
 
         //Variables de Estado
         property int usec
@@ -58,15 +59,13 @@ ApplicationWindow {
         anchors.centerIn: parent
         //anchors.fill: parent
         rotation: app.width>app.height?0:-90
-        Column{            
-            Column{
+        ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;}
+        Column{
                 id: mods
                 Mod0.Mod{id:mod0;visible:app.mod===0}
                 Mod1.Mod{id:mod1;visible:app.mod===1}
             }
-            ControlesPrincipales{id:controles}
-        }
-        Cabecera{id:cab;x:0-width;visible:app.s>-1}
+        Cabecera{id:cab;x:0-width;visible:app.s>-1;anchors.bottom: xApp.bottom;anchors.bottomMargin: xApp.height*0.1}
     }
     Timer{
         id:tu
@@ -114,11 +113,13 @@ ApplicationWindow {
 
         app.s=appSettings.usec
         app.mod=appSettings.umod
+        //app.mp.source=appSettings.umps
         console.log('Ejecuciòn desde el modulo: '+app.mod+' en la secciòn '+app.s)
     }
     function showCab(){
         appSettings.usec=app.s
         appSettings.umod=app.mod
+        //appSettings.umps=app.mp.source
         app.cb.tit="Modulo "+parseInt(app.mod+1)+" de "+app.cantmod+" Secciòn "+parseInt(app.s+1)+" de "+app.cants
     }
     function addA(t1, t2, s){

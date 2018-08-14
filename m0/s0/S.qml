@@ -6,6 +6,12 @@ Item {
     height: app.al*0.9
     //property alias audio: mp
     //property bool reproduciendo: mp.p
+    onVisibleChanged: {
+        if(visible){
+            app.mp.source="./a1.m4a"
+            app.mp.play()
+        }
+     }
     Column{
         anchors.centerIn: parent
         Text {
@@ -41,7 +47,7 @@ Item {
         }
     }
     Component.onCompleted: {
-        app.mp.source="./a1.m4a"
-        app.mp.play()
+        //app.mp.source="./a1.m4a"
+        //app.mp.play()
     }
 }

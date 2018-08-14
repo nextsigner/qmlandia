@@ -26,7 +26,7 @@ Item {
             height: parent.height-app.fs*2
             anchors.horizontalCenter: parent.horizontalCenter
             contentWidth: parent.width-app.fs*2
-            contentHeight: txt1.height+txt2.height
+            contentHeight: txt1.height+txt2.height+app.fs*2
             boundsBehavior: Flickable.StopAtBounds
             Column{
                 spacing: app.fs
@@ -95,7 +95,10 @@ Item {
            anchors.rightMargin: app.fs*0.5
            anchors.top: parent.top
            anchors.topMargin: app.fs*0.5
-            onClicking: r.visible=false
+            onClicking: {
+                mp1.stop()
+                r.destroy(10)
+            }
         }
         MediaPlayer {
                 id: mp1
