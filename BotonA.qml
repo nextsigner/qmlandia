@@ -20,7 +20,12 @@ Rectangle {
     MouseArea{
         anchors.fill: r
         onClicked: {
+            if(r.s==='1'){
+                cp.next()
+            } else{
                 app.addA(r.t1, r.t2, r.s)
+            }
+
         }
     }
 }

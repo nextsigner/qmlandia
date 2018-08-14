@@ -14,10 +14,11 @@ Rectangle {
             id: mediaPlayer
             property bool p
             property bool paused
-            volume: 0
+            //volume: 0
             onPlaying: {
                 p=true
                 paused=false
+                app.verAyuda=false
             }
             onPaused: {
                 p=false
@@ -29,10 +30,7 @@ Rectangle {
             }
             onStatusChanged: {
                 if(status===MediaPlayer.EndOfMedia){
-                    /*if(app.s!==-1){
-                        app.s++
-                    }*/
-
+                    app.verAyuda=true
                 }
             }
             onPositionChanged: {

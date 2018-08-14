@@ -27,7 +27,7 @@ ApplicationWindow {
     property int cants: 0
     property bool verAyuda: false
     property var pa
-    property var ma//Mod Activo
+    //property var ma//Mod Activo
 
     property alias cb: cab
     property alias cp: controles
