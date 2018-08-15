@@ -39,6 +39,7 @@ ApplicationWindow {
         category: 'conf-qmlandia'
         property int cantRun
         property bool fullScreen
+        property real volume
 
         //Variables de Actualizaciòn
         property string uRS
@@ -48,7 +49,6 @@ ApplicationWindow {
         property int usec
         property int umod
     }
-
     FontLoader {name: "FontAwesome";source: "qrc:/fontawesome-webfont.ttf";}
     Rectangle{
         id:xApp
@@ -58,9 +58,17 @@ ApplicationWindow {
         anchors.centerIn: parent
         //anchors.fill: parent
         rotation: app.width>app.height?0:-90
-        ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;z:xM.z+1}
-        Xm{id:xM}
+        ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;z:xP.z+1}
+        Item{
+            id:xS
+            anchors.fill: parent
+        }
+        Xp{
+            id:xP
+            onListado: showS()
+        }
         Cabecera{id:cab;x:0-width;visible:app.s>-1;anchors.bottom: xApp.bottom;anchors.bottomMargin: app.fs*2}
+        Xc{id:xC}
     }
     Timer{
         id:tu
@@ -100,29 +108,52 @@ ApplicationWindow {
             pa.y=verAyuda?app.height-pa.height-app.fs*6:app.height+pa.height+app.fs*4
         }
     }
-    onSChanged:showCab()
-    onModChanged: showCab()
+    onSChanged:{
+        showCab()
+        showS()
+    }
+    onModChanged: {
+        //xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia'+'/'+xP.am[app.s]:'file:///'+appsDir+'/qmlandia'+'/'+xP.am[app.s]
+        showCab()
+        showS()
+    }
     Component.onCompleted: {
         console.log('Ejecuciòn nùmero: '+appSettings.cantRun)
         appSettings.cantRun++
 
 
 
-        xM.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia'
+        //xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia'
 
+        //Volume
+        if(appSettings.volume<0&&appSettings.volume>1){
+            appSettings.volume=0.8
+        }
 
 
     }
-    function addMods(c,v){
-        var obj = Qt.createQmlObject(c, xApp, 'xm2')
-        app.cantmod=v
-        app.s=appSettings.usec
-        app.mod=appSettings.umod
-        console.log('Ejecuciòn desde el modulo: '+app.mod+' en la secciòn '+app.s)
+    function showS(){
+        for(var i=0;i<xS.children.length;i++){
+                xS.children[i].destroy(1)
+        }
+        var code='import QtQuick 2.0\n'
+        code+='import "'+xP.am[app.mod]+'/'+xP.ars[app.s]+'" as SX\n'
+        code+='Item{\n'
+        code+='anchors.fill:parent\n'
+        code+='     SX.S{}\n'
+        code+='}\n'
+        app.mp.source=''+xP.am[app.mod]+'/'+xP.ars[app.s]+'/a1.m4a'
+        app.mp.play()
+        console.log('Code: '+code)
+        var obj = Qt.createQmlObject(code, xS, 'xm2')
+        xC.z=xS.z+1
+        console.log('Mostrando Secciòn desde carpeta: '+xP.am[app.mod]+'/'+xP.ars[app.s])
+        appSettings.usec=app.s
+         appSettings.umod=app.mod
     }
     function showCab(){
-        appSettings.usec=app.s
-        appSettings.umod=app.mod
+        //appSettings.usec=app.s
+        //appSettings.umod=app.mod
         //appSettings.umps=app.mp.source
         app.cb.tit="Modulo "+parseInt(app.mod+1)+" de "+app.cantmod+" Secciòn "+parseInt(app.s+1)+" de "+app.cants
     }

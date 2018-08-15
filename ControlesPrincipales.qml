@@ -12,42 +12,42 @@ Rectangle {
     property alias btnUD: btnUpdate
     property alias mp: mediaPlayer
     MediaPlayer {
-            id: mediaPlayer
-            property bool p
-            property bool paused
-            //volume: 0
-            onPlaying: {
-                p=true
-                paused=false
-                app.verAyuda=false
-            }
-            onPaused: {
-                p=false
-                paused=true
-            }
-            onStopped: {
-                p=false
-                paused=false
-            }
-            onStatusChanged: {
-                if(status===MediaPlayer.EndOfMedia){
-                    app.verAyuda=true
-                }
-            }
-            onPositionChanged: {
-                    seekSlider.playPosition=position
-            }
-            onDurationChanged: {
-                seekSlider.duration = duration
-            }
-            Component.onCompleted: app.mp=mediaPlayer
+        id: mediaPlayer
+        property bool p
+        property bool paused
+        volume: appSettings.volume
+        onPlaying: {
+            p=true
+            paused=false
+            app.verAyuda=false
         }
+        onPaused: {
+            p=false
+            paused=true
+        }
+        onStopped: {
+            p=false
+            paused=false
+        }
+        onStatusChanged: {
+            if(status===MediaPlayer.EndOfMedia){
+                app.verAyuda=true
+            }
+        }
+        onPositionChanged: {
+            seekSlider.playPosition=position
+        }
+        onDurationChanged: {
+            seekSlider.duration = duration
+        }
+        Component.onCompleted: app.mp=mediaPlayer
+    }
     SeekControlFinal{
         id: seekSlider
         width: parent.width*0.8
         anchors.horizontalCenter: parent.horizontalCenter
         //anchors.bottom: parent.bottom
-        verFondo: true         
+        verFondo: true
         onClickSeek: {
             mediaPlayer.seek(position);
         }
@@ -74,6 +74,26 @@ Rectangle {
         text: 'Modulo '+parseInt(app.mod+1)+' de '+app.cantmod+'\nSecciòn '+parseInt(app.s+1)+' de '+app.cants
         //visible: app.mod!==0
     }
+
+    Row{
+        anchors.left: r.left
+        anchors.leftMargin: app.fs*0.1
+        anchors.bottom: r.bottom
+        anchors.bottomMargin: app.fs*0.1
+        spacing: app.fs*0.5
+        Boton{
+            w:app.fs
+            h:w
+            tp:3
+            d:'Confugurar'
+            c:app.c3
+            b:app.c2
+            t:'\uf013'
+            onClicking: xC.visible=!xC.visible
+            opacity: xC.visible?1.0:0.5
+        }
+    }
+
     Row{
         anchors.horizontalCenter: r.horizontalCenter
         anchors.bottom: r.bottom
@@ -183,11 +203,11 @@ Rectangle {
         }
     }
     function play(){
-           if(mediaPlayer.p){
-                mediaPlayer.pause()
-           }else{
-                mediaPlayer.play()
-           }
+        if(mediaPlayer.p){
+            mediaPlayer.pause()
+        }else{
+            mediaPlayer.play()
+        }
     }
     function next(){
         mediaPlayer.stop()
@@ -200,15 +220,16 @@ Rectangle {
 
     }
     function back(){
-            mediaPlayer.stop()
-            if(app.s>0){
-                app.s--
-            }else{
-                if(app.mod>0){
-                    app.mod--
-                }
-                app.s=mods.children[mod].getC()
+        mediaPlayer.stop()
+        if(app.s>0){
+            app.s--
+        }else{
+            if(app.mod>0){
+                app.mod--
             }
+
+            //app.s=mods.children[mod].getC()
+        }
 
     }
     function toStart(){

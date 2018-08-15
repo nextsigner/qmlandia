@@ -103,7 +103,7 @@ Item {
                 id: mp1
                 property bool p
                 property bool paused
-                //volume: 0
+                 volume: appSettings.volume
                 onPlaying: {
                     p=true
                     paused=false
