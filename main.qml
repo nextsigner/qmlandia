@@ -1,8 +1,8 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import Qt.labs.settings 1.0
-import "m0" as Mod0
-import "m1" as Mod1
+//import "m0" as Mod0
+//import "m1" as Mod1
 ApplicationWindow {
     id: app
     objectName: 'qmlandia'
@@ -20,7 +20,7 @@ ApplicationWindow {
     property color c4: "white"
 
     property int mod: 0
-    property int cantmod: mods.children.length
+    property int cantmod//: mods.children.length
 
     //Variables Globales
     property int s: 0
@@ -59,19 +59,8 @@ ApplicationWindow {
         //anchors.fill: parent
         rotation: app.width>app.height?0:-90
         ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;z:xM.z+1}
-        Item{
-            id:xM
-            width: parent.width
-            height: parent.height-app.fs*2
-            clip: true
-            Column{
-                id: mods
-                Mod0.Mod{id:mod0;visible:app.mod===0}
-                Mod1.Mod{id:mod1;visible:app.mod===1}
-            }
-        }
-        Cabecera{id:cab;x:0-width;visible:app.s>-1;anchors.bottom: xApp.bottom;anchors.bottomMargin: xApp.height-app.fs*2}
-
+        Xm{id:xM}
+        Cabecera{id:cab;x:0-width;visible:app.s>-1;anchors.bottom: xApp.bottom;anchors.bottomMargin: app.fs*2}
     }
     Timer{
         id:tu
@@ -105,7 +94,6 @@ ApplicationWindow {
             tu.start()
         }
     }
-
     onVerAyudaChanged: {
         if(pa){
             pa.visible=verAyuda
@@ -118,6 +106,16 @@ ApplicationWindow {
         console.log('Ejecuciòn nùmero: '+appSettings.cantRun)
         appSettings.cantRun++
 
+
+
+        xM.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia'
+
+
+
+    }
+    function addMods(c,v){
+        var obj = Qt.createQmlObject(c, xApp, 'xm2')
+        app.cantmod=v
         app.s=appSettings.usec
         app.mod=appSettings.umod
         console.log('Ejecuciòn desde el modulo: '+app.mod+' en la secciòn '+app.s)
