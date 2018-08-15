@@ -1,8 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import Qt.labs.settings 1.0
-//import "m0" as Mod0
-//import "m1" as Mod1
 ApplicationWindow {
     id: app
     objectName: 'qmlandia'
@@ -62,6 +60,7 @@ ApplicationWindow {
         Item{
             id:xS
             anchors.fill: parent
+            clip:true
         }
         Xp{
             id:xP
