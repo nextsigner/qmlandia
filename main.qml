@@ -59,13 +59,11 @@ ApplicationWindow {
         ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;z:xP.z+1}
         Item{
             id:xS
-            anchors.fill: parent
+            width: parent.width
+            height: parent.height-app.fs*2
             clip:true
         }
-        Xp{
-            id:xP
-            onListado: showS()
-        }
+        Xp{id:xP;onListado: showS();}
         Cabecera{id:cab;x:0-width;visible:app.s>-1;anchors.bottom: xApp.bottom;anchors.bottomMargin: app.fs*2}
         Xc{id:xC}
     }
