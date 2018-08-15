@@ -9,7 +9,7 @@ ApplicationWindow {
     visible: true
     visibility: Qt.platform.os!=='android'?'Maximized':'FullScreen'
     color: app.c3
-    property real ffs: Qt.platform.os!=='android'?0.022:0.028
+    property real ffs: Qt.platform.os!=='android'?0.027:0.03
     property int fs: app.width>app.height?app.width*ffs:app.height*ffs
     property int an: app.width>app.height?app.width:app.height
     property int al: app.width>app.height?app.height:app.width
@@ -43,7 +43,6 @@ ApplicationWindow {
         //Variables de Actualizaciòn
         property string uRS
         property string ucs: ''
-        property string umps: ''
 
         //Variables de Estado
         property int usec
@@ -63,7 +62,7 @@ ApplicationWindow {
         Item{
             id:xM
             width: parent.width
-            height: parent.height*0.9
+            height: parent.height-app.fs*2
             clip: true
             Column{
                 id: mods
@@ -71,8 +70,8 @@ ApplicationWindow {
                 Mod1.Mod{id:mod1;visible:app.mod===1}
             }
         }
+        Cabecera{id:cab;x:0-width;visible:app.s>-1;anchors.bottom: xApp.bottom;anchors.bottomMargin: xApp.height-app.fs*2}
 
-        Cabecera{id:cab;x:0-width;visible:app.s>-1;anchors.bottom: xApp.bottom;anchors.bottomMargin: xApp.height*0.1}
     }
     Timer{
         id:tu
@@ -107,10 +106,11 @@ ApplicationWindow {
         }
     }
 
-
     onVerAyudaChanged: {
-        pa.visible=verAyuda
-        pa.y=verAyuda?app.height-pa.height-app.fs*6:app.height+pa.height+app.fs*4
+        if(pa){
+            pa.visible=verAyuda
+            pa.y=verAyuda?app.height-pa.height-app.fs*6:app.height+pa.height+app.fs*4
+        }
     }
     onSChanged:showCab()
     onModChanged: showCab()
@@ -120,7 +120,6 @@ ApplicationWindow {
 
         app.s=appSettings.usec
         app.mod=appSettings.umod
-        //app.mp.source=appSettings.umps
         console.log('Ejecuciòn desde el modulo: '+app.mod+' en la secciòn '+app.s)
     }
     function showCab(){

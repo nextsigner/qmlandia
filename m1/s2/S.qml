@@ -3,7 +3,7 @@ import QtMultimedia 5.0
 Item {
     id: r
     width: app.an
-    height: app.al*0.9
+    height: app.al-app.fs*2
     onVisibleChanged: {
         if(visible){
             app.mp.source=''

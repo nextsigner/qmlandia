@@ -9,7 +9,6 @@ Item {
         if(visible){
             app.mp.source="./a1.m4a"
             app.pa=pa
-            //app.mp.play()
         }
     }
     Column{

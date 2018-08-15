@@ -3,7 +3,7 @@ import  "../../"
 Item {
     id: r
     width: app.an
-    height: app.al*0.9
+    height: app.al-app.fs*2
     onVisibleChanged: {
         if(visible){
             app.mp.source="./a1.m4a"
@@ -108,7 +108,8 @@ Item {
             anchors.centerIn: parent
             spacing: app.fs*0.5
             BotonA{id: ba1; t1:'Màs informaciòn Sobre Qt';s:'./h/sobre_qt.m4a'}
-            BotonA{id: ba2; t1:'Ir al siguiente';s:'1'}
+            BotonA{id: ba2; t1:'Màs informaciòn Unik';s:'./h/sobre_unik.m4a'}
+            BotonA{id: ba3; t1:'Ir al siguiente';s:'1'}
         }
     }
     Timer{
@@ -116,7 +117,7 @@ Item {
         repeat: true
         interval: 250
         onTriggered: {
-            var c1='<html><head><style>\n.activo{\nfont-size:'+app.fs+'px;\nbackground-color:'+app.c2+';\ncolor:'+app.c3+';\n}\n.inactivo{\nbackground-color:'+app.c3+';\ncolor:'+app.c2+';\n}</style></head><body>'
+            var c1='<html><head><style>\n.activo{\nfont-size:'+parseInt(app.fs*0.65)+'px;\nbackground-color:'+app.c2+';\ncolor:'+app.c3+';\n}\n.inactivo{\nbackground-color:'+app.c3+';\ncolor:'+app.c2+';\n}</style></head><body>'
             var c3='</body></html>'
 
             var c2 ='<h2 class="'+app.lnl(0, 4)+'">¿En què consiste este curso?</h2>'
@@ -205,12 +206,13 @@ Item {
                 img1.visible=false
                 img2.visible=false
             }
-            console.log('--->>'+parseFloat((app.mp.position/app.mp.duration)*100))
         }
     }
     Component.onCompleted: {
         var h1= 'Qt es un Framework, Entorno Multiplataforma de Trabajo para el desarrollo de aplicaciones informàticas. Està orientado a objetos para la creaciòn de aplicaciones  multiplataforma que requieran unaa GUI (Interfaz Gràfica de Usuario) o tambieǹ para aplicaciones del tipo consola que no lo requieran. Qt es desarrollado por la Comunidad Qt Project conjuntamente con Digia y otras empresas. Qt es distribuido de manera libre bajo la licencia LGPL, LGPL2 y tambièn es distribuido en la modalidad Enterprise. Puedes conocer màs sobre Qt en www.qt.io.'
         ba1.t2=h1
+        var h2= 'Unik es una aplicaciòn desarrollada por @nextsigner con el Entorno de Desarrollo Qt Open Source. El proyecto es distribuido libremente bajo la licencia LGPL y su còdigo fuente està publicado en GitHub.com.  Unik se caracteriza por ser la ùnica aplicaciòn diseñada para descargar proyectos QML directamente desde GitHub.com, asì mismo hacer correr proyectos QML desde carpetas locales o remotas. La documentaciòn està disponible en el sitio oficial de unik llamado www.unikode.org y en el repositorio oficial en GitHub.com cuya url es https://www.github.com/nextsigner/unik.'
+        ba2.t2=h2
         //app.mp.source="./a1.m4a"
         //app.mp.play()
 

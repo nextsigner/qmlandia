@@ -13,8 +13,8 @@ Item {
     property alias t2: txt2.text
     Rectangle{
         id:xC
-        width: r.width-app.fs
-        height: r.height-app.fs
+        width: r.width
+        height: r.height
         anchors.centerIn: r
         color: app.c3
         border.width: 2
@@ -22,6 +22,7 @@ Item {
         radius: app.fs*0.25
         clip: true
         Flickable{
+            id:fk
             width: parent.width-app.fs*2
             height: parent.height-app.fs*2
             anchors.horizontalCenter: parent.horizontalCenter
@@ -30,11 +31,10 @@ Item {
             boundsBehavior: Flickable.StopAtBounds
             Column{
                 spacing: app.fs
-                //anchors.horizontalCenter: parent
                 Item{height: app.fs*0.5}
                 Text {
                     id: txt1
-                    width: r.width-app.fs*2
+                    width: r.width-app.fs*4
                     font.pixelSize: app.fs
                     color: app.c2
                     textFormat: Text.RichText
@@ -44,7 +44,8 @@ Item {
                     id: txt2
                     font.pixelSize: app.fs
                     color: app.c4
-                    width: r.width-app.fs*2
+                    width: r.width-app.fs*4
+                    anchors.horizontalCenter: parent.horizontalCenter
                     wrapMode: Text.WordWrap
                 }
             }
@@ -75,18 +76,16 @@ Item {
                         mp1.play()
                     }
                 }
-
                 onSeekPositionChanged: {
                     mp1.seek(playPosition)
                     mp1.play()
                 }
             }
-
         }
         Boton{
-            w:app.fs
+            w:app.fs*1.5
             h:w
-            tp:2
+            tp:1
             d:'Cerrar'
             c:app.c3
             b:app.c2

@@ -7,7 +7,7 @@ Rectangle {
     border.width: 2
     border.color: 'black'
     width: app.an
-    height: app.al*0.1
+    height: app.fs*2
     property url source: mediaPlayer.source
     property alias btnUD: btnUpdate
     property alias mp: mediaPlayer
@@ -67,7 +67,8 @@ Rectangle {
     Text {
         id: txtInfo
         font.pixelSize: app.fs*0.5
-        anchors.verticalCenter: r.verticalCenter
+        anchors.bottom: r.bottom
+        anchors.bottomMargin: app.fs*0.1
         anchors.left: seekSlider.left
         color: app.c4
         text: 'Modulo '+parseInt(app.mod+1)+' de '+app.cantmod+'\nSecciòn '+parseInt(app.s+1)+' de '+app.cants
@@ -76,7 +77,7 @@ Rectangle {
     Row{
         anchors.horizontalCenter: r.horizontalCenter
         anchors.bottom: r.bottom
-        anchors.bottomMargin: app.fs*0.5
+        anchors.bottomMargin: app.fs*0.1
         spacing: app.fs*0.5
         Boton{//Actualizar Qmlandia
             id:btnUpdate
