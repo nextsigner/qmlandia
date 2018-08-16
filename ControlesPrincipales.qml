@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtMultimedia 5.0
+import Qt.labs.folderlistmodel 2.2
 Rectangle {
     id: r
     color: "transparent"
@@ -134,19 +135,19 @@ Rectangle {
             w:app.fs
             h:w
             tp:3
-            d:'Ir al inicio'
+            d:'Ir al Modulo Anterior'
             c:app.c3
             b:app.c2
             t:'\uf049'
-            onClicking: toStart()
-            enabled: app.mod!==0||app.s!==0
+            onClicking: toBackMod()
+            enabled: app.mod!==0
             opacity: enabled?1.0:0.5
         }
         Boton{
             w:app.fs
             h:w
             tp:3
-            d:'Retroceder'
+            d:'Ir a Secciòn Anterior'
             c:app.c3
             b:app.c2
             t:'\uf04a'
@@ -170,7 +171,7 @@ Rectangle {
             w:app.fs
             h:w
             tp:3
-            d:'Ir al siguiente'
+            d:'Ir a la Secciòn Siguiente'
             c:app.c3
             b:app.c2
             t:'\uf04e'
@@ -182,11 +183,11 @@ Rectangle {
             w:app.fs
             h:w
             tp:3
-            d:'Ir al final'
+            d:'Ir al Modulo Siguiente'
             c:app.c3
             b:app.c2
             t:'\uf050'
-            onClicking: toEnd()
+            onClicking: toNextMod()
             enabled: app.mod<app.cantmod-1
             opacity: enabled?1.0:0.5
         }
@@ -210,6 +211,7 @@ Rectangle {
         }
     }
     function next(){
+        appSettings.pcs=app.cants
         mediaPlayer.stop()
         if(app.s===app.cants-1){
             app.s=0
@@ -217,7 +219,6 @@ Rectangle {
         }else{
             app.s++
         }
-
     }
     function back(){
         mediaPlayer.stop()
@@ -227,20 +228,19 @@ Rectangle {
             if(app.mod>0){
                 app.mod--
             }
-
-            //app.s=mods.children[mod].getC()
+            app.s=appSettings.pcs-1
         }
 
     }
-    function toStart(){
+    function toBackMod(){
         mediaPlayer.stop()
-        app.mod=0
-        app.s=0
-        appSettings.umod=0
-        appSettings.ucs=0
+        app.mod--
+        app.prepMod()
     }
-    function toEnd(){
+    function toNextMod(){
+        appSettings.pcs=app.cants
+        app.s=0
         app.mod=app.cantmod-1
-        app.s=app.cants-1;
+        app.prepMod()
     }
 }

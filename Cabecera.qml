@@ -47,7 +47,7 @@ Rectangle {
         onTriggered: {
             r.x=0-r.width
             if(r.visible){
-                app.mp.play()
+                //app.mp.play()
             }
 
         }

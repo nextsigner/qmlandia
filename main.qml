@@ -25,8 +25,6 @@ ApplicationWindow {
     property int cants: 0
     property bool verAyuda: false
     property var pa
-    //property var ma//Mod Activo
-
     property alias cb: cab
     property alias cp: controles
 
@@ -46,6 +44,7 @@ ApplicationWindow {
         //Variables de Estado
         property int usec
         property int umod
+        property int pcs
     }
     FontLoader {name: "FontAwesome";source: "qrc:/fontawesome-webfont.ttf";}
     Rectangle{
@@ -63,7 +62,7 @@ ApplicationWindow {
             height: parent.height-app.fs*2
             clip:true
         }
-        Xp{id:xP;onListado: showS();}
+        Xp{id:xP}
         Cabecera{id:cab;x:0-width;visible:app.s>-1;anchors.bottom: xApp.bottom;anchors.bottomMargin: app.fs*2}
         Xc{id:xC}
     }
@@ -99,6 +98,22 @@ ApplicationWindow {
             tu.start()
         }
     }
+
+    Timer{
+        id:tinit
+        running: false
+        repeat: true
+        interval: 10
+        onTriggered: {
+            if(xP.cm){
+                console.log('Modulos Listados...')
+                console.log('Modulo a cargar: '+app.mod)
+                console.log('Seccion a cargar: '+app.s)
+                prepMod()
+                tinit.stop()
+            }
+        }
+    }
     onVerAyudaChanged: {
         if(pa){
             pa.visible=verAyuda
@@ -106,28 +121,63 @@ ApplicationWindow {
         }
     }
     onSChanged:{
-        showCab()
-        showS()
+        prepMod()
+        appSettings.ucs=s
     }
-    onModChanged: {
-        //xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia'+'/'+xP.am[app.s]:'file:///'+appsDir+'/qmlandia'+'/'+xP.am[app.s]
-        showCab()
-        showS()
-    }
+    onModChanged: appSettings.umod=mod
     Component.onCompleted: {
         console.log('Ejecuciòn nùmero: '+appSettings.cantRun)
         appSettings.cantRun++
-
-
-
-        //xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia'
 
         //Volume
         if(appSettings.volume<0&&appSettings.volume>1){
             appSettings.volume=0.8
         }
+        app.mod=appSettings.umod
+        app.s=appSettings.ucs
+        tinit.start()
+    }
+    function prepMod(){
+        for(var i=0;i<xS.children.length;i++){
+                xS.children[i].destroy(1)
+        }
+        var code='import QtQuick 2.0\n'
+        code+='import Qt.labs.folderlistmodel 2.2\n'
+        code+='Item{\n'
+        code+='         FolderListModel{\n'
+        code+='         folder: Qt.platform.os!==\'windows\'?appsDir+\'/qmlandia/\'+xP.am[app.mod]:\'file:///\'+appsDir+\'/qmlandia/\'+xP.am[app.mod]\n'
+        code+='                 id:fl2\n'
+        code+='                 showFiles: false\n'
+        code+='                 sortField: FolderListModel.Name\n'
+        code+='                 onCountChanged: {\n'
+        code+='                     tfl2.restart()\n'
+        code+='                 }\n'
+        code+='             }\n'
+
+        code+='             Timer{\n'
+        code+='                     id:tfl2\n'
+        code+='                     running: false\n'
+        code+='                     repeat: false\n'
+        code+='                     interval: 1000\n'
+        code+='                     onTriggered: {\n'
+        code+='                                 var v=0\n'
+        code+='                                 xP.ars=[]\n'
+        code+='                                 for(var i=0;i<fl2.count;i++){\n'
+        code+='                                         xP.ars.push(fl2.get(i, \'fileName\'))\n'
+        code+='                                         v++\n'
+        code+='                                 } \n'
+        code+='                                 app.cants=v\n'
+        code+='                                 console.log("El modulo "+app.mod+" tiene "+v+" secciones.")\n'
+        code+='                                 showS()\n'
+        code+='                      }\n'
+        code+='               }\n'
 
 
+        code+='}\n'
+
+
+
+        var obj = Qt.createQmlObject(code, xS, 'xm2')
     }
     function showS(){
         for(var i=0;i<xS.children.length;i++){
@@ -145,13 +195,10 @@ ApplicationWindow {
         var obj = Qt.createQmlObject(code, xS, 'xm2')
         xC.z=xS.z+1
         console.log('Mostrando Secciòn desde carpeta: '+xP.am[app.mod]+'/'+xP.ars[app.s])
-        appSettings.usec=app.s
-         appSettings.umod=app.mod
+        //appSettings.usec=app.s
+         //appSettings.umod=app.mod
     }
     function showCab(){
-        //appSettings.usec=app.s
-        //appSettings.umod=app.mod
-        //appSettings.umps=app.mp.source
         app.cb.tit="Modulo "+parseInt(app.mod+1)+" de "+app.cantmod+" Secciòn "+parseInt(app.s+1)+" de "+app.cants
     }
     function addA(t1, t2, s){

@@ -9,30 +9,12 @@ Item{
     property var am: []
     property var ars: []
     property bool cm: false
-    signal listado()
-    FolderListModel{
-        id:fl2
-        showFiles: false
-        sortField: FolderListModel.Name
-        onFolderChanged:  {
-            r.ars=[]
-            for(var i=0;i<count;i++){
-                    r.ars.push(fl2.get(i, 'fileName'))
-            }
-            app.cants=r.ars.length
-            console.log('Total de Secciones: '+r.ars.length)
-            console.log('Secciones: '+r.ars)
-            app.s=appSettings.usec
-            app.mod=appSettings.umod
-            listado()
-        }
-    }
-
+    //signal listado()
     FolderListModel{
         id:fl
         showFiles: false
         sortField: FolderListModel.Name
-        folder: r.cm? xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia': xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia/'+am[app.s]
+        folder: r.cm? xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia': xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia/'+am[app.mod]
         onCountChanged: {
             tfl.restart()
         }
@@ -52,7 +34,6 @@ Item{
             app.cantmod=r.am.length
             console.log('1Total de Modulos: '+r.am.length)
             console.log('1Modulos: '+r.am)
-            fl2.folder=fl.folder+'/'+r.am[app.s]
             r.cm=true
         }
     }
