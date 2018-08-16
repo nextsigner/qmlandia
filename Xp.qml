@@ -12,9 +12,13 @@ Item{
     //signal listado()
     FolderListModel{
         id:fl
+        showHidden: false
+        showDotAndDotDot: false
         showFiles: false
         sortField: FolderListModel.Name
-        folder: r.cm? xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia': xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia/'+am[app.mod]
+        //folder: r.cm? xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia': xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia/'+am[app.mod]
+        folder: Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file://'+appsDir+'/qmlandia'
+
         onCountChanged: {
             tfl.restart()
         }
@@ -27,7 +31,7 @@ Item{
         onTriggered: {
             r.am=[]
             for(var i=0;i<fl.count;i++){
-                if(''+fl.get(i, 'fileName')!=='h'){
+                if(''+fl.get(i, 'fileName')!=='h'&&''+fl.get(i, 'fileName')!=='.git'){
                     r.am.push(fl.get(i, 'fileName'))
                 }
             }
