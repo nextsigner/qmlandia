@@ -77,26 +77,14 @@ Item {
         repeat: true
         interval: 250
         onTriggered: {
-            var c1='<html><head><style>\n.activo{\nfont-size:'+parseInt(app.fs*0.65)+'px;\nbackground-color:'+app.c2+';\ncolor:'+app.c3+';\n}\n.inactivo{\nbackground-color:'+app.c3+';\ncolor:'+app.c2+';\n}</style></head><body>'
-            var c3='</body></html>'
-
-            var c2 ='<h2 class="'+app.lnl(0, 4)+'">¿En què consiste este curso?</h2>'
-            var p0='Este curso consiste principalmente en Aprender a Programar en QML. Para aprender a utilizar este lenguaje es necesario saber què es QML, de donde proviene, porquè se llama asì y para que sirve.'
-            var p1=' Por ser este el comienzo, explicaremos de manera breve lo màs bàsico y posteriormente aprenderemos màs en detalle sobre sus aspectos tècnicos y còmo utilizarlo.'
-            var p2='Para dominar una herramienta, tecnologìa o lenguaje de programaciòn, no solo es aconsejable, tambièn es de fundamental importancia conocer sus origenes y otros detalles bàsicos que debemos tener en cuenta.'
-            var p3='Para programar una aplicaciòn, el programador necesita contar con algunas herramientas indispensables. Ademàs de un ordenador, computadora y sistema operativo, necesita de una o varias herramientas que en conjunto si pertenecen a un mismo kit las mismas conforman lo que se conoce como Framework.'
-            var p4='Desde el editor de texto llamado VIM, se ha escrito todo el còdigo fuente QML de este curso para que funcione dentro de la aplicaciòn que vez en pantalla. Esta aplicaciòn se llama Unik y fue desarrollada dentro de el Framework Qt Open Source.'
-            var p5='Todo el conocimiento que adquieras en este curso, es totalmente ùtil para que puedas crear aplicaciones tanto en el Framework Qt como en Unik. Puedes comenzar con Unik y luego llevar tu còdigo a Qt. Ten en cuenta que el Framework Qt tiene un tamaño aproximado de 2Gb y Unik solo tiene un tamaño de 100Mb. Ambos son multiplataforma.'
-
+            c2 ='<h2 class="'+app.lnl(0, 4)+'">¿En què consiste este curso?</h2>'
             c2+='<p class="'+app.lnl(4, 21)+'">'+p0+'</p>'
             c2+='<p class="'+app.lnl(21, 33)+'">'+p1+'</p>'
             c2+='<p class="'+app.lnl(33.5, 49.5)+'">'+p2+'</p>'
             c2+='<p class="'+app.lnl(49.5, 75)+'">'+p3+'</p>'
             c2+='<p class="'+app.lnl(75, 96)+'">'+p4+'</p>'
             c2+='<p class="'+app.lnl(96, 131)+'">'+p5+'</p>'
-
             txt1.text=c1+c2+c3
-
 
             if(app.lnl(4, 49.5)==='activo'){
                 img1.visible=true
@@ -168,7 +156,31 @@ Item {
             }
         }
     }
+
+    property string c1
+    property string c2
+    property string c3
+    property string p0
+    property string p1
+    property string p2
+    property string p3
+    property string p4
+    property string p5
+
     Component.onCompleted: {
+        //Partes de la Estructura Html
+        c1='<html><head><style>\n.activo{\nfont-size:'+parseInt(app.fs*0.65)+'px;\nbackground-color:'+app.c2+';\ncolor:'+app.c3+';\n}\n.inactivo{\nbackground-color:'+app.c3+';\ncolor:'+app.c2+';\n}</style></head><body>'
+        c3='</body></html>'
+
+        //Parrafos
+        p0='Este curso consiste principalmente en Aprender a Programar en QML. Para aprender a utilizar este lenguaje es necesario saber què es QML, de donde proviene, porquè se llama asì y para que sirve.'
+        p1=' Por ser este el comienzo, explicaremos de manera breve lo màs bàsico y posteriormente aprenderemos màs en detalle sobre sus aspectos tècnicos y còmo utilizarlo.'
+        p2='Para dominar una herramienta, tecnologìa o lenguaje de programaciòn, no solo es aconsejable, tambièn es de fundamental importancia conocer sus origenes y otros detalles bàsicos que debemos tener en cuenta.'
+        p3='Para programar una aplicaciòn, el programador necesita contar con algunas herramientas indispensables. Ademàs de un ordenador, computadora y sistema operativo, necesita de una o varias herramientas que en conjunto si pertenecen a un mismo kit las mismas conforman lo que se conoce como Framework.'
+        p4='Desde el editor de texto llamado VIM, se ha escrito todo el còdigo fuente QML de este curso para que funcione dentro de la aplicaciòn que vez en pantalla. Esta aplicaciòn se llama Unik y fue desarrollada dentro de el Framework Qt Open Source.'
+        p5='Todo el conocimiento que adquieras en este curso, es totalmente ùtil para que puedas crear aplicaciones tanto en el Framework Qt como en Unik. Puedes comenzar con Unik y luego llevar tu còdigo a Qt. Ten en cuenta que el Framework Qt tiene un tamaño aproximado de 2Gb y Unik solo tiene un tamaño de 100Mb. Ambos son multiplataforma.'
+
+        //Ayudas
         var h1= 'Qt es un Framework, Entorno Multiplataforma de Trabajo para el desarrollo de aplicaciones informàticas. Està orientado a objetos para la creaciòn de aplicaciones  multiplataforma que requieran una GUI (Interfaz Gràfica de Usuario) o tambieǹ para aplicaciones del tipo consola que no lo requieran. Qt es desarrollado por la Comunidad Qt Project conjuntamente con Digia y otras empresas. Qt es distribuido de manera libre bajo la licencia LGPL, LGPL2 y tambièn es distribuido en la modalidad Enterprise. Puedes conocer màs sobre Qt en www.qt.io.'
         var h2= 'Unik es una aplicaciòn desarrollada por @nextsigner con el Entorno de Desarrollo Qt Open Source. El proyecto es distribuido libremente bajo la licencia LGPL y su còdigo fuente està publicado en GitHub.com.  Unik se caracteriza por ser la ùnica aplicaciòn diseñada para descargar proyectos QML directamente desde GitHub.com, asì mismo hacer correr proyectos QML desde carpetas locales o remotas. La documentaciòn està disponible en el sitio oficial de unik llamado www.unikode.org y en el repositorio oficial en GitHub.com cuya url es https://www.github.com/nextsigner/unik.'
         xa.addBa('Màs informaciòn Sobre Qt',h1,'./h/sobre_qt.m4a')
