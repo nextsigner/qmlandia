@@ -22,7 +22,10 @@ Rectangle {
         onClicked: {
             if(r.s==='1'){
                 cp.next()
-            } else{
+            }else if(s.indexOf('{')>-1){
+                console.log('code:'+s)
+                app.runQml(s)
+            }else{
                 app.addA(r.t1, r.t2, r.s)
             }
 

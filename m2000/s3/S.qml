@@ -196,7 +196,6 @@ Item {
                 img2.width=r.width*0.25
                 te1.text='<b>Ten Paciencia!</b>'
                 te1.font.pixelSize=app.fs
-                te2.text='\uf063'
             }else{
                 te1.text=''
                 te2.text=''
@@ -230,10 +229,19 @@ Item {
 
 
         //Ayudas
-        var h1= 'Qt es un Framework, Entorno Multiplataforma de Trabajo para el desarrollo de aplicaciones informàticas. Està orientado a objetos para la creaciòn de aplicaciones  multiplataforma que requieran una GUI (Interfaz Gràfica de Usuario) o tambieǹ para aplicaciones del tipo consola que no lo requieran. Qt es desarrollado por la Comunidad Qt Project conjuntamente con Digia y otras empresas. Qt es distribuido de manera libre bajo la licencia LGPL, LGPL2 y tambièn es distribuido en la modalidad Enterprise. Puedes conocer màs sobre Qt en www.qt.io.'
-        var h2= 'Unik es una aplicaciòn desarrollada por @nextsigner con el Entorno de Desarrollo Qt Open Source. El proyecto es distribuido libremente bajo la licencia LGPL y su còdigo fuente està publicado en GitHub.com.  Unik se caracteriza por ser la ùnica aplicaciòn diseñada para descargar proyectos QML directamente desde GitHub.com, asì mismo hacer correr proyectos QML desde carpetas locales o remotas. La documentaciòn està disponible en el sitio oficial de unik llamado www.unikode.org y en el repositorio oficial en GitHub.com cuya url es https://www.github.com/nextsigner/unik.'
-        xa.addBa('Màs informaciòn Sobre Qt',h1,'./h/sobre_qt.m4a')
-        xa.addBa('Màs informaciòn Unik', h2,'./h/sobre_unik.m4a')
+        var h1= 'No. No es necesario saber Inglès. Es necesario aprender el significado de 20, 40 o 60 palàbras. Mientras màs palabras sepas, màs sencillo te resultarà aprender a programar en QML o en cualquier otro lenguaje de programaciòn. Por ejemplo, aprendiendo apenas 20 palabras, para saber como se dice ancho, alto, espacio, columna, fila, funciòn y otras, con esto ya puedes aprender y avanzar muchìsimo. Asi que Anìmate.'
+        var code='import QtQuick 2.0\n'
+        code+='Item{\n'
+        code+='     anchors.fill:parent\n'
+        code+='     Component.onCompleted:{\n'
+        code+='         app.verAyuda=false;\n'
+        code+='         console.log("Qmlandia: Còdigo Qml Ejecutado '+c1+' --- '+c2+'")\n'
+        code+='     }\n'
+        code+='}\n'
+
+        var h2= ''
+        xa.addBa('Se requiere saber Ingles?',h1,'./h/sobre_ingles.m4a')
+        xa.addBa('Editar Còdigo','',code)
         xa.addBa('Ir al siguiente','','1')
 
 
