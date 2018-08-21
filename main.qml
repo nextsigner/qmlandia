@@ -6,6 +6,8 @@ ApplicationWindow {
     objectName: 'qmlandia'
     visible: true
     visibility: Qt.platform.os!=='android'?'Maximized':'FullScreen'
+    width: 720
+    height: 480
     color: app.c3
     property real ffs: Qt.platform.os!=='android'?0.027:0.03
     property int fs: app.width>app.height?app.width*ffs:app.height*ffs
@@ -25,7 +27,6 @@ ApplicationWindow {
     property int cants: 0
     property bool verAyuda: false
     property var pa
-    property alias cb: cab
     property alias cp: controles
 
     property var mp:controles.mp
@@ -45,6 +46,9 @@ ApplicationWindow {
         property int usec
         property int umod
         property int pcs
+
+        property int tema
+        onTemaChanged: setTema()
     }
     FontLoader {name: "FontAwesome";source: "qrc:/fontawesome-webfont.ttf";}
     Rectangle{
@@ -53,7 +57,6 @@ ApplicationWindow {
         width: app.an
         height: app.al
         anchors.centerIn: parent
-        //anchors.fill: parent
         rotation: app.width>app.height?0:-90
         ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;z:xP.z+1}
         Item{
@@ -63,7 +66,6 @@ ApplicationWindow {
             clip:true
         }
         Xp{id:xP}
-        Cabecera{id:cab;x:0-width;visible:app.s>-1;anchors.bottom: xApp.bottom;anchors.bottomMargin: app.fs*2}
         Xc{id:xC}
     }
     Timer{
@@ -136,6 +138,11 @@ ApplicationWindow {
         app.mod=appSettings.umod
         app.s=appSettings.ucs
         tinit.start()
+
+        if(appSettings.tema<=0){
+            appSettings.tema=1
+        }
+        setTema()
     }
     function prepMod(){
         for(var i=0;i<xS.children.length;i++){
@@ -210,5 +217,32 @@ ApplicationWindow {
     }
     function runQml(c){
          var obj = Qt.createQmlObject(c, xS, 'xm4')
+    }
+    function setTema(){
+        if(appSettings.tema===1){
+            c1='#000'
+            c2='#333'
+            c3= 'white'
+            c4= '#ccc'
+        }
+        if(appSettings.tema===2){
+            c1='#333'//"#62DA06"
+            c2='white'//"#8DF73B"
+            c3= 'black'//"black"
+            c4= '#ccc'//"white"
+        }
+        if(appSettings.tema===3){
+            c1="#EB761D"
+            c2="#ff8833"
+            c3="black"
+            c4="white"
+        }
+        if(appSettings.tema===4){
+            c1="#62DA06"
+            c2="#8DF73B"
+            c3="black"
+            c4="white"
+        }
+        prepMod()
     }
 }

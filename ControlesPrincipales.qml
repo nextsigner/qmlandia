@@ -43,16 +43,36 @@ Rectangle {
         }
         Component.onCompleted: app.mp=mediaPlayer
     }
+
+    Timer{
+        id:trb
+        running: false
+        repeat: true
+        interval: 3500
+        onRunningChanged: {
+            if(running){
+                rb.opacity=1.0
+            }
+        }
+        onTriggered: {
+            rb.opacity=0.0
+        }
+    }
     SeekControlFinal{
         id: seekSlider
         width: parent.width*0.8
+        height: rb.opacity===1.0?app.fs:app.fs*0.5
         anchors.horizontalCenter: parent.horizontalCenter
-        //anchors.bottom: parent.bottom
+       y:rb.opacity===1.0?0:r.height-app.fs
         verFondo: true
         onClickSeek: {
+            app.verAyuda=false
+            trb.restart()
             mediaPlayer.seek(position);
         }
         onSeekingChanged: {
+            app.verAyuda=false
+            trb.restart()
             if(seeking){
                 mediaPlayer.pause()
             }else{
@@ -61,10 +81,21 @@ Rectangle {
         }
 
         onSeekPositionChanged: {
+            app.verAyuda=false
+            trb.restart()
             mediaPlayer.seek(playPosition)
         }
     }
-
+    MouseArea{
+        anchors.fill: r
+        enabled: rb.opacity!==1.0
+        hoverEnabled: true
+        onEntered: rb.opacity=1.0
+        onPositionChanged: rb.opacity=1.0
+        onClicked: {
+            rb.opacity=1.0
+        }
+    }
     Text {
         id: txtInfo
         font.pixelSize: app.fs*0.5
@@ -73,7 +104,7 @@ Rectangle {
         anchors.left: seekSlider.left
         color: app.c4
         text: 'Modulo '+parseInt(app.mod+1)+' de '+app.cantmod+'\nSecciòn '+parseInt(app.s+1)+' de '+app.cants
-        //visible: app.mod!==0
+        visible:rb.opacity===1.0
     }
 
     Row{
@@ -95,14 +126,32 @@ Rectangle {
         }
     }
 
+    Rectangle{
+        width: rb.width+app.fs
+        height: rb.height+app.fs
+        anchors.centerIn: rb
+        color: app.c1
+        radius: app.fs*0.5
+        border.width: 2
+        border.color: app.c2
+        opacity: 0.5
+        visible: rb.opacity===1.0
+    }
     Row{
+        id:rb
         anchors.horizontalCenter: r.horizontalCenter
-        anchors.bottom: r.bottom
-        anchors.bottomMargin: app.fs*0.1
-        spacing: app.fs*0.5
+        anchors.bottom: r.top
+        anchors.bottomMargin: app.fs*2
+        spacing: app.fs
+        opacity: 0.0
+        onOpacityChanged: {
+            if(opacity===1.0){
+                trb.restart()
+            }
+        }
         Boton{//Actualizar Qmlandia
             id:btnUpdate
-            w:app.fs
+            w:visible?app.fs*1.5:0
             tp:3
             h: w
             t: '\uf021'
@@ -128,35 +177,41 @@ Rectangle {
             }
         }
         Item{
-            width: app.fs
+            width: btnUpdate.visible?app.fs:0
             height: width
         }
         Boton{
-            w:app.fs
+            w:app.fs*1.5
             h:w
             tp:3
             d:'Ir al Modulo Anterior'
             c:app.c3
             b:app.c2
             t:'\uf049'
-            onClicking: toBackMod()
+            onClicking: {
+                trb.restart()
+                toBackMod()
+            }
             enabled: app.mod!==0
             opacity: enabled?1.0:0.5
         }
         Boton{
-            w:app.fs
+            w:app.fs*1.5
             h:w
             tp:3
             d:'Ir a Secciòn Anterior'
             c:app.c3
             b:app.c2
             t:'\uf04a'
-            onClicking: back()
+            onClicking: {
+                trb.restart()
+                back()
+            }
             enabled: app.s!==0||app.mod!==0
             opacity: enabled?1.0:0.5
         }
         Boton{
-            w:app.fs
+            w:app.fs*1.5
             h:w
             tp:3
             d:'Reproducir'
@@ -164,42 +219,52 @@ Rectangle {
             b:app.c2
             t: !mediaPlayer.paused?app.mp.position===app.mp.duration?'\uf0e2':'\uf04c':'\uf04b'
             onClicking:{
+                trb.restart()
                 play()
             }
         }
         Boton{
-            w:app.fs
+            w:app.fs*1.5
             h:w
             tp:3
             d:'Ir a la Secciòn Siguiente'
             c:app.c3
             b:app.c2
             t:'\uf04e'
-            onClicking: next()
+            onClicking: {
+                trb.restart()
+                next()
+            }
             enabled: app.mod<app.cantmod-1||app.s<app.cants-1
             opacity: enabled?1.0:0.5
         }
         Boton{
-            w:app.fs
+            w:app.fs*1.5
             h:w
             tp:3
             d:'Ir al Modulo Siguiente'
             c:app.c3
             b:app.c2
             t:'\uf050'
-            onClicking: toNextMod()
+            onClicking: {
+                trb.restart()
+                toNextMod()
+            }
             enabled: app.mod<app.cantmod-1
             opacity: enabled?1.0:0.5
         }
         Boton{
-            w:app.fs
+            w:app.fs*1.5
             h:w
             tp:3
             d:'Ayuda de esta secciòn'
             c:app.c3
             b:app.c2
             t:'\uf128'
-            onClicking: app.verAyuda=!app.verAyuda
+            onClicking: {
+                trb.restart()
+                app.verAyuda=!app.verAyuda
+            }
             opacity: app.verAyuda?1.0:0.5
         }
     }
@@ -240,7 +305,7 @@ Rectangle {
     function toNextMod(){
         appSettings.pcs=app.cants
         app.s=0
-        app.mod=app.cantmod-1
+        app.mod++
         app.prepMod()
     }
 }

@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
+import QtQuick.Controls.Styles 1.0
 Rectangle {
     id: r
     width: parent.width
@@ -53,6 +54,90 @@ Rectangle {
 
             }
 
+            Row{
+                spacing: app.fs
+                Text {
+                    text: "Colores: "
+                    font.pixelSize: app.fs
+                    color: app.c2
+                }
+                Row{
+                    spacing: app.fs*0.5
+                    Text {
+                        text: "Claro"
+                        color: app.c2
+                        font.pixelSize: app.fs
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    RadioButton{
+                        font.pixelSize: app.fs
+                        checked: appSettings.tema===1
+                        onCheckedChanged: {
+                            if(checked){
+                                appSettings.tema=1
+                            }
+                        }
+                    }
+                }
+
+
+
+                Row{
+                    spacing: app.fs*0.1
+                    Text {
+                        text: "Oscuro"
+                        color: app.c2
+                        font.pixelSize: app.fs
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    RadioButton{
+                        font.pixelSize: app.fs
+                        checked: appSettings.tema===2
+                        onCheckedChanged: {
+                            if(checked){
+                                appSettings.tema=2
+                            }
+                        }
+                    }
+                }
+                Row{
+                    spacing: app.fs*0.1
+                    Text {
+                        text: "Oscuro 2"
+                        color: app.c2
+                        font.pixelSize: app.fs
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    RadioButton{
+                        font.pixelSize: app.fs
+                        checked: appSettings.tema===3
+                        onCheckedChanged: {
+                            if(checked){
+                                appSettings.tema=3
+                            }
+                        }
+                    }
+                }
+                Row{
+                    spacing: app.fs*0.1
+                    Text {
+                        text: "Unik"
+                        color: app.c2
+                        font.pixelSize: app.fs
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    RadioButton{
+                        font.pixelSize: app.fs
+                        checked: appSettings.tema===4
+                        onCheckedChanged: {
+                            if(checked){
+                                appSettings.tema=4
+                            }
+                        }
+                    }
+                }
+
+            }
         }
         Boton{
             w:app.fs
@@ -62,15 +147,15 @@ Rectangle {
             c:app.c3
             b:app.c2
             t:'X'
-           anchors.right: parent.right
-           anchors.rightMargin: app.fs*0.5
-           anchors.top: parent.top
-           anchors.topMargin: app.fs*0.5
+            anchors.right: parent.right
+            anchors.rightMargin: app.fs*0.5
+            anchors.top: parent.top
+            anchors.topMargin: app.fs*0.5
             onClicking: {
                 r.visible=false
             }
         }
-     }
+    }
 
     Component.onCompleted: {
 

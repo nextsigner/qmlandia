@@ -3,7 +3,6 @@ import QtQuick 2.0
 Item {
     id: seekControl
     width: parent.width
-    height: app.fs
     property int duration: 0
     property int playPosition: 0
     property int seekPosition: 0

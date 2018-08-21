@@ -7,7 +7,6 @@ Rectangle {
     border.color: app.c1
     width: a.contentWidth+app.fs
     height: app.fs*2
-    //anchors.verticalCenter: parent.verticalCenter
     property alias t1: a.text
     property string t2
     property string s
@@ -32,7 +31,6 @@ Rectangle {
             }else{
                 app.addA(r.t1, r.t2, r.s)
             }
-
         }
     }
 }
