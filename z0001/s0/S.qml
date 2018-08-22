@@ -25,7 +25,7 @@ Item {
             wrapMode: Text.WordWrap
         }
     }
-    property var ai: ["qml.png","qt-icon.png","apps.png","sdk.png","unik.png"]
+    property var ai: ["https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png","https://cdn.icon-icons.com/icons2/730/PNG/512/twitter_icon-icons.com_62765.png","http://icons.iconarchive.com/icons/dtafalonso/android-l/512/Youtube-icon.png"]
     Column{
         anchors.verticalCenter: r.verticalCenter
         anchors.right: r.right
@@ -85,68 +85,29 @@ Item {
             c2+='<p class="'+app.lnl(60, 79)+'">'+p4+'</p>'
             txt1.text=c1+c2+c3
 
-            /*
-            if(app.lnl(4, 49.5)==='activo'){
+
+            if(app.lnl(0, 35)==='activo'){
+                te1.text='<b>Fin</b><br><b>del</b><br><b>Curso</b><br>'
+                te1.font.pixelSize=app.fs*2
+                te1.horizontalAlignment=Text.AlignHCenter
+            }else  if(app.lnl(35, 42)==='activo'){
                 img1.visible=true
-                img1.source="./"+ai[0]
-                te1.text='\uf063'
-            }else  if(app.lnl(49.5, 75)==='activo'){
-                img1.visible=true
-                img2.visible=true
-                img1.source="./"+ai[3]
-                img2.source="./"+ai[2]
-                img1.width=r.width*0.1
-                img2.width=r.width*0.1
-                te1.text='<b>Entorno de Trabajo o FrameWork</b><br>Kit de Desarrollo<br>Software Developer Kit'
+                img1.source=""+ai[0]
+                img1.width=r.width*0.25
+                te1.text='<b>https://github.com/nextsigner/qmlandia</b>'
                 te1.font.pixelSize=app.fs*0.5
-                te2.text='\uf063'
-            }else  if(app.lnl(75, 95)==='activo'){
+            }else  if(app.lnl(42, 50)==='activo'){
                 img1.visible=true
-                img2.visible=true
-                img1.source="./"+ai[0]
-                img2.source="./"+ai[4]
-                img1.width=r.width*0.1
-                img2.width=r.width*0.1
-                te1.text='<b>VIM</b><br>Editor de Texto<br>\uf063'
+                img1.source=""+ai[1]
+                img1.width=r.width*0.25
+                te1.text='<b>@nextsigner</b>'
                 te1.font.pixelSize=app.fs
-                te2.text='<b>Curso creado en QML <br>\uf063'
-                te2.font.pixelSize=app.fs
-                te3.text='<b>Unik Qml Engine</b><br>creado por @nextsigner'
-                te3.font.pixelSize=app.fs
-            }else  if(app.lnl(95, 109)==='activo'){
+            }else  if(app.lnl(50, 60)==='activo'){
                 img1.visible=true
-                img2.visible=true
-                img1.source="./"+ai[1]
-                img2.source="./"+ai[4]
-                img1.width=r.width*0.1
-                img2.width=r.width*0.1
-                te1.text='<b>Lo aprendido en este curso</b><br>sirve para <b>Qt</b><br>\uf063'
-                te1.font.pixelSize=app.fs
-                te2.text='o para <b>Unik</b><br>\uf063'
-                te2.font.pixelSize=app.fs
-            }else  if(app.lnl(109, 116)==='activo'){
-                img1.visible=true
-                img2.visible=true
-                img1.source="./"+ai[4]
-                img2.source="./"+ai[1]
-                img1.width=r.width*0.1
-                img2.width=r.width*0.1
-                te2.text='<b> Desarrollas con Unik</b><br>\uf063<br>Llevas tu còdigo QML a Qt<br>\uf063'
-                te2.font.pixelSize=app.fs
-                te1.text=''
-                te3.text=''
-            }else  if(app.lnl(116, 132)==='activo'){
-                img1.visible=true
-                img2.visible=true
-                img1.source="./"+ai[1]
-                img2.source="./"+ai[4]
-                img1.width=r.width*0.1
-                img2.width=r.width*0.1
-                te2.text='<b> Tamaño de Qt: </b>2Gb'
-                te2.font.pixelSize=app.fs
-                te3.text='<b> Tamaño de Unik: </b>100Mb<br><br>Programas y utilizas<br>tus apps en<br>GNU/Linux, Windows<br>Android o Macos'
-                te3.font.pixelSize=app.fs
-                te1.text=''
+                img1.source=""+ai[2]
+                img1.width=r.width*0.25
+                te1.text='<b>youtube.com/c/nextsigner</b>'
+                te1.font.pixelSize=app.fs*0.5
             }else{
                 te1.text=''
                 te2.text=''
@@ -155,7 +116,7 @@ Item {
                 img2.visible=false
             }
 
-            */
+
         }
     }
 
