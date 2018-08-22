@@ -5,7 +5,7 @@ Item {
     width: app.an
     height: app.al-app.fs*2
     Component.onCompleted: {
-        var url='https://github.com/nextsigner/qmlandia'
+        var url='http://www.unikode.org/2018/02/unik-documentation.html'
         var comp
         var obj
         if(Qt.platform.os!=='android'){

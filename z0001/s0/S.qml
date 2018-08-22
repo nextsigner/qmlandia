@@ -169,13 +169,38 @@ Item {
                 }\n
             }\n
             Component.onCompleted:{\n
-                var p=\'\'+unik.getPath(5)+\'/\'+xP.am[app.mod]+\'/\'+xP.ars[app.s]+\'/agradecimientos.txt\'\n
-                console.log(\'Agradecimientos: \'+p)
-                var t=unik.getFile(p)\n
+                var t=\'Personas:
+    Natalia Soledad Pintos
+    Oscar Nuñez Calzada
+    Laura Jaramillo
+    Natalia Gutierrez
+
+Empresas:
+    Digia Qt Project
+    Movistar Argentina\'\n
+                console.log(\'Agradecimientos: \'+t)
                 ta.text=t\n
             }\n
         }\n'
+        var c2=''
+        c2+='import QtQuick 2.0\n
+        Rectangle{\n
+            id:ra\n
+            Component.onCompleted:{\n
+                app.s=1\n
+            }\n
+        }\n'
+        var c3=''
+        c3+='import QtQuick 2.0\n
+        Rectangle{\n
+            id:ra\n
+            Component.onCompleted:{\n
+                app.s=2\n
+            }\n
+        }\n'
         xa.addBa('Ir al Inicio del Curso','','inicio')
+        xa.addBa('Ver Còdigo Fuente del Curso','',c2)
+        xa.addBa('Ir al Sitio Oficial del Proyecto','',c3)
         xa.addBa('Ver Colaboradores','',c)
     }
 }
