@@ -48,7 +48,6 @@ Item {
         height: r.height-xTiUrl.height
         anchors.top: xTiUrl.bottom
         url:raiz.url
-        profile: defaultProfile
         focus: true
         onUrlChanged: {
             tiUrl.text=url
