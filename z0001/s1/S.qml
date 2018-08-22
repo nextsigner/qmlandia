@@ -11,7 +11,7 @@ Item {
             obj.visible=true
             obj.url='https://github.com/nextsigner/qmlandia'
         }else{
-            var comp = Qt.createComponent("../../Xw3.qml")
+            var comp = Qt.createComponent("../../Xw2.qml")
             var obj = comp.createObject(r, {})
             obj.visible=true
             obj.url='https://github.com/nextsigner/qmlandia'
