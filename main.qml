@@ -187,6 +187,7 @@ ApplicationWindow {
 
 
         var obj = Qt.createQmlObject(code, xS, 'xm2')
+        controles.z+=10000
     }
     function showS(){
         for(var i=0;i<xS.children.length;i++){
