@@ -49,6 +49,14 @@ Item {
         anchors.top: xTiUrl.bottom
         url:raiz.url
         focus: true
+        onZChanged:{
+            app.setCpz()
+        }
+        onLoadProgressChanged:{
+            if(loadProgress===100){
+                app.setCpz()
+            }
+        }
         onUrlChanged: {
             tiUrl.text=url
         }

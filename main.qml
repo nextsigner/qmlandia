@@ -247,4 +247,12 @@ ApplicationWindow {
         }
         prepMod()
     }
+    function setCpz(){
+        for(var i=0;i<100000;i++){
+            controles.z++
+            if(controles.z>xS.z){
+                break;
+            }
+        }
+    }
 }
