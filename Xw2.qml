@@ -58,7 +58,7 @@ Rectangle {
             repeat: true
             interval: 250
             onTriggered: {
-                wv.visible=!cpvisible
+                wv.visible=!controles.cpvisible
             }
         }
     }
