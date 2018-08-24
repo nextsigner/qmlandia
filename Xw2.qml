@@ -46,7 +46,7 @@ Rectangle {
     WebView{
         id: wv
         width: r.width-app.fs*10
-        height: r.height-xTiUrl.height-app.fs*10
+        height: r.height-xTiUrl.height
         anchors.top: xTiUrl.bottom
         url:raiz.url
         focus: true        
