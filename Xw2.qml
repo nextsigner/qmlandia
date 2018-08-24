@@ -48,17 +48,17 @@ Item {
         height: r.height-xTiUrl.height
         anchors.top: xTiUrl.bottom
         url:raiz.url
-        focus: true
-        onZChanged:{
-            app.setCpz()
-        }
-        onLoadProgressChanged:{
-            if(loadProgress===100){
-                app.setCpz()
-            }
-        }
+        focus: true        
         onUrlChanged: {
             tiUrl.text=url
+        }
+        Timer{
+            running: true
+            repeat: true
+            interval: 500
+            onTriggered: {
+                tiUrl.text='->'+wv.z+' ->'+r.z+'->'+controles.z
+            }
         }
     }
 
