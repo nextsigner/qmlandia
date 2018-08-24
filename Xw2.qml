@@ -2,9 +2,10 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtWebView 1.1
 
-Item {
+Rectangle {
     id: raiz
     anchors.fill: parent
+    color: '#88ff33'
     property int red
     property string url
     onUrlChanged: wv.url=url
@@ -44,8 +45,8 @@ Item {
 
     WebView{
         id: wv
-        width: r.width
-        height: r.height-xTiUrl.height
+        width: r.width-app.fs*10
+        height: r.height-xTiUrl.height-app.fs*10
         anchors.top: xTiUrl.bottom
         url:raiz.url
         focus: true        
@@ -59,7 +60,7 @@ Item {
             property int v: 0
             onTriggered: {
                 tiUrl.text='->'+wv.z+' ->'+r.z+'->'+controles.z+' ->'+v
-                app.setCpz()
+                wv.z--
                 v++
             }
         }
