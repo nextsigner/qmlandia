@@ -55,9 +55,12 @@ Item {
         Timer{
             running: true
             repeat: true
-            interval: 500
+            interval: 1000
+            property int v: 0
             onTriggered: {
-                tiUrl.text='->'+wv.z+' ->'+r.z+'->'+controles.z
+                tiUrl.text='->'+wv.z+' ->'+r.z+'->'+controles.z+' ->'+v
+                controles.z++
+                v++
             }
         }
     }

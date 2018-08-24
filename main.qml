@@ -60,7 +60,7 @@ ApplicationWindow {
         height: app.al
         anchors.centerIn: parent
         rotation: app.width>app.height?0:-90
-        ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;z:xS.z+1}
+        ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;z:999999}
         Item{
             id:xS
             width: parent.width
