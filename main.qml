@@ -60,7 +60,6 @@ ApplicationWindow {
         height: app.al
         anchors.centerIn: parent
         rotation: app.width>app.height?0:-90
-        ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;z:999999}
         Item{
             id:xS
             width: parent.width
@@ -69,6 +68,7 @@ ApplicationWindow {
         }
         Xp{id:xP}
         Xc{id:xC}
+        ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;}
     }
     Timer{
         id:tu
@@ -251,7 +251,7 @@ ApplicationWindow {
     function setCpz(){
         for(var i=0;i<100000;i++){
             controles.z++
-            if(controles.z>xS.z){
+            if(controles.z+100>xS.z){
                 break;
             }
         }

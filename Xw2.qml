@@ -59,7 +59,7 @@ Item {
             property int v: 0
             onTriggered: {
                 tiUrl.text='->'+wv.z+' ->'+r.z+'->'+controles.z+' ->'+v
-                controles.z++
+                app.setCpz()
                 v++
             }
         }
