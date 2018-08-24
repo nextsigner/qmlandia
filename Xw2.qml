@@ -5,7 +5,7 @@ import QtWebView 1.1
 Rectangle {
     id: raiz
     anchors.fill: parent
-    color: '#88ff33'
+    color: app.c3
     property int red
     property string url
     onUrlChanged: wv.url=url
@@ -45,7 +45,7 @@ Rectangle {
 
     WebView{
         id: wv
-        width: r.width-app.fs*10
+        width: r.width
         height: r.height-xTiUrl.height
         anchors.top: xTiUrl.bottom
         url:raiz.url
@@ -56,12 +56,9 @@ Rectangle {
         Timer{
             running: true
             repeat: true
-            interval: 1000
-            property int v: 0
+            interval: 250
             onTriggered: {
-                tiUrl.text='->'+wv.z+' ->'+r.z+'->'+controles.z+' ->'+v
-                wv.z--
-                v++
+                wv.visible=!cpvisible
             }
         }
     }
