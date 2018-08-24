@@ -7,7 +7,7 @@ ApplicationWindow {
     id: app
     objectName: 'qmlandia'
     visible: true
-    visibility: Qt.platform.os!=='android'?'Maximized':'FullScreen'
+    visibility: 'FullScreen'
     width: 720
     height: 480
     color: app.c3
@@ -60,6 +60,10 @@ ApplicationWindow {
         height: app.al
         anchors.centerIn: parent
         rotation: app.width>app.height?0:-90
+        MouseArea{
+            anchors.fill: parent
+            onDoubleClicked: app.visibility="FullScreen"
+        }
         Item{
             id:xS
             width: parent.width
@@ -69,6 +73,28 @@ ApplicationWindow {
         Xp{id:xP}
         Xc{id:xC}
         ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;}
+        focus: true
+        Keys.onSpacePressed:  {
+            if(!app.mp.p){
+                app.mp.play()
+            }else{
+                app.mp.pause()
+            }
+        }
+        Keys.onRightPressed: {
+            app.mp.seek(app.mp.position+1000)
+        }
+        Keys.onLeftPressed:  {
+            app.mp.seek(app.mp.position-1000)
+        }
+        Keys.onEscapePressed: {
+            if(app.visibility===ApplicationWindow.FullScreen){
+                app.visibility="Windowed"
+            }else{
+                Qt.quit()
+            }
+
+        }
     }
     Timer{
         id:tu
@@ -129,6 +155,7 @@ ApplicationWindow {
         appSettings.ucs=s
     }
     onModChanged: appSettings.umod=mod
+
     Component.onCompleted: {
         console.log('Ejecuciòn nùmero: '+appSettings.cantRun)
         appSettings.cantRun++
@@ -148,7 +175,7 @@ ApplicationWindow {
     }
     function prepMod(){
         for(var i=0;i<xS.children.length;i++){
-                xS.children[i].destroy(1)
+            xS.children[i].destroy(1)
         }
         var code='import QtQuick 2.0\n'
         code+='import Qt.labs.folderlistmodel 2.2\n'
@@ -191,7 +218,7 @@ ApplicationWindow {
     }
     function showS(){
         for(var i=0;i<xS.children.length;i++){
-                xS.children[i].destroy(1)
+            xS.children[i].destroy(1)
         }
         var code='import QtQuick 2.0\n'
         code+='import "'+xP.am[app.mod]+'/'+xP.ars[app.s]+'" as SX\n'
@@ -206,7 +233,7 @@ ApplicationWindow {
         xC.z=xS.z+1
         console.log('Mostrando Secciòn desde carpeta: '+xP.am[app.mod]+'/'+xP.ars[app.s])
         //appSettings.usec=app.s
-         //appSettings.umod=app.mod
+        //appSettings.umod=app.mod
     }
     function showCab(){
         app.cb.tit="Modulo "+parseInt(app.mod+1)+" de "+app.cantmod+" Secciòn "+parseInt(app.s+1)+" de "+app.cants
@@ -219,7 +246,7 @@ ApplicationWindow {
         return app.mp.position>d*1000&&app.mp.position<h*1000? 'activo':'inactivo'
     }
     function runQml(c){
-         var obj = Qt.createQmlObject(c, xS, 'xm4')
+        var obj = Qt.createQmlObject(c, xS, 'xm4')
     }
     function setTema(){
         if(appSettings.tema===1){

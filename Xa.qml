@@ -3,7 +3,7 @@ Item{
     id:r
     width: r.parent.width
     height: app.al-app.fs*2
-    visible: app.verAyuda&&r.parent.visible
+    visible: app.verAyuda&&r.parent.visible&&!controles.cpvisible
     onVisibleChanged: {
         var w=0;
         for(var i=0;i<pa.children.length;i++){

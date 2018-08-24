@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtGraphicalEffects 1.0
 import '../../'
 Item {
     id: r
@@ -45,39 +46,59 @@ Item {
             }
         }
     }
+    Image {
+        id: img1
+        source: "../../h/app_crash.png"
+        width: r.width*0.3
+        anchors.right: r.right
+        anchors.verticalCenter: r.verticalCenter
+        visible: false
+    }
+    ColorOverlay {
+        anchors.fill: img1
+        source: img1
+        color: app.c2
+        visible:app.mp.position>124*1000
+    }
     Xa{id:xa}
     Timer{
         running: r.visible
         repeat: true
         interval: 250
         onTriggered: {
-             if(app.lnl(17, 30)==='activo'){
+            if(app.lnl(17, 30)==='activo'){
                 txt2.text= '<b style="color:red;">import</b> QtQuick 2.0'
             }else  if(app.lnl(30, 37)==='activo'){
                 txt2.text= '<span style="color:#14DED7;background-color:black;">//Ejempos de Mòdulos QML</span><br>import QtQuick 2.0<br>import QtWebView 1.1<br>import QtQuick.Controls 2.0<br>import QtQuick.Windos 2.2'
             }else  if(app.lnl(37, 44)==='activo'){
-                 txt2.text= '<span style="color:#14DED7;background-color:black;">//Ejempos Objeto de Tipo Registrado</span><br>import MiPluginsCpp 2.0<br><span style="color:#14DED7;background-color:black;">//Ejempos de Recurso JavaScript</span><br>import "carpetaJS/funciones.js" as JS'
-             }else  if(app.lnl(73, 76)==='activo'){
-                 txt2.text= '<span style="color:red;">import</span>'
-             }else  if(app.lnl(76, 79)==='activo'){
-                 txt2.text= 'import<span style="color:red;">[espacio]</span>'
-             }else  if(app.lnl(79, 81)==='activo'){
-                 txt2.text= 'import[espacio]<span style="color:red;">QtQuick</span>'
-             }else  if(app.lnl(81, 83)==='activo'){
-                 txt2.text= 'import[espacio]QtQuick<span style="color:red;">[espacio]</span>'
-             }else  if(app.lnl(83, 87.5)==='activo'){
-                 txt2.text= 'import[espacio]QtQuick[espacio]<span style="color:red;">2.0</span>'
-             }else  if(app.lnl(93, 95)==='activo'){
-                 txt2.text= '<span style="color:red;">import</span>'
-             }else  if(app.lnl(95, 97)==='activo'){
-                 txt2.text= 'import<span style="color:red;"> </span>'
-             }else  if(app.lnl(97, 100)==='activo'){
-                 txt2.text= 'import <span style="color:red;">QtQuick</span>'
-             }else  if(app.lnl(100, 104)==='activo'){
-                 txt2.text= 'import QtQuick<span style="color:red;">  </span>'
-             }else  if(app.lnl(104, 109)==='activo'){
-                 txt2.text= 'import QtQuick <span style="color:red;">2.0</span>'
-             }else{
+                txt2.text= '<span style="color:#14DED7;background-color:black;">//Ejempos Objeto de Tipo Registrado</span><br>import MiPluginsCpp 2.0<br><span style="color:#14DED7;background-color:black;">//Ejempos de Recurso JavaScript</span><br>import "carpetaJS/funciones.js" as JS'
+            }else  if(app.lnl(73, 76)==='activo'){
+                txt2.text= '<span style="color:red;">import</span>'
+            }else  if(app.lnl(76, 79)==='activo'){
+                txt2.text= 'import<span style="color:red;">[espacio]</span>'
+            }else  if(app.lnl(79, 81)==='activo'){
+                txt2.text= 'import[espacio]<span style="color:red;">QtQuick</span>'
+            }else  if(app.lnl(81, 83)==='activo'){
+                txt2.text= 'import[espacio]QtQuick<span style="color:red;">[espacio]</span>'
+            }else  if(app.lnl(83, 87.5)==='activo'){
+                txt2.text= 'import[espacio]QtQuick[espacio]<span style="color:red;">2.0</span>'
+            }else  if(app.lnl(93, 95)==='activo'){
+                txt2.text= '<span style="color:red;">import</span>'
+            }else  if(app.lnl(95, 97)==='activo'){
+                txt2.text= 'import<span style="color:red;"> </span>'
+            }else  if(app.lnl(97, 100)==='activo'){
+                txt2.text= 'import <span style="color:red;">QtQuick</span>'
+            }else  if(app.lnl(100, 104)==='activo'){
+                txt2.text= 'import QtQuick<span style="color:red;">  </span>'
+            }else  if(app.lnl(104, 109)==='activo'){
+                txt2.text= 'import QtQuick <span style="color:red;">2.0</span>'
+            }else  if(app.lnl(109, 137)==='activo'){
+                img1.source="../../h/app_crash.png"
+            }else  if(app.lnl(137, 150)==='activo'){
+                txt2.text= 'import "carpetaJS/funciones.js" as JS'
+                img1.source="../../h/js.png"
+                //source: "../../h/js.png"
+            }else{
                 txt2.text= 'import QtQuick 2.0'
             }
         }
