@@ -12,6 +12,7 @@ Rectangle {
     property url source: mediaPlayer.source
     property alias btnUD: btnUpdate
     property alias mp: mediaPlayer
+    property alias rb: rb
     property bool cpvisible: rb.opacity===1.0
     MediaPlayer {
         id: mediaPlayer
