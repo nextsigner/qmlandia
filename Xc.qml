@@ -138,6 +138,92 @@ Rectangle {
                 }
 
             }
+
+            Row{
+                spacing: app.fs
+                Text {
+                    text: "Tamaño de Lector: "
+                    font.pixelSize: app.fs
+                    color: app.c2
+                }
+                Row{
+                    spacing: app.fs*0.5
+                    Text {
+                        text: "Ocultar"
+                        color: app.c2
+                        font.pixelSize: app.fs
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    RadioButton{
+                        font.pixelSize: app.fs
+                        checked: appSettings.tamlector===-1
+                        onCheckedChanged: {
+                            if(checked){
+                                appSettings.tamlector=-1
+                            }
+                        }
+                    }
+                }
+
+                Row{
+                    spacing: app.fs*0.5
+                    Text {
+                        text: "Pequeño"
+                        color: app.c2
+                        font.pixelSize: app.fs
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    RadioButton{
+                        font.pixelSize: app.fs
+                        checked: appSettings.tamlector===0
+                        onCheckedChanged: {
+                            if(checked){
+                                appSettings.tamlector=0
+                            }
+                        }
+                    }
+                }
+                Row{
+                    spacing: app.fs*0.5
+                    Text {
+                        text: "Mediano"
+                        color: app.c2
+                        font.pixelSize: app.fs
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    RadioButton{
+                        font.pixelSize: app.fs
+                        checked: appSettings.tamlector===1
+                        onCheckedChanged: {
+                            if(checked){
+                                appSettings.tamlector=1
+                            }
+                        }
+                    }
+                }
+                Row{
+                    spacing: app.fs*0.5
+                    Text {
+                        text: "Grande"
+                        color: app.c2
+                        font.pixelSize: app.fs
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    RadioButton{
+                        font.pixelSize: app.fs
+                        checked: appSettings.tamlector===2
+                        onCheckedChanged: {
+                            if(checked){
+                                appSettings.tamlector=2
+                            }
+                        }
+                    }
+                }
+
+
+            }
+
+
         }
         Boton{
             w:app.fs

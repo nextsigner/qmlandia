@@ -14,6 +14,7 @@ Rectangle {
     property alias mp: mediaPlayer
     property alias rb: rb
     property bool cpvisible: rb.opacity===1.0
+    //property alias xt: xt
     MediaPlayer {
         id: mediaPlayer
         property bool p
@@ -23,6 +24,7 @@ Rectangle {
             p=true
             paused=false
             app.verAyuda=false
+
         }
         onPaused: {
             p=false
@@ -39,9 +41,10 @@ Rectangle {
         }
         onPositionChanged: {
             seekSlider.playPosition=position
+            xT.setPx()
         }
         onDurationChanged: {
-            seekSlider.duration = duration
+            seekSlider.duration = duration            
         }
         Component.onCompleted: app.mp=mediaPlayer
     }
@@ -99,6 +102,7 @@ Rectangle {
             rb.opacity=1.0
         }
     }
+    //Xt{id:xt}
     Text {
         id: txtInfo
         font.pixelSize: app.fs*0.5
@@ -133,12 +137,13 @@ Rectangle {
         width: rb.width+app.fs
         height: rb.height+app.fs
         anchors.centerIn: rb
-        color: app.c1
+        color: app.c3
         radius: app.fs*0.5
         border.width: 2
         border.color: app.c2
         opacity: 0.5
         visible: rb.opacity===1.0
+        enabled: rb.opacity===1.0
     }
     Row{
         id:rb
@@ -265,7 +270,7 @@ Rectangle {
             b:app.c2
             t:'\uf128'
             onClicking: {
-                trb.restart()
+                rb.opacity=0.0
                 app.verAyuda=!app.verAyuda
             }
             opacity: app.verAyuda?1.0:0.5

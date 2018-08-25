@@ -52,6 +52,7 @@ Item {
         width: r.width*0.3
         anchors.right: r.right
         anchors.verticalCenter: r.verticalCenter
+        fillMode: Image.PreserveAspectFit
         visible: false
     }
     ColorOverlay {

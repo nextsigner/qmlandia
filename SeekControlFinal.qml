@@ -9,7 +9,6 @@ Item {
     property bool enabled: true
     property bool seeking: false
     property bool verFondo: false
-
     signal clickSeek(int position)
 
     onSeekPositionChanged: {
@@ -19,7 +18,7 @@ Item {
         id: background
         width: parent.width
         height: progressBar.height
-        color: "#cccccc"
+        color: app.c1
         opacity: 0.5
         radius: parent.height / 15
         anchors.verticalCenter: progressHandle.verticalCenter

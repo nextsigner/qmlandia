@@ -39,6 +39,7 @@ ApplicationWindow {
         property int cantRun
         property bool fullScreen
         property real volume
+        property int tamlector
 
         //Variables de Actualizaciòn
         property string uRS
@@ -71,8 +72,10 @@ ApplicationWindow {
             clip:true
         }
         Xp{id:xP}
-        Xc{id:xC}
+
+        Xt{id:xT;visible:appSettings.tamlector!==-1&&at!==''}
         ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;}
+        Xc{id:xC}
         focus: true
         Keys.onSpacePressed:  {
             if(!app.mp.p){
@@ -174,6 +177,7 @@ ApplicationWindow {
         setTema()
     }
     function prepMod(){
+        xT.at=''
         for(var i=0;i<xS.children.length;i++){
             xS.children[i].destroy(1)
         }
@@ -214,7 +218,7 @@ ApplicationWindow {
 
 
         var obj = Qt.createQmlObject(code, xS, 'xm2')
-        controles.z+=10000
+        //controles.z+=10000
     }
     function showS(){
         for(var i=0;i<xS.children.length;i++){
@@ -275,12 +279,5 @@ ApplicationWindow {
         }
         prepMod()
     }
-    function setCpz(){
-        for(var i=0;i<100000;i++){
-            controles.z++
-            if(controles.z+100>xS.z){
-                break;
-            }
-        }
-    }
+
 }
