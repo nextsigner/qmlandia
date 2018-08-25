@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtGraphicalEffects 1.0
 import  "../../"
 Item {
     id: r
@@ -10,25 +11,64 @@ Item {
             app.mp.play()
         }
     }
-    Column{
-        width: r.width*0.5-app.fs
-        anchors.centerIn: r
+    Row{
+        anchors.verticalCenter: r.verticalCenter
+        spacing: app.fs
+        x:app.mp.position<84*1000?app.fs*2:(r.width-width)/2
+        Column{
+            anchors.verticalCenter: r.verticalCenter
+            Text {
+                id: txt1
+                text: "<b>Ejemplo de un</b><br><b>Archivo QML</b><br>"
+                font.pixelSize: app.fs
+                color: app.c2
+                textFormat: Text.RichText
+            }
+            Text {
+                id: txt2
+                text: "import QtQuick 2.0\nItem{\n    width:300\n    height:300\n}"
+                font.pixelSize: app.fs
+                color: app.c4
+                Marco{}
+            }
+        }
         Text {
-            id: txt1
-            text: "<b>Ejemplo de un Archivo QML</b><br>"
-            font.pixelSize: app.fs
+            id: txtjson3
+            text: '='
+            font.pixelSize: app.fs*2
             color: app.c2
-            textFormat: Text.RichText
+            anchors.verticalCenter: parent.verticalCenter
+            visible:app.mp.position>84*1000
+            Text {
+                id: txtjson4
+                text: '/'
+                font.pixelSize: app.fs*2
+                color: app.c2
+                anchors.centerIn: parent
+            }
         }
-        Text {
-            id: txt2
-            text: "import QtQuick 2.0\nItem{\n    width:300\n    height:300\n}"
-            font.pixelSize: app.fs
-            color: app.c4
-            Marco{}
+        Column{
+            anchors.verticalCenter: r.verticalCenter
+            visible:app.mp.position>84*1000
+            Text {
+                id: txtjson1
+                text: "<b>Ejemplo de un</b><br><b>Archivo JSON</b><br>"
+                font.pixelSize: app.fs
+                color: app.c2
+                textFormat: Text.RichText
+            }
+            Text {
+                id: txtjson2
+                text: '{\n  "Item":{\n    "width":300,\n    "height":300\n  }\n}'
+                font.pixelSize: app.fs
+                color: app.c4
+                Marco{}
+            }
         }
+
     }
-    property var ai: ["img1.png", "img2.png", "img3.png"]
+    property var ai: ["img1.png", "img2.png", "img3.png", "img4.png"]
+
     Column{
         anchors.verticalCenter: r.verticalCenter
         anchors.right: r.right
@@ -48,8 +88,10 @@ Item {
             width: r.width*0.4-app.fs
             fillMode: Image.PreserveAspectFit
             anchors.horizontalCenter: parent.horizontalCenter
-            Marco{}
+            Marco{id:marco1}
         }
+
+
         Text{
             id:te2
             anchors.horizontalCenter: parent.horizontalCenter
@@ -59,12 +101,20 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             textFormat: Text.RichText
         }
+        ColorOverlay {
+            id:ge1
+            width: img2.width
+            height:img2.height
+            source: img2
+            color: app.c2
+            visible:false
+        }
         Image{
             id:img2
             width: r.width*0.4-app.fs
             fillMode: Image.PreserveAspectFit
             anchors.horizontalCenter: parent.horizontalCenter
-            Marco{}
+            Marco{id:marco2}
         }
         Text{
             id:te3
@@ -82,18 +132,84 @@ Item {
         repeat: true
         interval: 250
         onTriggered: {
-            if(app.lnl(14, 18)==='activo'){
+            if(app.lnl(9, 17)==='activo'){
                 img1.visible=true
                 img1.source="./"+ai[0]
                 img1.width=r.width*0.6
                 te1.text='<b>Editor QML/JS de Qt Creator</b><br>\uf063'
                 te1.font.pixelSize=app.fs
+            }else if(app.lnl(17, 24)==='activo'){
+                img1.visible=true
+                img1.source="./"+ai[1]
+                img1.width=r.width*0.6
+                te1.text='<b>Notepad++</b><br>\uf063'
+                te1.font.pixelSize=app.fs
+            }else if(app.lnl(24, 31)==='activo'){
+                img1.visible=true
+                img1.source="./"+ai[2]
+                img1.width=r.width*0.6
+                te1.text='<b>VIM</b><br>\uf063'
+                te1.font.pixelSize=app.fs
+            }else if(app.lnl(31, 48)==='activo'){
+                img1.visible=true
+                img1.source="./"+ai[3]
+                img1.width=r.width*0.6
+                te1.text='<b>Qt Design</b><br>\uf063'
+                te1.font.pixelSize=app.fs
+            }else if(app.lnl(48, 52)==='activo'){
+                img2.source="../../h/js.png"
+                img2.width=r.width*0.6
+                img2.visible=false
+                ge1.visible=true
+                img1.source="../../h/qml.png"
+                img1.width=r.width*0.6
+                img1.visible=true
+                te2.text='\uf063'
+                te2.rotation=180
+                te1.text=''
+                marco1.visible=false
+            }else if(app.lnl(52, 57)==='activo'){
+                img2.source="../../h/qt-icon.png"
+                img2.width=r.width*0.25
+                img2.visible=true
+                ge1.visible=false
+                img1.source="../../h/digia-logo.png"
+                img1.width=r.width*0.25
+                img1.visible=true
+                te2.text='+'
+                te2.rotation=180
+                te1.text=''
+                marco1.visible=false
+                marco2.visible=false
+            }else if(app.lnl(57, 60)==='activo'){
+                img2.source="../../h/qt-icon.png"
+                img2.width=r.width*0.25
+                img2.visible=true
+                ge1.visible=false
+                img1.source="../../h/digia-logo.png"
+                img1.width=r.width*0.25
+                img1.visible=true
+                te2.text=' <b>QtQuick</b>'
+                te2.rotation=0
+                te1.text=''
+                marco1.visible=false
+                marco2.visible=false
+            }else if(app.lnl(60, 82)==='activo'){
+                img1.visible=false
+                img2.source="../../h/touch1.png"
+                img2.width=r.width*0.5
+                img2.visible=false
+                ge1.visible=true
+                te1.text=''
+                marco1.visible=false
+                marco2.visible=false
             }else{
                 te1.text=''
                 te2.text=''
                 te3.text=''
                 img1.visible=false
                 img2.visible=false
+                ge1.visible=false
             }
 
         }

@@ -33,6 +33,8 @@ ApplicationWindow {
 
     property var mp:controles.mp
 
+    onClosing: close.accepted = Qt.platform.os!=='android'
+
     Settings{
         id: appSettings
         category: 'conf-qmlandia'
