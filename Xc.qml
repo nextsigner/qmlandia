@@ -21,13 +21,13 @@ Rectangle {
             spacing: app.fs*2
             Text {
                 text: '<b>Confuguracion</b>'
-                font.pixelSize: app.fs*1.5
+                font.pixelSize: app.fs*0.5*1.5
                 color: app.c2
             }
             Row{
                 Text {
                     text: "Volume: "
-                    font.pixelSize: app.fs
+                    font.pixelSize: app.fs*0.5
                     color: app.c2
                 }
                 Slider{
@@ -47,7 +47,7 @@ Rectangle {
                     height: app.fs
                     Text {
                         text: "%"+parseInt(sv.value)
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         color: app.c2
                     }
                 }
@@ -58,7 +58,7 @@ Rectangle {
                 spacing: app.fs
                 Text {
                     text: "Colores: "
-                    font.pixelSize: app.fs
+                    font.pixelSize: app.fs*0.5
                     color: app.c2
                 }
                 Row{
@@ -66,11 +66,11 @@ Rectangle {
                     Text {
                         text: "Claro"
                         color: app.c2
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     RadioButton{
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         checked: appSettings.tema===1
                         onCheckedChanged: {
                             if(checked){
@@ -87,11 +87,11 @@ Rectangle {
                     Text {
                         text: "Oscuro"
                         color: app.c2
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     RadioButton{
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         checked: appSettings.tema===2
                         onCheckedChanged: {
                             if(checked){
@@ -105,11 +105,11 @@ Rectangle {
                     Text {
                         text: "Oscuro 2"
                         color: app.c2
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     RadioButton{
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         checked: appSettings.tema===3
                         onCheckedChanged: {
                             if(checked){
@@ -123,11 +123,11 @@ Rectangle {
                     Text {
                         text: "Unik"
                         color: app.c2
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     RadioButton{
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         checked: appSettings.tema===4
                         onCheckedChanged: {
                             if(checked){
@@ -142,8 +142,8 @@ Rectangle {
             Row{
                 spacing: app.fs
                 Text {
-                    text: "Tamaño de Lector: "
-                    font.pixelSize: app.fs
+                    text: "Tamaño<br>de Lector: "
+                    font.pixelSize: app.fs*0.5
                     color: app.c2
                 }
                 Row{
@@ -151,11 +151,11 @@ Rectangle {
                     Text {
                         text: "Ocultar"
                         color: app.c2
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     RadioButton{
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         checked: appSettings.tamlector===-1
                         onCheckedChanged: {
                             if(checked){
@@ -170,11 +170,11 @@ Rectangle {
                     Text {
                         text: "Pequeño"
                         color: app.c2
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     RadioButton{
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         checked: appSettings.tamlector===0
                         onCheckedChanged: {
                             if(checked){
@@ -188,11 +188,11 @@ Rectangle {
                     Text {
                         text: "Mediano"
                         color: app.c2
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     RadioButton{
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         checked: appSettings.tamlector===1
                         onCheckedChanged: {
                             if(checked){
@@ -206,11 +206,11 @@ Rectangle {
                     Text {
                         text: "Grande"
                         color: app.c2
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     RadioButton{
-                        font.pixelSize: app.fs
+                        font.pixelSize: app.fs*0.5
                         checked: appSettings.tamlector===2
                         onCheckedChanged: {
                             if(checked){

@@ -259,7 +259,7 @@ ApplicationWindow {
             c1='#000'
             c2='#333'
             c3= 'white'
-            c4= '#ccc'
+            c4= 'black'
         }
         if(appSettings.tema===2){
             c1='#333'//"#62DA06"
