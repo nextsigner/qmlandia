@@ -103,7 +103,7 @@ Rectangle {
                 Row{
                     spacing: app.fs*0.1
                     Text {
-                        text: "Oscuro 2"
+                        text: "Orange"
                         color: app.c2
                         font.pixelSize: app.fs*0.5
                         anchors.verticalCenter: parent.verticalCenter
