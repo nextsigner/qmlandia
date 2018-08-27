@@ -44,7 +44,7 @@ Rectangle {
             xT.setPx()
         }
         onDurationChanged: {
-            seekSlider.duration = duration            
+            seekSlider.duration = duration
         }
         Component.onCompleted: app.mp=mediaPlayer
     }
@@ -68,7 +68,7 @@ Rectangle {
         width: parent.width*0.8
         height: rb.opacity===1.0?app.fs:app.fs*0.5
         anchors.horizontalCenter: parent.horizontalCenter
-       y:rb.opacity===1.0?0:r.height-app.fs
+        y:rb.opacity===1.0?0:r.height-app.fs
         verFondo: true
         onClickSeek: {
             app.verAyuda=false
@@ -124,12 +124,31 @@ Rectangle {
             w:app.fs
             h:w
             tp:3
+            d:'Indice'
+            c:app.c3
+            b:app.c2
+            t:'\uf022'
+            onClicking: {
+                app.mod=0
+                if(app.s!==1){
+                    app.s=1
+                }else{
+                    app.s=1
+                    app.prepMod()
+                }
+            }
+        }
+        Boton{
+            w:app.fs
+            h:w
+            tp:3
             d:'Confugurar'
             c:app.c3
             b:app.c2
             t:'\uf013'
             onClicking: xC.visible=!xC.visible
             opacity: xC.visible?1.0:0.5
+            visible:rb.opacity===1.0
         }
     }
 

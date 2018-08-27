@@ -70,7 +70,7 @@ ApplicationWindow {
         Item{
             id:xS
             width: parent.width
-            height: parent.height-app.fs*2
+            height: controles.visible?parent.height-app.fs*2:parent.height
             clip:true
         }
         Xp{id:xP}
@@ -209,7 +209,7 @@ ApplicationWindow {
         code+='                                         v++\n'
         code+='                                 } \n'
         code+='                                 app.cants=v\n'
-        code+='                                 console.log("El modulo "+app.mod+" tiene "+v+" secciones.")\n'
+        code+='                                 //console.log("El modulo "+app.mod+" tiene "+v+" secciones.")\n'
         code+='                                 showS()\n'
         code+='                      }\n'
         code+='               }\n'
@@ -220,7 +220,7 @@ ApplicationWindow {
 
 
         var obj = Qt.createQmlObject(code, xS, 'xm2')
-        //controles.z+=10000
+        controles.visible=true
     }
     function showS(){
         for(var i=0;i<xS.children.length;i++){
@@ -281,5 +281,4 @@ ApplicationWindow {
         }
         prepMod()
     }
-
 }

@@ -98,17 +98,14 @@ Item {
             }else  if(app.lnl(137, 150)==='activo'){
                 txt2.text= 'import "carpetaJS/funciones.js" as JS'
                 img1.source="../../h/js.png"
-                //source: "../../h/js.png"
             }else{
                 txt2.text= 'import QtQuick 2.0'
             }
         }
     }
-
-
     Component.onCompleted: {
         var at='Còmo utilizar la Declaraciòn Import'
-        at+='Para realizar de manera correcta una declaraciòn de importaciòn, ademàs de escribir como primer palabra, al comienzo de la lìnea, la palabra reservada import, debemos seguir las reglas de Sintàxis que este procedimiento requiere.
+        at+=' Para realizar de manera correcta una declaraciòn de importaciòn, ademàs de escribir como primer palabra, al comienzo de la lìnea, la palabra reservada import, debemos seguir las reglas de Sintàxis que este procedimiento requiere.
 
 Podemos realizar 3 tipos de importaciones. Lo màs comùn es importar un mòdulo QML. Ademàs podemos importar Tipos de Objetos Registrados y recursos JavaScript.
 
@@ -122,8 +119,8 @@ Podemos importar  la cantidad de recursos que sean necesarios. En el caso de que
 
 Para importar un archivo JavaScript debemos utilizar una sintàxis diferente. Para saber còmo hacerlo, es necesario ir a la siguiente secciòn.
 '
+        xT.at=at.replace(/\n/g,' ')
         var h1=''
-        xa.addBa('...',h1,'./h/h1.m4a')
         xa.addBa('Ir al siguiente','','1')
     }
 }
