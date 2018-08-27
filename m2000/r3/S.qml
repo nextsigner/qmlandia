@@ -92,16 +92,7 @@ Item {
                 }
             }
         }
-    }
-    LogView{
-        id:logView
-        width:r.width
-        height:app.fs*10
-        anchors.bottom:r.bottom
-        fontSize:app.fs
-        showUnikInitMessages:false
-        //visible:false
-    }
+    }    
     Component.onCompleted: {
         controles.visible=false
         for(var i=0;i<xP.am.length;i++){
