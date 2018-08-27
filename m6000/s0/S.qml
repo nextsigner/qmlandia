@@ -1,5 +1,4 @@
 import QtQuick 2.0
-import QtGraphicalEffects 1.0
 import  "../../"
 Item {
     id: r
@@ -8,123 +7,37 @@ Item {
     onVisibleChanged: {
         if(visible){
             app.mp.source="./a1.m4a"
-            app.mp.play()
+            app.pa=pa
         }
     }
-    Row{
-        anchors.verticalCenter: r.verticalCenter
-        spacing: app.fs
-        x:app.mp.position<84*1000?app.fs*2:(r.width-width)/2
-        Column{
-            anchors.verticalCenter: r.verticalCenter
-            Text {
-                id: txt1
-                text: "<b>Ejemplo de un</b><br><b>Archivo QML</b><br>"
-                font.pixelSize: app.fs
-                color: app.c2
-                textFormat: Text.RichText
-            }
-            Text {
-                id: txt2
-                text: "import QtQuick 2.0\nItem{\n    width:300\n    height:300\n}"
-                font.pixelSize: app.fs
-                color: app.c4
-                Marco{}
-            }
-        }
-        Text {
-            id: txtjson3
-            text: '='
-            font.pixelSize: app.fs*2
-            color: app.c2
-            anchors.verticalCenter: parent.verticalCenter
-            visible:app.mp.position>84*1000
-            Text {
-                id: txtjson4
-                text: '/'
-                font.pixelSize: app.fs*2
-                color: app.c2
-                anchors.centerIn: parent
-            }
-        }
-        Column{
-            anchors.verticalCenter: r.verticalCenter
-            visible:app.mp.position>84*1000
-            Text {
-                id: txtjson1
-                text: "<b>Ejemplo de un</b><br><b>Archivo JSON</b><br>"
-                font.pixelSize: app.fs
-                color: app.c2
-                textFormat: Text.RichText
-            }
-            Text {
-                id: txtjson2
-                text: '{\n  "Item":{\n    "width":300,\n    "height":300\n  }\n}'
-                font.pixelSize: app.fs
-                color: app.c4
-                Marco{}
-            }
-        }
-
-    }
-    property var ai: ["img1.png", "img2.png", "img3.png", "img4.png"]
-
     Column{
+        Text {
+            id: txt1
+            width: r.width*0.6
+            font.pixelSize: app.fs*0.5
+            color: app.c2
+            textFormat: Text.RichText
+            wrapMode: Text.WordWrap
+        }
+    }
+    property var ai: ["qml.png","qt-icon.png"]
+    Image{
+        width: r.width*0.4-app.fs
+        source:"./"+ai[0]
         anchors.verticalCenter: r.verticalCenter
         anchors.right: r.right
-        anchors.rightMargin:  app.fs*0.5
-        spacing: app.fs*0.5
-        Text{
-            id:te1
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: app.fs*2
-            color: app.c2
-            font.family: 'FontAwesome'
-            horizontalAlignment: Text.AlignHCenter
-            textFormat: Text.RichText
-        }
-        Image{
-            id:img1
-            width: r.width*0.4-app.fs
-            fillMode: Image.PreserveAspectFit
-            anchors.horizontalCenter: parent.horizontalCenter
-            Marco{id:marco1}
-        }
-
-
-        Text{
-            id:te2
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: app.fs*2
-            color: app.c2
-            font.family: 'FontAwesome'
-            horizontalAlignment: Text.AlignHCenter
-            textFormat: Text.RichText
-        }
-        ColorOverlay {
-            id:ge1
-            width: img2.width
-            height:img2.height
-            source: img2
-            color: app.c2
-            visible:false
-        }
-        Image{
-            id:img2
-            width: r.width*0.4-app.fs
-            fillMode: Image.PreserveAspectFit
-            anchors.horizontalCenter: parent.horizontalCenter
-            Marco{id:marco2}
-        }
-        Text{
-            id:te3
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: app.fs*2
-            color: app.c2
-            font.family: 'FontAwesome'
-            horizontalAlignment: Text.AlignHCenter
-            textFormat: Text.RichText
-        }
+        fillMode: Image.PreserveAspectFit
+        visible:app.mp.position<12&&app.mp.position>22
+    }
+    Text{
+        id:txtQML
+        anchors.verticalCenter: r.verticalCenter
+        anchors.right: r.right
+        anchors.rightMargin: (r.width*0.4-contentWidth)/2
+        font.pixelSize: app.fs*2
+        horizontalAlignment: Text.AlignHCenter
+        color: app.c2
+        textFormat: Text.RichText
     }
     Xa{id:xa}
     Timer{
@@ -132,95 +45,45 @@ Item {
         repeat: true
         interval: 250
         onTriggered: {
-            if(app.lnl(9, 17)==='activo'){
-                img1.visible=true
-                img1.source="./"+ai[0]
-                img1.width=r.width*0.6
-                te1.text='<b>Editor QML/JS de Qt Creator</b><br>\uf063'
-                te1.font.pixelSize=app.fs
-            }else if(app.lnl(17, 24)==='activo'){
-                img1.visible=true
-                img1.source="./"+ai[1]
-                img1.width=r.width*0.6
-                te1.text='<b>Notepad++</b><br>\uf063'
-                te1.font.pixelSize=app.fs
-            }else if(app.lnl(24, 31)==='activo'){
-                img1.visible=true
-                img1.source="./"+ai[2]
-                img1.width=r.width*0.6
-                te1.text='<b>VIM</b><br>\uf063'
-                te1.font.pixelSize=app.fs
-            }else if(app.lnl(31, 48)==='activo'){
-                img1.visible=true
-                img1.source="./"+ai[3]
-                img1.width=r.width*0.6
-                te1.text='<b>Qt Design</b><br>\uf063'
-                te1.font.pixelSize=app.fs
-            }else if(app.lnl(48, 52)==='activo'){
-                img2.source="../../h/js.png"
-                img2.width=r.width*0.6
-                img2.visible=false
-                ge1.visible=true
-                img1.source="../../h/qml.png"
-                img1.width=r.width*0.6
-                img1.visible=true
-                te2.text='\uf063'
-                te2.rotation=180
-                te1.text=''
-                marco1.visible=false
-            }else if(app.lnl(52, 57)==='activo'){
-                img2.source="../../h/qt-icon.png"
-                img2.width=r.width*0.25
-                img2.visible=true
-                ge1.visible=false
-                img1.source="../../h/digia-logo.png"
-                img1.width=r.width*0.25
-                img1.visible=true
-                te2.text='+'
-                te2.rotation=180
-                te1.text=''
-                marco1.visible=false
-                marco2.visible=false
-            }else if(app.lnl(57, 60)==='activo'){
-                img2.source="../../h/qt-icon.png"
-                img2.width=r.width*0.25
-                img2.visible=true
-                ge1.visible=false
-                img1.source="../../h/digia-logo.png"
-                img1.width=r.width*0.25
-                img1.visible=true
-                te2.text=' <b>QtQuick</b>'
-                te2.rotation=0
-                te1.text=''
-                marco1.visible=false
-                marco2.visible=false
-            }else if(app.lnl(60, 82)==='activo'){
-                img1.visible=false
-                img2.source="../../h/touch1.png"
-                img2.width=r.width*0.5
-                img2.visible=false
-                ge1.visible=true
-                te1.text=''
-                marco1.visible=false
-                marco2.visible=false
-            }else{
-                te1.text=''
-                te2.text=''
-                te3.text=''
-                img1.visible=false
-                img2.visible=false
-                ge1.visible=false
-            }
+            var c1='<html><head><style>\n.activo{\nfont-size:'+parseInt(app.fs*0.65)+'px;\nbackground-color:'+app.c2+';\ncolor:'+app.c3+';\n}\n.inactivo{\nbackground-color:'+app.c3+';\ncolor:'+app.c2+';\n}</style></head><body>'
+            var c3='</body></html>'
 
+            var c2 ='<h2 class="'+app.lnl(0, 2)+'">¿Que es QML?</h2>'
+
+            var p0='QML es un Lenguaje de Programaciòn. Pertenece y es parte de un Entorno  de Desarrollo Qt. En tal sentido, su nombre deriva de las siglas Qt Meta Lenguaje.'
+
+            var p1='Qt tiene dos entornos o contextos en los cuales se pueden desarrollar aplicaciones. Uno llamado QtWidgets y el otro QtQuick. Qml fue creado como lenguaje para el entorno de desarrollo de aplicaciones QtQuick.'
+
+            var p2='Los desarrolladores del Qt Project han creado el entorno QtQuick, tal como su nombre lo indica (Quick significa ràpido), con el propòsito de poder desarrollar de manera ràpida y productiva aplicaciones orientadas al uso de interfaz gràficas o GUI dinàmicas y modernas. La manera de programar aplicaciones del tipo QtQuick es mediante el uso de QML que fuè creado a tales fines.'
+
+            var p3='A comienzos de 2018, QML ya se puede utilizar en combinaciòn con el entorno QtWidgets, puedes programar pàginas web con QML y su proyecciòn es tan contundente grandes empresas como Mercedes Benz lo utiliza para los mandos y controles de sus nuevos vehiculos de alta gama y Pannasonic lo utiliza con el mismo propòsito para toda la liena de productos de ùltima generaciòn. El por este motivo y por muchos màs que es slogan de Qt antes era -Menos Còdigo y Despliegue por todos lados- y ahora es -El Futuro està escrito en Qt-'
+
+            c2+='<p class="'+app.lnl(2, 14)+'">'+p0+'</p>'
+            c2+='<p class="'+app.lnl(14, 30)+'">'+p1+'</p>'
+            c2+='<p class="'+app.lnl(31, 63)+'">'+p2+'</p>'
+            c2+='<p class="'+app.lnl(63, 114)+'">'+p3+'</p>'
+
+            txt1.text=c1+c2+c3
+
+            var t1c1='<html><head><style>\n.activo{\ncolor:red;\n}\n.inactivo{\ncolor:yellow;\n}</style></head><body>'
+            var t1
+            if(app.lnl(4, 5)==='activo'){
+                t1='<b class="activo">Q</b><span class="inactivo">t</span><br>M</b><span class="inactivo">eta</span><br><b>L</b>'
+            }else if(app.lnl(5, 6)==='activo'){
+                t1='<b class="activo">Q</b><span class="inactivo">t</span><br><b class="activo">M</b><span class="inactivo">eta</span><br><b>L</b>'
+            }else if(app.lnl(6, 90)==='activo'){
+                t1='<b class="activo">Q</b><span class="inactivo">t</span><br><b class="activo">M</b><span class="inactivo">eta</span><br><b class="activo">L</b><span class="inactivo">anguaje</span>'
+            }else{
+                t1='<b>Q</b><br><b>M</b><br><b>L</b>'
+            }
+            t1c1+=t1
+            t1c1+=c3
+            txtQML.text=t1c1
         }
     }
-
     Component.onCompleted: {
-        var at='Documento o Archivo QML
-    El documento QML es un archivo de texto plano. El mismo puede ser creado desde el editor QML/JS de QtCreator, tambien puede ser creado desde cualquier otro editor de texto o editor de còdigo, como Notepad++, VIM u otros.                                                Tambièn puede ser creado con el Editor de Diseño de QtCreator. En este curso nos limitaremos unicamente a escribir còdigo QML sin utilizar ningùn editor de diseño para conocer màs en profundidad la sintàxis de QML.                  Qml es un lenguaje Declarativo basado en JavaScript. Fue creado por Digia junto al Qt Project para el Framework QtQuick. Este lenguaje fue creado para agilizar tanto el desarrollo de aplicaciònes, màs especificamente orientado a aplicaciones mòbiles, que requieren de interfaz de usuario dinàmicas, àgiles y modernas con el  fin de lograr una mejor experiencia de usuarios en aplicaciones de este tipo.              Si ya conoces otros archivos de diferentes tipos, puedes ver que un archivo QML tiene cierto parecido a los archivos JSON. Tal como hemos dicho, al ser un lenguaje basado en JavaScript, asi como en JSON creamos Objetos JavaScript, en este caso creamos con una metodologìa similar Objetos QML. Al crearlos se dice que los estamos declarando porque los Objetos QML ya existen previamente con propiedades y valores por defecto a diferencia de un Objeto JavaScript que lo creamos desde cero.
-'
-
-        xT.at=at.replace(/\n/g, ' ')
+        var h1= 'La palabra o tèrmino <b>META</b> significa que QML es un lenguaje que està màs allà de preexistente, algo que apareciò luego, algo posterior, superador o de otra forma distinta a lo anterior'
+        xa.addBa('¿Que significa META?', h1,'./h/sobre_metta.m4a')
         xa.addBa('Ir al siguiente','','1')
     }
 }

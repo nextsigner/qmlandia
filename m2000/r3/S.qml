@@ -6,14 +6,7 @@ Item {
     height: app.height
     property int anchomayor: 0
     property int ts: 0
-    onWidthChanged: {
-        r.anchomayor=0
-        for(var child in lv.contentItem.children) {
-            if(lv.contentItem.children[child].width>r.anchomayor){
-                r.anchomayor=lv.contentItem.children[child].width
-            }
-        }
-    }
+    property int uappw
     Item{
         id:area1
         function addTit(t,m,s){
@@ -66,12 +59,13 @@ Item {
                     width: txt11.contentWidth+app.fs
                     height: mo===-1?app.fs*1.5:app.fs*1.2
                     color:mo===-1?app.c2:'transparent'
-                    border.width: mo===-1?0:0
+                    border.width: mo===-1?0:ri.over?2:0
                     border.color: app.c4
                     radius: app.fs*0.25
                     opacity:0.0
                     x:mo===-1?0:(r.width-r.anchomayor)/2
                     visible:mo!=='indice'&&mo!=='intro'
+                    property bool over: false
                     Behavior on opacity{
                         NumberAnimation{
                             duration:250
@@ -99,10 +93,8 @@ Item {
                         anchors.fill: parent
                         enabled: mo!==-1
                         hoverEnabled: true
-                        onEntered: {
-                            txt11.font.pixelSize=app.fs*1.1
-                        }
-                        onExited: txt11.font.pixelSize=app.fs
+                        onEntered: ri.over=true
+                        onExited: ri.over=false
                         onClicked: {
                             app.mod=mo
                             if(app.s!==se){
@@ -118,6 +110,7 @@ Item {
                         if(ri.width>r.anchomayor){
                             r.anchomayor=ri.width
                         }
+
                     }
                     Component.onCompleted: {
                         ri.opacity=1.0
@@ -127,10 +120,26 @@ Item {
             }
         }
     }
+    Timer{
+        running: r.visible
+        repeat: true
+        interval: 100
+        onTriggered: {
+            setAR()
+        }
+    }
     Component.onCompleted: {
         controles.visible=false
         for(var i=0;i<xP.am.length;i++){
             listar(xP.am[i],i)
+        }
+    }
+    function setAR(){
+        r.anchomayor=0
+        for(var child in lv.contentItem.children) {
+            if(lv.contentItem.children[child].width>r.anchomayor){
+                r.anchomayor=lv.contentItem.children[child].width
+            }
         }
     }
 

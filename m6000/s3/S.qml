@@ -12,15 +12,13 @@ Item {
         }
     }
     Column{
-        width: r.width-app.fs
-        anchors.centerIn: r
+        anchors.centerIn: parent
         Text {
             id: txt1
-            text: "<b>Còmo importar un Archivo JavaScript</b><br>"
+            text: "<b>Còmo utilizar la Declaraciòn IMPORT</b><br>"
             font.pixelSize: app.fs
             color: app.c2
             textFormat: Text.RichText
-            anchors.horizontalCenter: parent.horizontalCenter
         }
         Text {
             id: txt2
@@ -28,8 +26,6 @@ Item {
             color: app.c4
             textFormat: Text.RichText
             Marco{
-                id:m1
-                opacity:app.mp.position>1000*5 ? 1.0 : 0.0
                 Behavior on opacity{
                     NumberAnimation{
                         duration: 1500
@@ -49,87 +45,82 @@ Item {
                 }
             }
         }
-    }   
+    }
+    Image {
+        id: img1
+        source: "../../h/app_crash.png"
+        width: r.width*0.3
+        anchors.right: r.right
+        anchors.verticalCenter: r.verticalCenter
+        fillMode: Image.PreserveAspectFit
+        visible: false
+    }
+    ColorOverlay {
+        anchors.fill: img1
+        source: img1
+        color: app.c2
+        visible:app.mp.position>124*1000
+    }
     Xa{id:xa}
     Timer{
         running: r.visible
         repeat: true
         interval: 250
         onTriggered: {
-            if(app.lnl(50, 67)==='activo'){
-                txt2.text= 'import <b style="color:red;">"./ArchivosJS/MisFunciones.js"</b> as JS'
-            }else if(app.lnl(67, 70)==='activo'){
-                txt2.text= '<b style="color:red;">import</b>'
-            }else if(app.lnl(70, 72)==='activo'){
-                txt2.text= 'import<b style="color:red;">[espacio]</b>'
-            }else if(app.lnl(72, 86)==='activo'){
-                txt2.text= 'import[espacio]<b style="color:red;">"./ArchivosJS/MisFunciones.js"</b>'
-            }else if(app.lnl(86, 88)==='activo'){
-                txt2.text= 'import[espacio]"./ArchivosJS/MisFunciones.js"<b style="color:red;">[espacio]</b>'
-            }else if(app.lnl(88, 94)==='activo'){
-                txt2.text= 'import[espacio]"./ArchivosJS/MisFunciones.js"[espacio]<b style="color:red;">as</b>'
-            }else if(app.lnl(94, 96)==='activo'){
-                txt2.text= 'import[espacio]"./ArchivosJS/MisFunciones.js"[espacio]as<b style="color:red;">[espacio]</b>'
-            }else if(app.lnl(96, 109)==='activo'){
-                txt2.text= 'import[espacio]"./ArchivosJS/MisFunciones.js"[espacio]as[espacio]<b style="color:red;">JS</b>'
-            }else if(app.lnl(109, 113)==='activo'){
-                txt2.text= '<b style="color:red;">import</b>'
-            }else if(app.lnl(113, 116)==='activo'){
-                txt2.text= 'import '
-            }else if(app.lnl(116, 119)==='activo'){
-                txt2.text= 'import <b style="color:red;">"./ArchivosJS/MisFunciones.js"</b>'
-            }else if(app.lnl(119, 121)==='activo'){
-                txt2.text= 'import "./ArchivosJS/MisFunciones.js" '
-            }else if(app.lnl(121, 126)==='activo'){
-                txt2.text= 'import "./ArchivosJS/MisFunciones.js" <b style="color:red;">as</b>'
-            }else if(app.lnl(126, 129)==='activo'){
-                txt2.text= 'import "./ArchivosJS/MisFunciones.js" as '
-            }else if(app.lnl(129, 132)==='activo'){
-                txt2.text= 'import "./ArchivosJS/MisFunciones.js" as <b style="color:red;">JS</b>'
-            }else if(app.lnl(140, 147)==='activo'){
-                txt2.text= 'import "./ArchivosJS/MisFunciones.js" <b style="color:red;">as</b> JS'
-            }else if(app.lnl(147, 162)==='activo'){
-                txt2.text= 'import "./ArchivosJS/MisFunciones.js" <b style="color:red;">COMO</b> JS'
-            }else if(app.lnl(162, 174)==='activo'){
-                txt2.text= 'import "./ArchivosJS/MisFunciones.js" <b style="color:red;">COMO JS</b>'
-            }else if(app.lnl(174, 176)==='activo'){
-                txt2.text= 'import "./ArchivosJS/MisFunciones.js" <b style="color:red;">COMO MiJS</b>'
-            }else if(app.lnl(176, 178)==='activo'){
-                txt2.text= 'import "./ArchivosJS/MisFunciones.js" <b style="color:red;">COMO funciones</b>'
-            }else if(app.lnl(178, 180)==='activo'){
-                txt2.text= 'import "./ArchivosJS/MisFunciones.js" <b style="color:red;">COMO X</b>'
-            }else if(app.lnl(180, 185)==='activo'){
-                txt2.text= 'import "./ArchivosJS/MisFunciones.js" <b style="color:red;">COMO CodigoJS</b>'
-            }else if(app.lnl(185, 192)==='activo'){
-                txt2.text= 'import <b style="color:red;">\'</b>./ArchivosJS/MisFunciones.js<b style="color:red;">\'</b> as CodigoJS'
-            }else if(app.lnl(192, 194)==='activo'){
-                txt2.text= 'import <b style="color:red;">"</b>./ArchivosJS/MisFunciones.js<b style="color:red;">"</b> as CodigoJS'
+            if(app.lnl(17, 30)==='activo'){
+                txt2.text= '<b style="color:red;">import</b> QtQuick 2.0'
+            }else  if(app.lnl(30, 37)==='activo'){
+                txt2.text= '<span style="color:#14DED7;background-color:black;">//Ejempos de Mòdulos QML</span><br>import QtQuick 2.0<br>import QtWebView 1.1<br>import QtQuick.Controls 2.0<br>import QtQuick.Windos 2.2'
+            }else  if(app.lnl(37, 44)==='activo'){
+                txt2.text= '<span style="color:#14DED7;background-color:black;">//Ejempos Objeto de Tipo Registrado</span><br>import MiPluginsCpp 2.0<br><span style="color:#14DED7;background-color:black;">//Ejempos de Recurso JavaScript</span><br>import "carpetaJS/funciones.js" as JS'
+            }else  if(app.lnl(73, 76)==='activo'){
+                txt2.text= '<span style="color:red;">import</span>'
+            }else  if(app.lnl(76, 79)==='activo'){
+                txt2.text= 'import<span style="color:red;">[espacio]</span>'
+            }else  if(app.lnl(79, 81)==='activo'){
+                txt2.text= 'import[espacio]<span style="color:red;">QtQuick</span>'
+            }else  if(app.lnl(81, 83)==='activo'){
+                txt2.text= 'import[espacio]QtQuick<span style="color:red;">[espacio]</span>'
+            }else  if(app.lnl(83, 87.5)==='activo'){
+                txt2.text= 'import[espacio]QtQuick[espacio]<span style="color:red;">2.0</span>'
+            }else  if(app.lnl(93, 95)==='activo'){
+                txt2.text= '<span style="color:red;">import</span>'
+            }else  if(app.lnl(95, 97)==='activo'){
+                txt2.text= 'import<span style="color:red;"> </span>'
+            }else  if(app.lnl(97, 100)==='activo'){
+                txt2.text= 'import <span style="color:red;">QtQuick</span>'
+            }else  if(app.lnl(100, 104)==='activo'){
+                txt2.text= 'import QtQuick<span style="color:red;">  </span>'
+            }else  if(app.lnl(104, 109)==='activo'){
+                txt2.text= 'import QtQuick <span style="color:red;">2.0</span>'
+            }else  if(app.lnl(109, 137)==='activo'){
+                img1.source="../../h/app_crash.png"
+            }else  if(app.lnl(137, 150)==='activo'){
+                txt2.text= 'import "carpetaJS/funciones.js" as JS'
+                img1.source="../../h/js.png"
             }else{
-                txt2.text= 'import "./ArchivosJS/MisFunciones.js" as JS'
+                txt2.text= 'import QtQuick 2.0'
             }
         }
     }
-
-
     Component.onCompleted: {
-        var at='Còmo importar un Archivo JavaScript'
-        at+='
-En esta secciòn del curso explicaremos còmo importar un archivo JavaScript y en pròximas secciones vamos a explicar còmo utilizar funciones JavaScript de archivos importados o incluso còmo crear funciones JavaScript directamente en nuestro còdigo QML.
+        var at='Còmo utilizar la Declaraciòn Import'
+        at+=' Para realizar de manera correcta una declaraciòn de importaciòn, ademàs de escribir como primer palabra, al comienzo de la lìnea, la palabra reservada import, debemos seguir las reglas de Sintàxis que este procedimiento requiere.
 
-Ahora explicaremos la manera de importar un archivo JavaScript, para poder utilizar sus funciones, variables, cualquier tipo de objeto o recurso JavaScript, lo que debemos hacer es tan simple como lo que hemos hecho para importar un mòdulo QtQuick, la sintàxis es parecida pero tiene una mìnima diferencia.
+Podemos realizar 3 tipos de importaciones. Lo màs comùn es importar un mòdulo QML. Ademàs podemos importar Tipos de Objetos Registrados y recursos JavaScript.
 
-Supongamos que tenemos un archivo del tipo JavaScript llamado MisFunciones.js en la carpeta ArchivosJS, en este caso la sintàxis de la declaraciòn de importaciòn debe ser de la siguiente manera.
+Lo primero que veremos, es un ejemplo simple sobre còmo importar un mòdulo QML. Supongamos que queremos importar el mòdulo QtQuick versiòn 2.0, esto se harìa asì.
 
-Escribimos import, luego un espacio, luego la ruta completa, absoluta o relativa del archivo JavaScript a importar (en este caso ./ArchivosJS/MisFunciones.js), luego otro espacio, luego "as" en minùscula, luego otro espacio y por ùltimo el nombre o identificador con el cuàl queremos hacer referencia a nuestro archivo desde el còdigo QML.
+    Como QtQuick es un mòdulo QML, la sintàxis es simple y consiste en lo siguiente. Escribimos import, luego un espacio, luego el nombre del mòdulo (en este caso QtQuick), luego otro espacio y por ùltimo el nùmero de versiòn del mòdulo.
 
-Reiteramos, primero escribimos import, luego un espacio, luego la ruta del archivo, luego otro espacio, luego "as" en minùscula, luego otro espacio y por ùltimo el identificador.
+Reiteramos, primero escribimos import, espacio, luego nombre de modulo, espacio y por ùltimo nùmero de versiòndel mòdulo importado.
 
-Como puedes ver, en esta oportunidad hemos agregado a la declaraciòn de importaciòn el tèrmino "as", esta palabra està escrita en ingles, su significado en español es "como". Entonces aquì estamos importando el archivo JavaScript MisFunciones.js al cuàl de ahora en màs lo llamaremos como JS. Lo podemos llamar del modo que querramos, en vez de JS podemos poner por ejemplo MiJS, funciones, X, CodigosJS o el tèrmino que se nos ocurra.
+Podemos importar  la cantidad de recursos que sean necesarios. En el caso de que estemos importando algo que no exista o no se encuentre disponible, nuestro còdigo QML fallarà y posiblemente falle toda la aplicaciòn dependiendo en que contexto se estè ejecutando el còdigo QML.
 
-Por ùltimo, ten en cuenta que la ruta del archivo JavaScript debe estar escrita entre comillas simples o dobles
+Para importar un archivo JavaScript debemos utilizar una sintàxis diferente. Para saber còmo hacerlo, es necesario ir a la siguiente secciòn.
 '
+        xT.at=at.replace(/\n/g,' ')
         var h1=''
-        xa.addBa('...',h1,'./h/h1.m4a')
         xa.addBa('Ir al siguiente','','1')
     }
 }

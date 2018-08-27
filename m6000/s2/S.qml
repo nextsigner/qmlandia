@@ -1,5 +1,4 @@
 import QtQuick 2.0
-import QtGraphicalEffects 1.0
 import '../../'
 Item {
     id: r
@@ -15,17 +14,26 @@ Item {
         anchors.centerIn: parent
         Text {
             id: txt1
-            text: "<b>Còmo utilizar la Declaraciòn IMPORT</b><br>"
-            font.pixelSize: app.fs
+            text: "<b>Declaraciones de importacion</b><br>"
+            font.pixelSize: app.fs*2
             color: app.c2
             textFormat: Text.RichText
         }
         Text {
             id: txt2
+            text: app.mp.position>1000*73 ? '<b style="color:red;">import</b> QtQuick 2.0':'import QtQuick 2.0'
             font.pixelSize: app.fs
             color: app.c4
             textFormat: Text.RichText
             Marco{
+                Text {
+                    text: 'Linea de Declaraciòn de Importaciòn'
+                    font.pixelSize: app.fs*0.5
+                    anchors.right: parent.right
+                    anchors.bottom: parent.top
+                    color: app.c2
+                }
+                opacity:app.mp.position>1000*8 ? 1.0 : 0.0
                 Behavior on opacity{
                     NumberAnimation{
                         duration: 1500
@@ -46,81 +54,20 @@ Item {
             }
         }
     }
-    Image {
-        id: img1
-        source: "../../h/app_crash.png"
-        width: r.width*0.3
-        anchors.right: r.right
-        anchors.verticalCenter: r.verticalCenter
-        fillMode: Image.PreserveAspectFit
-        visible: false
-    }
-    ColorOverlay {
-        anchors.fill: img1
-        source: img1
-        color: app.c2
-        visible:app.mp.position>124*1000
-    }
     Xa{id:xa}
-    Timer{
-        running: r.visible
-        repeat: true
-        interval: 250
-        onTriggered: {
-            if(app.lnl(17, 30)==='activo'){
-                txt2.text= '<b style="color:red;">import</b> QtQuick 2.0'
-            }else  if(app.lnl(30, 37)==='activo'){
-                txt2.text= '<span style="color:#14DED7;background-color:black;">//Ejempos de Mòdulos QML</span><br>import QtQuick 2.0<br>import QtWebView 1.1<br>import QtQuick.Controls 2.0<br>import QtQuick.Windos 2.2'
-            }else  if(app.lnl(37, 44)==='activo'){
-                txt2.text= '<span style="color:#14DED7;background-color:black;">//Ejempos Objeto de Tipo Registrado</span><br>import MiPluginsCpp 2.0<br><span style="color:#14DED7;background-color:black;">//Ejempos de Recurso JavaScript</span><br>import "carpetaJS/funciones.js" as JS'
-            }else  if(app.lnl(73, 76)==='activo'){
-                txt2.text= '<span style="color:red;">import</span>'
-            }else  if(app.lnl(76, 79)==='activo'){
-                txt2.text= 'import<span style="color:red;">[espacio]</span>'
-            }else  if(app.lnl(79, 81)==='activo'){
-                txt2.text= 'import[espacio]<span style="color:red;">QtQuick</span>'
-            }else  if(app.lnl(81, 83)==='activo'){
-                txt2.text= 'import[espacio]QtQuick<span style="color:red;">[espacio]</span>'
-            }else  if(app.lnl(83, 87.5)==='activo'){
-                txt2.text= 'import[espacio]QtQuick[espacio]<span style="color:red;">2.0</span>'
-            }else  if(app.lnl(93, 95)==='activo'){
-                txt2.text= '<span style="color:red;">import</span>'
-            }else  if(app.lnl(95, 97)==='activo'){
-                txt2.text= 'import<span style="color:red;"> </span>'
-            }else  if(app.lnl(97, 100)==='activo'){
-                txt2.text= 'import <span style="color:red;">QtQuick</span>'
-            }else  if(app.lnl(100, 104)==='activo'){
-                txt2.text= 'import QtQuick<span style="color:red;">  </span>'
-            }else  if(app.lnl(104, 109)==='activo'){
-                txt2.text= 'import QtQuick <span style="color:red;">2.0</span>'
-            }else  if(app.lnl(109, 137)==='activo'){
-                img1.source="../../h/app_crash.png"
-            }else  if(app.lnl(137, 150)==='activo'){
-                txt2.text= 'import "carpetaJS/funciones.js" as JS'
-                img1.source="../../h/js.png"
-            }else{
-                txt2.text= 'import QtQuick 2.0'
-            }
-        }
-    }
     Component.onCompleted: {
-        var at='Còmo utilizar la Declaraciòn Import'
-        at+=' Para realizar de manera correcta una declaraciòn de importaciòn, ademàs de escribir como primer palabra, al comienzo de la lìnea, la palabra reservada import, debemos seguir las reglas de Sintàxis que este procedimiento requiere.
+        var at=' Declaraciones de Importacion'
+        at+='Cada documento QML, al cual denominaremos de ahora en màs, archivo QML, requiere de ciertas declaraciones de importaciòn al principio o comienzo, es decir en sus primeras lineas previas a la escritura del còdigo en el cuàl luego declaramos elementos QML u otros objetos.
 
-Podemos realizar 3 tipos de importaciones. Lo màs comùn es importar un mòdulo QML. Ademàs podemos importar Tipos de Objetos Registrados y recursos JavaScript.
+Cuando nos referimos a Declaraciones de Importaciòn, estamos hablando de una solicitud o requerimiento que le hacemos al motor QML, o aplicaciòn que cargarà dicho còdigo, le solicitamos la carga de distintos recursos u objetos que necesitamos que se encuentren disponibles para el funcionamiento pleno de nuestro còdigo.
 
-Lo primero que veremos, es un ejemplo simple sobre còmo importar un mòdulo QML. Supongamos que queremos importar el mòdulo QtQuick versiòn 2.0, esto se harìa asì.
+Entonces, para comenzar a programar còdigo QML, es necesario escribir, como mìnimo una lìnea de Declaraciòn de Importaciòn que comienza con la palabra reservada <b>import</b>.
 
-    Como QtQuick es un mòdulo QML, la sintàxis es simple y consiste en lo siguiente. Escribimos import, luego un espacio, luego el nombre del mòdulo (en este caso QtQuick), luego otro espacio y por ùltimo el nùmero de versiòn del mòdulo.
-
-Reiteramos, primero escribimos import, espacio, luego nombre de modulo, espacio y por ùltimo nùmero de versiòndel mòdulo importado.
-
-Podemos importar  la cantidad de recursos que sean necesarios. En el caso de que estemos importando algo que no exista o no se encuentre disponible, nuestro còdigo QML fallarà y posiblemente falle toda la aplicaciòn dependiendo en que contexto se estè ejecutando el còdigo QML.
-
-Para importar un archivo JavaScript debemos utilizar una sintàxis diferente. Para saber còmo hacerlo, es necesario ir a la siguiente secciòn.
+Para saber còmo utilizar la palabra reservada <b>import</b> para importar algùnos recursos bàsicos y crear nuestro primer còdigo QML vayamos al siguiente paso.
 '
-        xT.at=at.replace(/\n/g,' ')
-        var h1=''
+        var h1='Atenciòn! Las palabras reservadas son identificadores reservados predefinidos que tienen un significado especial y no pueden ser utilizados como identificadores en nuestro còdigo QML o JavaScript.
+'
+        xa.addBa('¿Que es una Palabra Reservada?',h1,'./h/h1.m4a')
         xa.addBa('Ir al siguiente','','1')
     }
 }

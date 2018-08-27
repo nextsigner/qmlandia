@@ -25,10 +25,12 @@ Rectangle {
                 color: app.c2
             }
             Row{
+                height: app.fs*0.5
                 Text {
                     text: "Volume: "
                     font.pixelSize: app.fs*0.5
                     color: app.c2
+                    anchors.verticalCenter: parent.verticalCenter
                 }
                 Slider{
                     id:sv
@@ -36,6 +38,7 @@ Rectangle {
                     height: app.fs
                     from: 0
                     to:100
+                    anchors.verticalCenter: parent.verticalCenter
                     onValueChanged: {
                         var v=parseFloat(value*0.01)
                         appSettings.volume=v.toFixed(2)
@@ -45,10 +48,12 @@ Rectangle {
                 Item{
                     width: app.fs*6
                     height: app.fs
+                   anchors.verticalCenter: parent.verticalCenter
                     Text {
                         text: "%"+parseInt(sv.value)
                         font.pixelSize: app.fs*0.5
                         color: app.c2
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                 }
 
@@ -56,13 +61,16 @@ Rectangle {
 
             Row{
                 spacing: app.fs
+                height: app.fs*0.5
                 Text {
                     text: "Colores: "
                     font.pixelSize: app.fs*0.5
                     color: app.c2
+                    anchors.verticalCenter: parent.verticalCenter
                 }
                 Row{
                     spacing: app.fs*0.5
+                    height: app.fs*0.5
                     Text {
                         text: "Claro"
                         color: app.c2
@@ -77,6 +85,7 @@ Rectangle {
                                 appSettings.tema=1
                             }
                         }
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                 }
 
@@ -84,6 +93,7 @@ Rectangle {
 
                 Row{
                     spacing: app.fs*0.1
+                    height: app.fs*0.5
                     Text {
                         text: "Oscuro"
                         color: app.c2
@@ -98,10 +108,12 @@ Rectangle {
                                 appSettings.tema=2
                             }
                         }
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                 }
                 Row{
                     spacing: app.fs*0.1
+                    height: app.fs*0.5
                     Text {
                         text: "Orange"
                         color: app.c2
@@ -116,10 +128,12 @@ Rectangle {
                                 appSettings.tema=3
                             }
                         }
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                 }
                 Row{
                     spacing: app.fs*0.1
+                    height: app.fs*0.5
                     Text {
                         text: "Unik"
                         color: app.c2
@@ -134,6 +148,7 @@ Rectangle {
                                 appSettings.tema=4
                             }
                         }
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                 }
 
