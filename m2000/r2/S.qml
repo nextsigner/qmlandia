@@ -123,8 +123,10 @@ Item {
             }
         }
     }
-
-
+    MouseArea{
+        anchors.fill: r
+        onClicked: app.s++
+    }
     Component.onCompleted: {
         tap1.opacity=0.0
         app.cp.visible=false

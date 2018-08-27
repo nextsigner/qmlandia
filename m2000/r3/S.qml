@@ -5,6 +5,7 @@ Item {
     width: app.width
     height: app.height
     property int anchomayor: 0
+    property int ts: 0
     onWidthChanged: {
         r.anchomayor=0
         for(var child in lv.contentItem.children) {
@@ -16,83 +17,116 @@ Item {
     Item{
         id:area1
         function addTit(t,m,s){
+            if((m===0&&s===0)||(m===0&&s===1)){
+                return
+            }
             lm.append(lm.addTit(t,m,s))
         }
     }
-    ListView{
-        id:lv
-        spacing: app.fs*0.5
-        model: lm
-        delegate: del
-        width: r.width-app.fs*2
-        height: r.height
+    Column{
         anchors.horizontalCenter: r.horizontalCenter
-        ListModel{
-            id:lm
-            function addTit(t, m, s){
-                return {
-                    tit:t,
-                    mo:m,
-                    se:s
-                }
+        height: r.height
+        Rectangle{
+            id:xTit
+            width: r.width
+            height: app.fs*1.5
+            color:app.c2
+            z:lv.z+1
+            Text{
+                id:txtTit
+                text: '<b>Ìndice</b>        <b>Mòdulos:</b> '+app.cantmod+'    <b>Secciones: </b> '+r.ts
+                font.pixelSize: app.fs*1.2
+                color:app.c3
+                anchors.left: parent.left
+                anchors.leftMargin: app.fs
             }
         }
-        Component{
-            id:del
-            Rectangle{
-                id:ri
-                width: txt11.contentWidth+app.fs
-                height: mo===-1?app.fs*1.5:app.fs*1.2
-                color:mo===-1?app.c2:'transparent'
-                border.width: mo===-1?0:2
-                border.color: app.c4
-                radius: app.fs*0.25
-                opacity:0.0
-                x:mo===-1?0:(r.width-r.anchomayor)/2
-                visible:mo!=='indice'&&mo!=='intro'
-                Behavior on opacity{
-                    NumberAnimation{
-                        duration:250
+        Item{width: app.fs;height: app.fs}
+        ListView{
+            id:lv
+            spacing: app.fs*0.5
+            model: lm
+            delegate: del
+            width: r.width-app.fs*2
+            height: r.height-app.fs*1.5-app.fs
+            ListModel{
+                id:lm
+                function addTit(t, m, s){
+                    return {
+                        tit:t,
+                        mo:m,
+                        se:s
                     }
                 }
-                Text{
-                    id:txt11
-                    text: mo===-1?'<b>'+tit+'</b>':'* '+tit
-                    font.pixelSize: mo===-1?app.fs*1.2:app.fs
-                    anchors.centerIn: parent
-                    color:mo===-1?app.c3:app.c4
-                }
-                MouseArea{
-                    anchors.fill: parent
-                    enabled: mo!==-1
-                    hoverEnabled: true
-                    onEntered: {
-                        txt11.font.pixelSize=app.fs*1.1
-                    }
-                    onExited: txt11.font.pixelSize=app.fs
-                    onClicked: {
-                        app.mod=mo
-                        if(app.s!==se){
-                            app.s=se
-                        }else{
-                            app.s=se
-                            app.prepMod()
+            }
+            Component{
+                id:del
+                Rectangle{
+                    id:ri
+                    width: txt11.contentWidth+app.fs
+                    height: mo===-1?app.fs*1.5:app.fs*1.2
+                    color:mo===-1?app.c2:'transparent'
+                    border.width: mo===-1?0:0
+                    border.color: app.c4
+                    radius: app.fs*0.25
+                    opacity:0.0
+                    x:mo===-1?0:(r.width-r.anchomayor)/2
+                    visible:mo!=='indice'&&mo!=='intro'
+                    Behavior on opacity{
+                        NumberAnimation{
+                            duration:250
                         }
+                    }
+                    Row{
+                        anchors.centerIn: parent
+                        spacing: app.fs*0.25
+                        Rectangle{
+                            width: app.fs*0.5
+                            height: width
+                            radius: width*0.5
+                            color:mo===-1?'transparent':app.c4
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                        Text{
+                            id:txt11
+                            text: mo===-1?'<b>'+tit+'</b>':tit
+                            font.pixelSize: mo===-1?app.fs*1.2:app.fs
+                            color:mo===-1?app.c3:app.c4
+                        }
+                    }
 
+                    MouseArea{
+                        anchors.fill: parent
+                        enabled: mo!==-1
+                        hoverEnabled: true
+                        onEntered: {
+                            txt11.font.pixelSize=app.fs*1.1
+                        }
+                        onExited: txt11.font.pixelSize=app.fs
+                        onClicked: {
+                            app.mod=mo
+                            if(app.s!==se){
+                                app.s=se
+                            }else{
+                                app.s=se
+                                app.prepMod()
+                            }
+
+                        }
                     }
-                }
-                function setRi(){
-                    if(ri.width>r.anchomayor){
-                        r.anchomayor=ri.width
+                    function setRi(){
+                        if(ri.width>r.anchomayor){
+                            r.anchomayor=ri.width
+                        }
                     }
-                }
-                Component.onCompleted: {
-                    ri.opacity=1.0
-                    setRi()
+                    Component.onCompleted: {
+                        ri.opacity=1.0
+                        setRi()
+                    }
                 }
             }
         }
-    }    
+    }
     Component.onCompleted: {
         controles.visible=false
         for(var i=0;i<xP.am.length;i++){
@@ -130,6 +164,7 @@ Item {
         code+='                                 for(var i=0;i<fl'+m+'.count;i++){\n'
         code+='                                     var t2=""+unik.getFile((fl'+m+'.folder+\'/\'+fl'+m+'.get(i, \'fileName\')+\'/titulo\').replace(\'file://\', \'\'))\n'
         code+='                                         xr'+m+'.parent.addTit(t2.replace(/\\n/g, \'\'),'+nm+',i)\n'
+        code+='                                         r.ts++\n'
         code+='                                         v++\n'
         code+='                                 } \n'
         code+='                                 //app.cants=v\n'
