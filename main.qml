@@ -123,14 +123,15 @@ ApplicationWindow {
             }
             //unik.log("Update key control nª"+tu.v+": "+ur+" urs: "+appSettings.uRS)
             if(appSettings.uRS!==ur&&appSettings.cantRun>0){
-                cp.btnUD.up=true
+                //cp.btnUD.up=true
                 appSettings.uRS = ur
-            }else{
                 xU.visible=true
                 if(ur.indexOf('Novedad. ')>-1){
                     xU.commit=ur
                 }
                 app.mp.pause()
+            }else{
+                //cp.btnUD.up=false
             }
             unik.setDebugLog(true)
             tu.interval=1000*60*5

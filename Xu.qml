@@ -1,18 +1,23 @@
 import QtQuick 2.0
-Rectangle{
+Item{
     id:r
     anchors.fill: parent
-    opacity: 0.65
-    color:app.c3
     visible:false
     property string commit: ''
     Rectangle{
+        anchors.fill: r
+        opacity: 0.65
+        color:app.c3
+        visible:false
+    }
+    Rectangle{
         anchors.centerIn: parent
         width: app.fs*20
-        height: app.fs*10
+        height: msg.contentHeight+app.fs*5
         color: app.c2
         radius: app.fs
         Text{
+            id:msg
             width: parent.width*0.9
             wrapMode: Text.WordWrap
             anchors.centerIn: parent
