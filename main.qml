@@ -126,8 +126,8 @@ ApplicationWindow {
                 cp.btnUD.up=true
                 appSettings.uRS = ur
             }else{
-                //cp.btnUD.up=false
                 xU.visible=true
+                app.mp.pause()
             }
             unik.setDebugLog(true)
             tu.interval=1000*60*5

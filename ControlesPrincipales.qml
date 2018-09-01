@@ -176,37 +176,6 @@ Rectangle {
                 trb.restart()
             }
         }
-        Boton{//Actualizar Qmlandia
-            id:btnUpdate
-            w:visible?app.fs*1.5:0
-            tp:3
-            h: w
-            t: '\uf021'
-            d:'Actualizar Qmlandia desde GitHub.com'
-            b: up ? 'red':app.c2
-            c: up ? 'white':'#000'
-            property bool up: false
-            visible: up
-            onClicking: {
-                var j
-                var c
-                if(up){
-                    j=appsDir+'/temp_config.json'
-                    c='{"mode":"-git", "arg1": "https://github.com/nextsigner/qmlandia.git"}'
-                    unik.setFile(j, c)
-                    unik.restartApp()
-                }else{
-                    j=appsDir+'/config.json'
-                    c='{"mode":"-folder", "arg1": "'+appsDir+'/qmlandia'+'"}'
-                    unik.setFile(j, c)
-                    unik.restartApp()
-                }
-            }
-        }
-        Item{
-            width: btnUpdate.visible?app.fs:0
-            height: width
-        }
         Boton{
             w:app.fs*1.5
             h:w
