@@ -18,18 +18,106 @@ Item {
         boundsBehavior: Flickable.StopAtBounds
         Text {
             id: txt1
-            width: r.width*0.6
-            font.pixelSize: app.fs*0.5
+            width: r.width*0.4-app.fs
+            font.pixelSize: app.fs*0.65
             color: app.c2
             textFormat: Text.RichText
             wrapMode: Text.WordWrap
         }
     }
-    property var ai: ["qml.png","qt-icon.png","apps.png","sdk.png","unik.png"]
+    property var ai: ["qml1.png", "img1.png", "img2.png"]
+    Rectangle{
+        anchors.fill: r
+        color: app.c3
+        visible: app.mp.position>45000
+        Row{
+            anchors.centerIn: parent
+            spacing: app.fs*0.5
+            Rectangle{
+                id:xCode
+                width: r.width*0.5-app.fs
+                height: r.height-app.fs
+                border.width: 2
+                border.color: app.c2
+                color: app.c3
+                Column{
+                    anchors.centerIn: parent
+                    spacing: app.fs*0.5
+                    Text {
+                        id: name
+                        text: '<b>Tu primer Còdigo Qml!</b>'
+                        font.pixelSize: app.fs
+                        color:app.c2
+                        height: app.fs*2
+                    }
+                    TextEdit{
+                        id:qml
+                        width: xCode.width-app.fs*2
+                        height: xCode.height-app.fs*10
+                        font.pixelSize: app.fs
+                        color: app.c2
+                        Marco{}
+                    }
+                    Item{height: app.fs*0.5}
+                    Rectangle{
+                        width: tb.contentWidth*1.05
+                        height: tb.contentHeight*1.05
+                        border.color: app.c2
+                        radius: app.fs*0.5
+                        anchors.right: parent.right
+                        Text{
+                            id:tb
+                            font.pixelSize: app.fs
+                            text:'Ejecutar'
+                            anchors.centerIn: parent
+                        }
+                        MouseArea{
+                            anchors.fill: parent
+                            onClicked: {
+                                for(var i=0;i<area.children.length;i++){
+                                    area.children[i].destroy(10)
+                                }
+                                var c='import QtQuick 2.0\n'
+                                c+=qml.text
+
+                                var obj = Qt.createQmlObject(c, area, 'tuqml')
+                            }
+                        }
+                    }
+                }
+            }
+            Rectangle{
+                id:xArea
+                width: r.width*0.5-app.fs
+                height: r.height-app.fs
+                border.width: 2
+                border.color: app.c2
+                color:app.c3
+                Rectangle{
+                    id:area
+                    width: parent.width-4
+                    height: parent.height-4
+                    color:app.c3
+                    anchors.centerIn: parent
+                }
+                Text{
+                    id:msg
+                    width: parent.width-app.fs
+                    font.pixelSize: app.fs*0.5
+                    color: app.c2
+                    text: 'Aquì se mostrarà\ntu còdigo ejecutado'
+                    wrapMode: Text.WordWrap
+                    anchors.bottom: parent.bottom
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+            }
+
+        }
+    }
     Column{
         anchors.verticalCenter: r.verticalCenter
         anchors.right: r.right
-        anchors.rightMargin:  (r.width*0.4-width)/2
+        anchors.rightMargin:  app.fs*0.5
         spacing: app.fs*0.5
         Text{
             id:te1
@@ -77,76 +165,37 @@ Item {
         repeat: true
         interval: 250
         onTriggered: {
-            c2 ='<h2 class="'+app.lnl(0, 4)+'">¿En què consiste este curso?</h2>'
-            c2+='<p class="'+app.lnl(4, 21)+'">'+p0+'</p>'
-            c2+='<p class="'+app.lnl(21, 33)+'">'+p1+'</p>'
-            c2+='<p class="'+app.lnl(33.5, 49.5)+'">'+p2+'</p>'
-            c2+='<p class="'+app.lnl(49.5, 75)+'">'+p3+'</p>'
-            c2+='<p class="'+app.lnl(75, 96)+'">'+p4+'</p>'
-            c2+='<p class="'+app.lnl(96, 131)+'">'+p5+'</p>'
+            c2 ='<h2 class="'+app.lnl(0, 4)+'">Este es Un Curso Interactivo</h2>'
+            c2+='<p class="'+app.lnl(4, 18)+'">'+p0+'</p>'
+            c2+='<p class="'+app.lnl(18.5, 28)+'">'+p1+'</p>'
+            c2+='<p class="'+app.lnl(28.5, 45)+'">'+p2+'</p>'
             txt1.text=c1+c2+c3
 
-            if(app.lnl(4, 49.5)==='activo'){
+            if(app.lnl(4, 18)==='activo'){
                 img1.visible=true
                 img1.source="./"+ai[0]
-                te1.text='\uf063'
-            }else  if(app.lnl(49.5, 75)==='activo'){
-                img1.visible=true
-                img2.visible=true
-                img1.source="./"+ai[3]
-                img2.source="./"+ai[2]
-                img1.width=r.width*0.1
-                img2.width=r.width*0.1
-                te1.text='<b>Entorno de Trabajo o FrameWork</b><br>Kit de Desarrollo<br>Software Developer Kit'
-                te1.font.pixelSize=app.fs*0.5
-                te2.text='\uf063'
-            }else  if(app.lnl(75, 95)==='activo'){
-                img1.visible=true
-                img2.visible=true
-                img1.source="./"+ai[0]
-                img2.source="./"+ai[4]
-                img1.width=r.width*0.1
-                img2.width=r.width*0.1
-                te1.text='<b>VIM</b><br>Editor de Texto<br>\uf063'
+                img1.width=r.width*0.6
+                te1.text='<b>Edita y Prueba el Còdigo</b><br>\uf063'
                 te1.font.pixelSize=app.fs
-                te2.text='<b>Curso creado en QML <br>\uf063'
-                te2.font.pixelSize=app.fs
-                te3.text='<b>Unik Qml Engine</b><br>creado por @nextsigner'
-                te3.font.pixelSize=app.fs
-            }else  if(app.lnl(95, 109)==='activo'){
-                img1.visible=true
-                img2.visible=true
-                img1.source="./"+ai[1]
-                img2.source="./"+ai[4]
-                img1.width=r.width*0.1
-                img2.width=r.width*0.1
-                te1.text='<b>Lo aprendido en este curso</b><br>sirve para <b>Qt</b><br>\uf063'
+            }else  if(app.lnl(18, 28)==='activo'){
+                img1.visible=false
+                img2.visible=false
+                te1.text='<b>Saber Còmo Hacerlo</b><br><br>\uf063<br><br><b>Ver Còdigo de Ejemplo</b><br><br>\uf063<br><br><b>Modificarlo</b><br><br>\uf063<br><br><b>Ejecutarlo</b><br>'
                 te1.font.pixelSize=app.fs
-                te2.text='o para <b>Unik</b><br>\uf063'
-                te2.font.pixelSize=app.fs
-            }else  if(app.lnl(109, 116)==='activo'){
+                te1.horizontalAlignment=Text.AlignHCenter
+                //te2.text='\uf063'
+            }else  if(app.lnl(28, 36)==='activo'){
                 img1.visible=true
-                img2.visible=true
-                img1.source="./"+ai[4]
-                img2.source="./"+ai[1]
-                img1.width=r.width*0.1
-                img2.width=r.width*0.1
-                te2.text='<b> Desarrollas con Unik</b><br>\uf063<br>Llevas tu còdigo QML a Qt<br>\uf063'
-                te2.font.pixelSize=app.fs
-                te1.text=''
-                te3.text=''
-            }else  if(app.lnl(116, 132)==='activo'){
-                img1.visible=true
-                img2.visible=true
                 img1.source="./"+ai[1]
-                img2.source="./"+ai[4]
-                img1.width=r.width*0.1
-                img2.width=r.width*0.1
-                te2.text='<b> Tamaño de Qt: </b>2Gb'
-                te2.font.pixelSize=app.fs
-                te3.text='<b> Tamaño de Unik: </b>100Mb<br><br>Programas y utilizas<br>tus apps en<br>GNU/Linux, Windows<br>Android o Macos'
-                te3.font.pixelSize=app.fs
-                te1.text=''
+                img2.width=r.width*0.25
+                te1.text='<b>Ten Paciencia!</b>'
+                te1.font.pixelSize=app.fs
+            }else  if(app.lnl(36, 45)==='activo'){
+                img1.visible=true
+                img1.source="./"+ai[2]
+                img2.width=r.width*0.25
+                te1.text='<b>Ten Paciencia!</b>'
+                te1.font.pixelSize=app.fs
             }else{
                 te1.text=''
                 te2.text=''
@@ -154,18 +203,19 @@ Item {
                 img1.visible=false
                 img2.visible=false
             }
+
         }
     }
 
-    property string c1
-    property string c2
-    property string c3
-    property string p0
-    property string p1
-    property string p2
-    property string p3
-    property string p4
-    property string p5
+    property string c1:''
+    property string c2:''
+    property string c3:''
+    property string p0:''
+    property string p1:''
+    property string p2:''
+    property string p3:''
+    property string p4:''
+    property string p5:''
 
     Component.onCompleted: {
         //Partes de la Estructura Html
@@ -173,18 +223,33 @@ Item {
         c3='</body></html>'
 
         //Parrafos
-        p0='Este curso consiste principalmente en Aprender a Programar en QML. Para aprender a utilizar este lenguaje es necesario saber què es QML, de donde proviene, porquè se llama asì y para que sirve.'
-        p1=' Por ser este el comienzo, explicaremos de manera breve lo màs bàsico y posteriormente aprenderemos màs en detalle sobre sus aspectos tècnicos y còmo utilizarlo.'
-        p2='Para dominar una herramienta, tecnologìa o lenguaje de programaciòn, no solo es aconsejable, tambièn es de fundamental importancia conocer sus origenes y otros detalles bàsicos que debemos tener en cuenta.'
-        p3='Para programar una aplicaciòn, el programador necesita contar con algunas herramientas indispensables. Ademàs de un ordenador, computadora y sistema operativo, necesita de una o varias herramientas que en conjunto si pertenecen a un mismo kit las mismas conforman lo que se conoce como Framework.'
-        p4='Desde el editor de texto llamado VIM, se ha escrito todo el còdigo fuente QML de este curso para que funcione dentro de la aplicaciòn que vez en pantalla. Esta aplicaciòn se llama Unik y fue desarrollada dentro de el Framework Qt Open Source.'
-        p5='Todo el conocimiento que adquieras en este curso, es totalmente ùtil para que puedas crear aplicaciones tanto en el Framework Qt como en Unik. Puedes comenzar con Unik y luego llevar tu còdigo a Qt. Ten en cuenta que el Framework Qt tiene un tamaño aproximado de 2Gb y Unik solo tiene un tamaño de 100Mb. Ambos son multiplataforma.'
+        p0='Este es un Curso Interactivo. Este contenido, cuando es ejecutado en Unik te permite ademàs de controlarlo, tambièn puedes editar el còdigo de los ejercicios para poder experimentar y probar lo que consideres necesario.'
+        p1=' Este tipo de contenido, està pensado para que puedas progresar de manera màs àgil y dinàmica en cada etapa del aprendizaje.'
+        p2='Talves al comienzo tu pienses que todo este curso tenga mucho contenido denso, aburrido o algo tedioso. Cuando compruebes lo que te podràs ejercitar y crear de ahora en màs, cambiaràs de opiniòn.'
+
 
         //Ayudas
-        var h1= 'Qt es un Framework, Entorno Multiplataforma de Trabajo para el desarrollo de aplicaciones informàticas. Està orientado a objetos para la creaciòn de aplicaciones  multiplataforma que requieran una GUI (Interfaz Gràfica de Usuario) o tambieǹ para aplicaciones del tipo consola que no lo requieran. Qt es desarrollado por la Comunidad Qt Project conjuntamente con Digia y otras empresas. Qt es distribuido de manera libre bajo la licencia LGPL, LGPL2 y tambièn es distribuido en la modalidad Enterprise. Puedes conocer màs sobre Qt en www.qt.io.'
-        var h2= 'Unik es una aplicaciòn desarrollada por @nextsigner con el Entorno de Desarrollo Qt Open Source. El proyecto es distribuido libremente bajo la licencia LGPL y su còdigo fuente està publicado en GitHub.com.  Unik se caracteriza por ser la ùnica aplicaciòn diseñada para descargar proyectos QML directamente desde GitHub.com, asì mismo hacer correr proyectos QML desde carpetas locales o remotas. La documentaciòn està disponible en el sitio oficial de unik llamado www.unikode.org y en el repositorio oficial en GitHub.com cuya url es https://www.github.com/nextsigner/unik.'
-        xa.addBa('Màs informaciòn Sobre Qt',h1,'./h/sobre_qt.m4a')
-        xa.addBa('Màs informaciòn Unik', h2,'./h/sobre_unik.m4a')
+        var h1= 'No. No es necesario saber Inglès. Es necesario aprender el significado de 20, 40 o 60 palàbras. Mientras màs palabras sepas, màs sencillo te resultarà aprender a programar en QML o en cualquier otro lenguaje de programaciòn. Por ejemplo, aprendiendo apenas 20 palabras, para saber como se dice ancho, alto, espacio, columna, fila, funciòn y otras, con esto ya puedes aprender y avanzar muchìsimo. Asi que Anìmate.'
+        var code='import QtQuick 2.0\n'
+        code+='Item{\n'
+        code+='     anchors.fill:parent\n'
+        code+='     Component.onCompleted:{\n'
+        code+='         app.verAyuda=false;\n'
+        code+='         console.log("Qmlandia: Còdigo Qml Ejecutado '+c1+' --- '+c2+'")\n'
+        code+='     }\n'
+        code+='}\n'
+
+        var h2= ''
+        xa.addBa('Se requiere saber Ingles?',h1,'./h/sobre_ingles.m4a')
+        xa.addBa('Editar Còdigo','',code)
         xa.addBa('Ir al siguiente','','1')
+
+
+        var q='Rectangle{\n'
+        q+='     width:300\n'
+        q+='     height:300\n'
+        q+='     color:"red"\n'
+        q+='}\n'
+        qml.text=q
     }
 }

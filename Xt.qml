@@ -1,12 +1,12 @@
 import QtQuick 2.0
-Item {
+Rectangle {
     id: r
     width: parent.width
     height: app.fs*0.6+(app.fs*0.5*appSettings.tamlector)
     anchors.bottom: parent.bottom
     anchors.bottomMargin: app.fs*2
     clip:true
-
+    color:app.c3
     Text {
         id: txt
         font.pixelSize: app.fs*0.5+(app.fs*0.5*appSettings.tamlector)

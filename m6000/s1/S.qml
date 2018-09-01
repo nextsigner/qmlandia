@@ -134,25 +134,25 @@ Item {
         onTriggered: {
             if(app.lnl(9, 17)==='activo'){
                 img1.visible=true
-                img1.source="./"+ai[0]
+                img1.source="../../h/editor_1.png"
                 img1.width=r.width*0.6
                 te1.text='<b>Editor QML/JS de Qt Creator</b><br>\uf063'
                 te1.font.pixelSize=app.fs
             }else if(app.lnl(17, 24)==='activo'){
                 img1.visible=true
-                img1.source="./"+ai[1]
+                img1.source="../../h/editor_3.png"
                 img1.width=r.width*0.6
                 te1.text='<b>Notepad++</b><br>\uf063'
                 te1.font.pixelSize=app.fs
             }else if(app.lnl(24, 31)==='activo'){
                 img1.visible=true
-                img1.source="./"+ai[2]
+                img1.source="../../h/editor_3.png"
                 img1.width=r.width*0.6
                 te1.text='<b>VIM</b><br>\uf063'
                 te1.font.pixelSize=app.fs
             }else if(app.lnl(31, 48)==='activo'){
                 img1.visible=true
-                img1.source="./"+ai[3]
+                img1.source="../../h/editor_4.png"
                 img1.width=r.width*0.6
                 te1.text='<b>Qt Design</b><br>\uf063'
                 te1.font.pixelSize=app.fs
