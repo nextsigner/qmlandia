@@ -127,6 +127,9 @@ ApplicationWindow {
                 appSettings.uRS = ur
             }else{
                 xU.visible=true
+                if(ur.indexOf('Novedad. ')>-1){
+                    xU.commit=ur
+                }
                 app.mp.pause()
             }
             unik.setDebugLog(true)

@@ -5,6 +5,7 @@ Rectangle{
     opacity: 0.65
     color:app.c3
     visible:false
+    property string commit: ''
     Rectangle{
         anchors.centerIn: parent
         width: app.fs*20
@@ -12,12 +13,12 @@ Rectangle{
         color: app.c2
         radius: app.fs
         Text{
-            width: parent.width*0.8
+            width: parent.width*0.9
             wrapMode: Text.WordWrap
             anchors.centerIn: parent
             font.pixelSize: app.fs
             color:app.c3
-            text:'<b>Atenciòn!</b><br>Hay novedades en los mòdulos y secciones de este curso.<br><br>¿Desea Actualizar Qmlandia? '
+            text:'<b>Atenciòn!</b><br>Hay novedades en los mòdulos y secciones de este curso.<br><br>¿Desea Actualizar Qmlandia? <br><b>Cambios:</b> '+r.commit
         }
         Row{
             anchors.right: parent.right
