@@ -78,6 +78,7 @@ ApplicationWindow {
         Xt{id:xT;visible:appSettings.tamlector!==-1&&at!==''}
         ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;}
         Xc{id:xC}
+        Xu{id:xU}
         focus: true
         Keys.onSpacePressed:  {
             if(!app.mp.p){
@@ -125,7 +126,8 @@ ApplicationWindow {
                 cp.btnUD.up=true
                 appSettings.uRS = ur
             }else{
-                cp.btnUD.up=false
+                //cp.btnUD.up=false
+                xU.visible=true
             }
             unik.setDebugLog(true)
             tu.interval=1000*60*5

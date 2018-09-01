@@ -532,11 +532,11 @@ Item {
         anchors.centerIn: r
         anchors.horizontalCenterOffset: 0-unikicon.width*2
         opacity: 0.0
-        //spacing:app.fs
         Behavior on opacity{NumberAnimation{duration:500}}
         Row{
             id:row1
             spacing: app.fs*0.5
+            anchors.verticalCenter: parent.verticalCenter
             Image {
                 id:qticon2
                 source: "../../h/qt-icon.png"
@@ -565,25 +565,25 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
             }
             Item{width: app.fs*0.5;height: 10}
-        }
-        Image {
-            id:unikicon
-            source: "../../h/unik.png"
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: row1
-            anchors.horizontalCenterOffset: width+(width*0.5)
-            Behavior on width{NumberAnimation{duration: 1500}}
-            Text{
-                text:"<b>Unik</b>"
-                font.pixelSize: app.fs*0.7
-                wrapMode: Text.WordWrap
-                color: app.c2
-                horizontalAlignment: Text.AlignHCenter
-                anchors.horizontalCenter:  parent.horizontalCenter
-                anchors.bottom: parent.top
-                anchors.bottomMargin: app.fs*0.5
+            Image {
+                id:unikicon
+                source: "../../h/unik.png"
+                fillMode: Image.PreserveAspectFit
+                anchors.verticalCenter: parent.verticalCenter
+                Behavior on width{NumberAnimation{duration: 1500}}
+                Text{
+                    text:"<b>Unik</b>"
+                    font.pixelSize: app.fs*0.7
+                    wrapMode: Text.WordWrap
+                    color: app.c2
+                    horizontalAlignment: Text.AlignHCenter
+                    anchors.horizontalCenter:  parent.horizontalCenter
+                    anchors.bottom: parent.top
+                    anchors.bottomMargin: app.fs*0.5
+                }
             }
         }
+
     }
 
 
@@ -755,7 +755,7 @@ Item {
             x8.opacity=app.lnl(99, 115)==='activo'?1.0:0.0
             x9.opacity=app.lnl(115, 127)==='activo'?1.0:0.0
             x10.opacity=app.lnl(127, 135)==='activo'?1.0:0.0
-            if(app.lnl(127, 135)==='activo'){
+            if(app.lnl(129, 135)==='activo'){
                 unikicon.width=app.fs*6
             }else{
                 unikicon.width=0
