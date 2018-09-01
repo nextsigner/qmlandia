@@ -41,7 +41,8 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             Text{
                 text:"<b>Aprender QML</b>"
-                font.pixelSize: app.fs*2
+                width: contentWidth
+                font.pixelSize: (app.fs)*(1.6-(arbol1.opacity))
                 wrapMode: Text.WordWrap
                 color: app.c2
                 horizontalAlignment: Text.AlignHCenter
@@ -52,7 +53,7 @@ Item {
         }
         Item{
             id:arbol1
-            width: opacity===0.0?0:app.fs*20
+            width: opacity===0.0?0:app.fs*10
             height: opacity===0.0?0:app.fs*10
             anchors.verticalCenter: parent.verticalCenter
             opacity: 0.0
@@ -158,7 +159,7 @@ Item {
     Row{
         id:x3
         anchors.centerIn: r
-        height: app.fs*10
+        height: app.fs*8
         spacing: app.fs*4
         opacity: 0.0
         Behavior on opacity{NumberAnimation{duration:500}}
@@ -385,14 +386,14 @@ Item {
     Column{
         id:x5
         anchors.centerIn: r
-        height: app.fs*14
+        height: app.fs*8
         spacing: app.fs
         opacity: 0.0
         Behavior on opacity{NumberAnimation{duration:500}}
         Row{
             spacing: app.fs
             Text {
-                text: "Toca esta ComboBox! -->"
+                text: "Toca este<br>ComboBox! -->"
                 font.pixelSize: app.fs
                 color:app.c2
             }
@@ -406,7 +407,7 @@ Item {
             spacing: app.fs
             property int c: 0
             Text {
-                text: parent.c===0?"Selecciona una opcion! -->":parent.c>1?"Opciòn cambiada "+parent.c+" veces":"Opciòn cambiada "+parent.c+" vez"
+                text: parent.c===0?"Selecciona<br>una opcion! -->":parent.c>1?"Opciòn cambiada "+parent.c+" veces":"Opciòn cambiada "+parent.c+" vez"
                 font.pixelSize: app.fs
                 color:app.c2
             }
@@ -437,7 +438,7 @@ Item {
         Row{
             spacing: app.fs*2
             Text {
-                text: "Edita este TextArea! -->"
+                text: "Edita este<br>TextArea! -->"
                 font.pixelSize: app.fs
                 color:app.c2
             }
@@ -458,7 +459,7 @@ Item {
     Row{
         id:x6
         anchors.centerIn: r
-        height: app.fs*14
+        height: app.fs*8
         spacing: app.fs*2
         opacity: 0.0
         Behavior on opacity{NumberAnimation{duration:500}}
@@ -649,7 +650,7 @@ Item {
         id:x9
         anchors.centerIn: r
         width: app.fs*14
-        height: width
+        height: app.fs*8
         opacity: 0.0
         Behavior on opacity{NumberAnimation{duration:500}}
         Marco{visible:img9.width===app.fs*2}

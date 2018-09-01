@@ -168,11 +168,13 @@ Item {
             Item{
                 width: app.fs*4
                 height: width
-                Marco{id:marco2}
+
                 Rectangle{
                     width: 100
                     height: 100
                     color:app.mp.position<1000*32?'red':'blue'
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Marco{id:marco2}
                 }
                 Text{
                     id:txtRes
@@ -201,40 +203,33 @@ Item {
             id:grilla1
             spacing: app.fs*0.25
             rows: 3
+            anchors.centerIn: parent
             Repeater{
                 model:["Editor de\nCòdigo", "Editor de\nDiseño", "Compilador", "Depurador", "Lìneas de\nComandos", "Plugins", "Modulos", "Bibliotecas","Documentaciòn"]
-                Rectangle{
-                    width: app.fs*4
-                    height: app.fs*2
-                    color:app.c3
-                    border.width: 2
-                    border.color: app.c2
-                    radius: app.fs*0.5
-                    clip:true
-                    Text{
-                        text:modelData
-                        font.pixelSize: 0
-                        width: parent.width*0.98
-                        height: contentHeight
-                        wrapMode: Text.WordWrap
+                Item{
+                    width: app.fs*8
+                    height: app.fs*3
+                    Rectangle{
+                        id:r2
+                        width: txth.contentWidth*1.2
+                        height: app.fs*2
+                        color:app.c3
+                        border.width: 2
+                        border.color: app.c2
+                        radius: app.fs*0.5
+                        clip:true
                         anchors.centerIn: parent
-                        color: app.c2
-                        horizontalAlignment: Text.AlignHCenter
-                        //textFormat: Text.RichText
-                        Timer{
-                            running: x5.opacity===1.0
-                            repeat: true
-                            interval: 100
-                            onRunningChanged: {
-                                if(!running){
-                                    parent.font.pixelSize=0
-                                }
-                            }
-                            onTriggered: {
-                                if(parent.contentWidth<parent.parent.width*0.75){
-                                    parent.font.pixelSize++
-                                }
-                            }
+                        Text{
+                            id:txth
+                            text:modelData
+                            font.pixelSize: app.fs*0.65
+                            width: parent.width*0.98
+                            height: contentHeight
+                            wrapMode: Text.WordWrap
+                            anchors.centerIn: parent
+                            color: app.c2
+                            horizontalAlignment: Text.AlignHCenter
+
                         }
                     }
                 }
@@ -281,7 +276,7 @@ Item {
         }
         Text{
             text:'<b>Unik</b><br><b>+</b><br><b>Qmlandia</b>'
-            font.pixelSize: app.fs*1.4
+            font.pixelSize: app.fs*1.3
             color: app.c2
             anchors.centerIn: parent
             horizontalAlignment: Text.AlignHCenter
@@ -301,7 +296,7 @@ Item {
             height: app.fs*2
             rotation: -45
             color: 'red'
-            Behavior on opacity{NumberAnimation{duration:1000}}
+            Behavior on opacity{NumberAnimation{duration:2000}}
             Text {
                 id: txt
                 text: "<b>NO es un IDE</b>"
@@ -617,7 +612,7 @@ Item {
         }
         Item{
             width: app.fs*4
-            height: parent.height-app.fs*4
+            height: parent.height-app.fs*2
             anchors.verticalCenter: parent.verticalCenter
             Rectangle{
                 width: app.fs*0.25
@@ -648,10 +643,10 @@ Item {
         }
         Column{
             anchors.verticalCenter: parent.verticalCenter
-            spacing: app.fs*4
+            spacing: app.fs*3
             Image {
                 source: "../../h/qt-icon.png"
-                width: app.fs*9
+                width: app.fs*6
                 fillMode: Image.PreserveAspectFit
                 anchors.horizontalCenter: parent.horizontalCenter
                 Text{
@@ -662,12 +657,12 @@ Item {
                     horizontalAlignment: Text.AlignHCenter
                     anchors.horizontalCenter:  parent.horizontalCenter
                     anchors.bottom: parent.top
-                    anchors.bottomMargin: app.fs*0.5
+                    anchors.bottomMargin: app.fs*0.1
                 }
             }
             Image {
                 source: "../../h/unik.png"
-                width: app.fs*6
+                width: app.fs*4.5
                 fillMode: Image.PreserveAspectFit
                 anchors.horizontalCenter: parent.horizontalCenter
                 Text{
@@ -678,7 +673,7 @@ Item {
                     horizontalAlignment: Text.AlignHCenter
                     anchors.horizontalCenter:  parent.horizontalCenter
                     anchors.bottom: parent.top
-                    anchors.bottomMargin: app.fs*0.5
+                    anchors.bottomMargin: app.fs*0.1
                 }
             }
         }
