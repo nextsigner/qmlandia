@@ -23,7 +23,7 @@ Item{
             anchors.centerIn: parent
             font.pixelSize: app.fs
             color:app.c3
-            text:r.commit!==''?'<b>Atenciòn!</b><br>Hay novedades en los mòdulos y secciones de este curso.<br><br>¿Desea Actualizar Qmlandia?':'<b>Atenciòn!</b><br>Hay novedades en los mòdulos y secciones de este curso.<br><br>¿Desea Actualizar Qmlandia? <br><b>Cambios:</b> '+r.commit
+            text:r.commit===''?'<b>Atenciòn!</b><br>Hay novedades en los mòdulos y secciones de este curso.<br><br>¿Desea Actualizar Qmlandia?':'<b>Atenciòn!</b><br>Hay novedades en los mòdulos y secciones de este curso.<br><br>¿Desea Actualizar Qmlandia? <br><b>Cambios:</b> '+r.commit
         }
         Row{
             anchors.right: parent.right

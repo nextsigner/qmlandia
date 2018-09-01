@@ -126,7 +126,7 @@ ApplicationWindow {
                 //cp.btnUD.up=true
                 appSettings.uRS = ur
                 xU.visible=true
-                if(ur.indexOf('Cambios')>-1){
+                if(ur.indexOf('[')>-1){
                     xU.commit=ur
                 }
                 app.mp.pause()
