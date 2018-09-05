@@ -10,6 +10,9 @@ Item {
     Item{
         id:area1
         function addTit(t,m,s){
+            if((''+t).indexOf('-')>-1){
+                return
+            }
             if((m===0&&s===0)||(m===0&&s===1)){
                 return
             }

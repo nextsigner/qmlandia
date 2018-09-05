@@ -7,6 +7,7 @@ Rectangle {
     anchors.bottomMargin: app.fs*2
     clip:true
     color:app.c3
+    property int ex: 0
     Text {
         id: txt
         font.pixelSize: app.fs*0.5+(app.fs*0.5*appSettings.tamlector)
@@ -35,6 +36,6 @@ Rectangle {
 
     function setPx(){
         var px=(app.mp.position/app.mp.duration).toFixed(3)
-        txt.x=(0-txt.width*px)+r.width/2
+        txt.x=((0-txt.width*px)+r.width/2)-r.ex
     }
 }

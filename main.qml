@@ -182,6 +182,7 @@ ApplicationWindow {
     }
     function prepMod(){
         xT.at=''
+        xT.ex=0
         for(var i=0;i<xS.children.length;i++){
             xS.children[i].destroy(1)
         }
