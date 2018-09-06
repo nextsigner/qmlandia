@@ -324,7 +324,78 @@ Item {
         }
     }
 
+    //6
+    Grid{
+        id:x6
+        anchors.centerIn: r
+        columns: 5
+        spacing: app.fs*0.5
+        opacity: 0.0
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Repeater{
+            model:["JS", "POO", "SQL", "HTML", "CSS", "UML", "UX", "UI", "PD", "Otros"]
+            Rectangle{
+                width: app.fs*4
+                height: app.fs*1.4
+                color:app.c3
+                border.width: 2
+                border.color: app.c2
+                Text{
+                    text:'<b>'+modelData+'</b>'
+                    anchors.centerIn: parent
+                    font.pixelSize: app.fs
+                    color: app.c2
+                    font.family: 'FontAwesome'
+                }
+                Item{
+                    width: 2
+                    height: app.fs*20
+                    anchors.centerIn: parent
+                    Rectangle{
+                        visible:index<=4
+                        width: parent.width
+                        height: parent.parent.color===app.c3?0:parent.height/2
+                        anchors.bottom: parent.verticalCenter
+                        anchors.bottomMargin: parent.parent.height/2
+                        color:app.c2
+                        Behavior on height{NumberAnimation{duration:500}}
+                    }
+                    Rectangle{
+                        visible:index>4
+                        width: parent.width
+                        height: parent.parent.color===app.c3?0:parent.height/2
+                        anchors.top: parent.verticalCenter
+                        anchors.topMargin: parent.parent.height/2
+                        color:app.c2
+                        Behavior on height{NumberAnimation{duration:500}}
+                    }
+                }
+            }
+        }
+    }
 
+   //7
+    Item{
+        id:x7
+        width: app.fs*6
+        height: width
+        anchors.centerIn: parent
+        Image {
+            id: img8
+            source: "../../h/me_gusta.png"
+            width: parent.width
+            fillMode: Image.PreserveAspectFit
+            anchors.centerIn: parent
+            visible: false
+        }
+        ColorOverlay {
+            id: img9
+            anchors.fill: img8
+            source: img8
+            color: app.c2
+        }
+
+    }
 
     Xa{id:xa}
     Timer{
@@ -353,6 +424,40 @@ Item {
 
             x5.opacity=app.lnl(46, 78)==='activo'?1.0:0.0
 
+            x6.opacity=app.lnl(78, 100)==='activo'?1.0:0.0
+            //JS
+            x6.children[0].color=app.lnl(83.5, 85)==='activo'?app.c2:app.c3
+            x6.children[0].children[0].color=app.lnl(83.5, 85)==='activo'?app.c3:app.c2
+            //POO
+            x6.children[1].color=app.lnl(85, 86.5)==='activo'?app.c2:app.c3
+            x6.children[1].children[0].color=app.lnl(85, 86.5)==='activo'?app.c3:app.c2
+            //SQL
+            x6.children[2].color=app.lnl(86.5, 88)==='activo'?app.c2:app.c3
+            x6.children[2].children[0].color=app.lnl(86.5, 88)==='activo'?app.c3:app.c2
+            //HTML
+            x6.children[3].color=app.lnl(88, 89.5)==='activo'?app.c2:app.c3
+            x6.children[3].children[0].color=app.lnl(88, 89.5)==='activo'?app.c3:app.c2
+            //CSS
+            x6.children[4].color=app.lnl(89.5, 91)==='activo'?app.c2:app.c3
+            x6.children[4].children[0].color=app.lnl(89.5, 91)==='activo'?app.c3:app.c2
+            //UML
+            x6.children[5].color=app.lnl(91, 92)==='activo'?app.c2:app.c3
+            x6.children[5].children[0].color=app.lnl(91, 92)==='activo'?app.c3:app.c2
+            //UX
+            x6.children[6].color=app.lnl(92, 93)==='activo'?app.c2:app.c3
+            x6.children[6].children[0].color=app.lnl(92, 93)==='activo'?app.c3:app.c2
+            //UI
+            x6.children[7].color=app.lnl(93, 94)==='activo'?app.c2:app.c3
+            x6.children[7].children[0].color=app.lnl(93, 94)==='activo'?app.c3:app.c2
+            //PD
+            x6.children[8].color=app.lnl(94, 95)==='activo'?app.c2:app.c3
+            x6.children[8].children[0].color=app.lnl(94, 95)==='activo'?app.c3:app.c2
+            //Otros
+            x6.children[9].color=app.lnl(95, 96)==='activo'?app.c2:app.c3
+            x6.children[9].children[0].color=app.lnl(95, 96)==='activo'?app.c3:app.c2
+
+            x7.opacity=app.lnl(97, 100)==='activo'?1.0:0.0
+
             if(app.lnl(10, 15)==='activo'){
                 xT.ex=app.fs*5
             }
@@ -361,8 +466,6 @@ Item {
             }
         }
     }
-
-
 
     Component.onCompleted: {
         //Ejemplo JS
