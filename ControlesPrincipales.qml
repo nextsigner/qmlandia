@@ -13,7 +13,6 @@ Rectangle {
     property alias mp: mediaPlayer
     property alias rb: rb
     property bool cpvisible: rb.opacity===1.0
-    //property alias xt: xt
     MediaPlayer {
         id: mediaPlayer
         property bool p
@@ -101,7 +100,6 @@ Rectangle {
             rb.opacity=1.0
         }
     }
-    //Xt{id:xt}
     Text {
         id: txtInfo
         font.pixelSize: app.fs*0.5

@@ -374,7 +374,7 @@ Item {
         }
     }
 
-   //7
+    //7
     Item{
         id:x7
         width: app.fs*6
@@ -394,6 +394,170 @@ Item {
             source: img8
             color: app.c2
         }
+
+    }
+
+    //8
+    Item{
+        id:x8
+        width: app.fs*6
+        height: width
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: r.bottom
+        anchors.bottomMargin: app.fs*4
+        Row{
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+            Repeater{
+                model: 7
+                Rectangle{
+                    width: app.fs*3
+                    height: width*(index+1)
+                    color: app.c2
+                    anchors.bottom: parent.bottom
+                    Rectangle{
+                        width: parent.width*0.6
+                        height: width
+                        radius: width*0.5
+                        color: app.c3
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.top: parent.top
+                        anchors.topMargin: app.fs*0.5
+                        Text {
+                            text: '<b>'+(index+1)+'</b>'
+                            font.pixelSize: parent.width*0.5
+                            color:app.c2
+                            anchors.centerIn: parent
+                        }
+                    }
+
+                    Item{
+                        id:flecha
+                        width: app.fs
+                        height: app.fs*3
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        //y: 0-height-app.fs
+                        visible: index===0
+                        SequentialAnimation{
+                            running: true
+                            loops: Animation.Infinite
+                            NumberAnimation {
+                                target: flecha
+                                property: "y"
+                                from:0-height*2-app.fs
+                                to: 0-height-app.fs
+                                duration: 200
+                                easing.type: Easing.InOutQuad
+                            }
+                            NumberAnimation {
+                                target: flecha
+                                property: "y"
+                                from:0-height-app.fs
+                                to: 0-height*2-app.fs
+                                duration: 500
+                                easing.type: Easing.InOutQuad
+                            }
+                        }
+                        Rectangle{
+                            width: parent.width
+                            height: width
+                            color:app.c2
+                            rotation:45
+                            anchors.bottom: parent.bottom
+                        }
+                        Rectangle{
+                            width: parent.width*1.2
+                            height: parent.height-width
+                            color:app.c3
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.bottom: parent.bottom
+                            anchors.bottomMargin: width/2
+                            Rectangle{
+                                width: parent.width*0.5
+                                height: parent.height
+                                color:app.c2
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                anchors.bottom: parent.bottom
+                            }
+                        }
+
+                    }
+
+                }
+            }
+        }
+    }
+
+    //9
+    Item{
+        id:x9
+        width: app.fs*6
+        height: width
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: r.bottom
+        anchors.bottomMargin: app.fs*5
+        Item{
+            id:flecha2
+            width: app.fs
+            height: app.fs*3
+            anchors.horizontalCenter: parent.horizontalCenter
+            SequentialAnimation{
+                running: true
+                loops: Animation.Infinite
+                NumberAnimation {
+                    target: flecha2
+                    property: "y"
+                    from:x9.height-flecha2.height
+                    to: x9.height-flecha2.height-app.fs*2
+                    duration: 200
+                    easing.type: Easing.InOutQuad
+                }
+                NumberAnimation {
+                    target: flecha2
+                    property: "y"
+                    from:x9.height-flecha2.height-app.fs*2
+                    to: x9.height-flecha2.height
+                    duration: 500
+                    easing.type: Easing.InOutQuad
+                }
+            }
+            Rectangle{
+                width: parent.width
+                height: width
+                color:app.c2
+                rotation:45
+                anchors.bottom: parent.bottom
+            }
+            Rectangle{
+                width: parent.width*1.2
+                height: parent.height-width
+                color:app.c3
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: width/2
+                Rectangle{
+                    width: parent.width*0.5
+                    height: parent.height
+                    color:app.c2
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.bottom: parent.bottom
+                }
+            }
+
+            Text{
+                id:txt12
+                text:'<b>CONTROLES</b>'
+                font.pixelSize: app.fs
+                color: app.c2
+                font.family: 'FontAwesome'
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.top
+                anchors.topMargin: app.fs
+            }
+
+        }
+
+
 
     }
 
@@ -457,6 +621,12 @@ Item {
             x6.children[9].children[0].color=app.lnl(95, 96)==='activo'?app.c3:app.c2
 
             x7.opacity=app.lnl(97, 100)==='activo'?1.0:0.0
+            x8.opacity=app.lnl(100, 110)==='activo'?1.0:0.0
+
+            x9.opacity=app.lnl(110, 120)==='activo'?1.0:0.0
+            if(app.lnl(110, 120)==='activo'&&controles.rb.opacity===0.0){
+                controles.rb.opacity=1.0
+            }
 
             if(app.lnl(10, 15)==='activo'){
                 xT.ex=app.fs*5
