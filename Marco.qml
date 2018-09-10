@@ -6,7 +6,8 @@ Rectangle {
     border.width: 2
     border.color: app.c2
     z:parent.parent.z-1
-    width: parent.width+app.fs
-    height: parent.height+app.fs
+    property int padding: app.fs
+    width: parent.width+r.padding
+    height: parent.height+r.padding
     anchors.centerIn: parent
 }

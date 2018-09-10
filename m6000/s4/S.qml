@@ -3,8 +3,8 @@ import QtGraphicalEffects 1.0
 import '../../'
 Item {
     id: r
-    width: app.width
-    height: app.height*0.9
+    width: app.an
+    height: app.al-app.fs*2
     onVisibleChanged: {
         if(visible){
             app.mp.source="./a1.m4a"
@@ -113,8 +113,7 @@ Item {
 
     Component.onCompleted: {
         var at='Còmo importar un Archivo JavaScript'
-        at+='
-En esta secciòn del curso explicaremos còmo importar un archivo JavaScript y en pròximas secciones vamos a explicar còmo utilizar funciones JavaScript de archivos importados o incluso còmo crear funciones JavaScript directamente en nuestro còdigo QML.
+        at+='En esta secciòn del curso explicaremos còmo importar un archivo JavaScript y en pròximas secciones vamos a explicar còmo utilizar funciones JavaScript de archivos importados o incluso còmo crear funciones JavaScript directamente en nuestro còdigo QML.
 
 Ahora explicaremos la manera de importar un archivo JavaScript, para poder utilizar sus funciones, variables, cualquier tipo de objeto o recurso JavaScript, lo que debemos hacer es tan simple como lo que hemos hecho para importar un mòdulo QtQuick, la sintàxis es parecida pero tiene una mìnima diferencia.
 
@@ -126,8 +125,9 @@ Reiteramos, primero escribimos import, luego un espacio, luego la ruta del archi
 
 Como puedes ver, en esta oportunidad hemos agregado a la declaraciòn de importaciòn el tèrmino "as", esta palabra està escrita en ingles, su significado en español es "como". Entonces aquì estamos importando el archivo JavaScript MisFunciones.js al cuàl de ahora en màs lo llamaremos como JS. Lo podemos llamar del modo que querramos, en vez de JS podemos poner por ejemplo MiJS, funciones, X, CodigosJS o el tèrmino que se nos ocurra.
 
-Por ùltimo, ten en cuenta que la ruta del archivo JavaScript debe estar escrita entre comillas simples o dobles
-'
+Por ùltimo, ten en cuenta que la ruta del archivo JavaScript debe estar escrita entre comillas simples o dobles'
+        xT.at=at.replace(/\n/g, ' ')
+
         var h1=''
         xa.addBa('...',h1,'./h/h1.m4a')
         xa.addBa('Ir al siguiente','','1')

@@ -240,7 +240,7 @@ ApplicationWindow {
         console.log('Code: '+code)
         var obj = Qt.createQmlObject(code, xS, 'xm2')
         xC.z=xS.z+1
-        console.log('Mostrando Secciòn desde carpeta: '+xP.am[app.mod]+'/'+xP.ars[app.s])
+        //console.log('Mostrando Secciòn desde carpeta: '+xP.am[app.mod]+'/'+xP.ars[app.s])
         //appSettings.usec=app.s
         //appSettings.umod=app.mod
     }

@@ -297,6 +297,9 @@ Rectangle{
 
     }
     function log(l){
+        if((''+l).indexOf('QSslSocket')>-1){
+            return
+        }
         if(logTxt.text.length>raiz.maxLength){
             logTxt.text=''
         }
@@ -304,5 +307,8 @@ Rectangle{
         if(fk.contentHeight>=raiz.height&&!fk.draged){
             fk.contentY=fk.contentHeight-fk.height
         }
+    }
+    function clear(){
+        logTxt.text=''
     }
 }

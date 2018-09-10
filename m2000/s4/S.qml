@@ -183,7 +183,7 @@ Item {
                 font.family: 'FontAwesome'
             }
             Text{
-                text:'<b> @TodoTendencias Cursos </b>'
+                text:'<b> @YTodoTendencias Cursos </b>'
                 anchors.verticalCenter: txt9.verticalCenter
                 anchors.right: txt9.left
                 anchors.rightMargin: app.fs*0.5
@@ -758,13 +758,9 @@ Si ya tienes conocimiento sobre JavaScript, Programaciòn Orientada a Objetos (P
 Este curso interactivo te permite ir saltando aquellas partes que ya conoces asì avanzas màs ràpido.
 
 '
-
         xT.at=at.replace(/\n/g, ' ')
+
         //Ayudas
-        var h1= 'Qt es un Framework, Entorno Multiplataforma de Trabajo para el desarrollo de aplicaciones informàticas. Està orientado a objetos para la creaciòn de aplicaciones  multiplataforma que requieran una GUI (Interfaz Gràfica de Usuario) o tambieǹ para aplicaciones del tipo consola que no lo requieran. Qt es desarrollado por la Comunidad Qt Project conjuntamente con Digia y otras empresas. Qt es distribuido de manera libre bajo la licencia LGPL, LGPL2 y tambièn es distribuido en la modalidad Enterprise. Puedes conocer màs sobre Qt en www.qt.io.'
-        var h2= 'Unik es una aplicaciòn desarrollada por @nextsigner con el Entorno de Desarrollo Qt Open Source. El proyecto es distribuido libremente bajo la licencia LGPL y su còdigo fuente està publicado en GitHub.com.  Unik se caracteriza por ser la ùnica aplicaciòn diseñada para descargar proyectos QML directamente desde GitHub.com, asì mismo hacer correr proyectos QML desde carpetas locales o remotas. La documentaciòn està disponible en el sitio oficial de unik llamado www.unikode.org y en el repositorio oficial en GitHub.com cuya url es https://www.github.com/nextsigner/unik.'
-        xa.addBa('Màs informaciòn Sobre Qt',h1,'./h/sobre_qt.m4a')
-        xa.addBa('Màs informaciòn Unik', h2,'./h/sobre_unik.m4a')
         xa.addBa('Ir al siguiente','','1')
     }
 }
