@@ -571,6 +571,7 @@ Item {
     //15
     Text{
         id:x15
+        opacity: 0.0
         Behavior on opacity{NumberAnimation{duration:500}}
         text:'<b>"Menos Còdigo</b><br><b>y Màs depliegue por</b><br><b>por todas partes"</b>'
         font.pixelSize: app.fs*2
@@ -582,6 +583,7 @@ Item {
     //16
     Text{
         id:x16
+        opacity: 0.0
         Behavior on opacity{NumberAnimation{duration:500}}
         text:'<b>"El futuro</b><br><b>està escrito</b><br><b>con Qt"</b>'
         font.pixelSize: app.fs*2
