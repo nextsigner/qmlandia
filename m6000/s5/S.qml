@@ -384,7 +384,7 @@ Item {
         }
         Row{
             width: r.width-app.fs
-            height: parent.height-logView.height-app.fs-app.fs*0.3
+            height: parent.height-logView.height-app.fs-app.fs*0.3-xT.height
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: app.fs
 
@@ -397,7 +397,7 @@ Item {
                     id:ti1
                     width: parent.width-app.fs*0.1
                     height: parent.height-app.fs*0.1
-                    font.pixelSize: app.fs
+                    font.pixelSize: app.fs*0.65
                     color: app.c2
                     anchors.centerIn: parent
                     wrapMode: Text.WordWrap
@@ -471,7 +471,7 @@ Item {
                     color: app.c2
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.bottom: parent.top
-                    anchors.bottomMargin: app.fs*0.5
+                    anchors.bottomMargin: app.fs*0.1
                 }
                 Item{
                     id:area
@@ -538,7 +538,7 @@ Item {
             txt2.text=app.lnl(95, 110)==='activo'?'import "'+appsDir+'/qmlandia/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/funciones.js" as MiJS"':'import "'+appsDir+'/qmlandia/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/Misfunciones.js" as MiJS //NO EXISTE!'
 
 
-            x6.opacity=app.lnl(126, 215)==='activo'?1.0:0.0
+            x6.opacity=app.lnl(126, 216)==='activo'?1.0:0.0
             marca1.visible=app.lnl(163, 170)==='activo'
             marca2.visible=app.lnl(170, 176)==='activo'
         }

@@ -627,7 +627,6 @@ Item {
             if(app.lnl(110, 120)==='activo'&&controles.rb.opacity===0.0){
                 controles.rb.opacity=1.0
             }
-
             if(app.lnl(10, 15)==='activo'){
                 xT.ex=app.fs*5
             }

@@ -140,7 +140,7 @@ Item {
                 te1.font.pixelSize=app.fs
             }else if(app.lnl(17, 24)==='activo'){
                 img1.visible=true
-                img1.source="../../h/editor_3.png"
+                img1.source="../../h/editor_2.png"
                 img1.width=r.width*0.6
                 te1.text='<b>Notepad++</b><br>\uf063'
                 te1.font.pixelSize=app.fs

@@ -26,6 +26,7 @@ Item{
         radius: app.fs*0.5
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: xT.height
         Column{
             id:pa
             anchors.centerIn: parent

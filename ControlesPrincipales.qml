@@ -72,7 +72,7 @@ Rectangle {
             app.verAyuda=false
             trb.restart()
             mediaPlayer.seek(position);
-            r.p=false
+            //r.p=false
         }
         onSeekingChanged: {
             app.verAyuda=false
