@@ -215,7 +215,7 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
         }
         Text{
-            text:'Puedes programar en QML<br>para QtWidgets y QtQuick<br>con el componente <b>QQuickWidget</b>'
+            text:'Puedes programar en QML<br>para QtWidgets y QtQuick<br>con el objeto <b>QQuickWidget</b>'
             font.pixelSize: app.fs
             color: app.c2
             anchors.horizontalCenter: parent.horizontalCenter
@@ -548,14 +548,14 @@ Item {
         Image{
             id:img102
             width: app.fs*14
-            source:"pa_2.jpg"
+            source:"pa_0.jpg"
             fillMode: Image.PreserveAspectFit
             anchors.horizontalCenter: parent.horizontalCenter
         }
         Image{
             id:img103
             width: app.fs*14
-            source:"pa_3.jpg"
+            source:"pa_1.jpg"
             fillMode: Image.PreserveAspectFit
             anchors.horizontalCenter: parent.horizontalCenter
         }
@@ -566,6 +566,13 @@ Item {
             fillMode: Image.PreserveAspectFit
             anchors.horizontalCenter: parent.horizontalCenter
         }
+        Image{
+            id:img105
+            width: app.fs*14
+            source:"pa_3.jpg"
+            fillMode: Image.PreserveAspectFit
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
     }
 
     //15
@@ -573,7 +580,7 @@ Item {
         id:x15
         opacity: 0.0
         Behavior on opacity{NumberAnimation{duration:500}}
-        text:'<b>"Menos Còdigo</b><br><b>y Màs depliegue por</b><br><b>por todas partes"</b>'
+        text:'<b>"Menos Còdigo</b><br><b>y màs depliegue por</b><br><b>por todas partes"</b>'
         font.pixelSize: app.fs*2
         color: app.c2
         horizontalAlignment: Text.AlignHCenter
@@ -618,7 +625,7 @@ Item {
             x5.opacity=app.lnl(34, 44)==='activo'?1.0:0.0
             x6.opacity=app.lnl(44, 64)==='activo'?1.0:0.0
 
-            x7.opacity=app.lnl(64, 78)==='activo'?1.0:0.0
+            x7.opacity=app.lnl(64, 82)==='activo'?1.0:0.0
             tx71.text=app.lnl(75, 78)==='activo'?'<b>Qt</b><b style="color:red;">Quick</b>':'<b>QtQuick</b>'
             tx72.opacity=app.lnl(75, 78)==='activo'?1.0:0.0
             tx73.opacity=app.lnl(76, 82)==='activo'?1.0:0.0
@@ -638,10 +645,11 @@ Item {
             x13.opacity=app.lnl(157, 167)==='activo'?1.0:0.0
 
             x14.opacity=app.lnl(167, 205)==='activo'?1.0:0.0
-            img101.visible=app.lnl(167, 175)==='activo'
-            img102.visible=app.lnl(175, 183)==='activo'
-            img103.visible=app.lnl(183, 191)==='activo'
-            img104.visible=app.lnl(191, 205)==='activo'
+            img101.visible=app.lnl(167, 173)==='activo'
+            img102.visible=app.lnl(173, 179)==='activo'
+            img103.visible=app.lnl(179, 185)==='activo'
+            img104.visible=app.lnl(185, 192)==='activo'
+            img105.visible=app.lnl(192, 205)==='activo'
 
             x15.opacity=app.lnl(205, 218)==='activo'?1.0:0.0
             x16.opacity=app.lnl(218, 224)==='activo'?1.0:0.0
@@ -664,7 +672,7 @@ Como muestra de su gran proyecciòn, por ejemplo tenemos a Mercedes Benz que est
 
 Otro ejemplo es Pannasonic. Su filial Pannasonic Avionics utiliza QtQuick y QML para los mandos, controles y dispositivos de entretenimiento que se utilizan en las naves, satèlites y transporte aeronàuticos. Pannasonic provee tecnologìa de ultima generaciòn a Boeing, Airbus y otras, todo el software proveido està creado con el mismo lenguaje de programaciòn que utilizamos y aprendemos en este curso.
 
-El por estos motivos y por muchos màs que el slogan de Qt antes era -Menos Còdigo y Despliegue por todos partes- y ahora es -El Futuro està escrito en Qt-'
+El por estos motivos y por muchos màs que el slogan de Qt antes era -Menos Còdigo y màs Despliegue por todos partes- y ahora es -El Futuro està escrito en Qt-'
         xT.at=at.replace(/\n/g, ' ')
 
         var h1= 'La palabra o tèrmino <b>META</b> significa que QML es un lenguaje que està màs allà de preexistente, algo que apareciò luego, algo posterior, superador o de otra forma distinta a lo anterior'
