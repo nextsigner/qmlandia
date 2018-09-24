@@ -8,6 +8,8 @@ Rectangle {
     clip:true
     color:app.c3
     property int ex: 0
+    property int er: 0
+    property bool pause: false
     Text {
         id: txt
         font.pixelSize: app.fs*0.5+(app.fs*0.5*appSettings.tamlector)
@@ -35,7 +37,9 @@ Rectangle {
     property alias at:txt.text
 
     function setPx(){
-        var px=(app.mp.position/app.mp.duration).toFixed(3)
-        txt.x=((0-txt.width*px)+r.width/2)-r.ex
+        if(!r.pause){
+            var px=(app.mp.position/app.mp.duration).toFixed(4)
+            txt.x=((0-txt.width*px)+r.width/2)-r.ex
+        }
     }
 }

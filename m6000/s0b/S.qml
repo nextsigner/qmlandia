@@ -69,7 +69,7 @@ Item {
                     var a =   Math.floor((Math.random()*index));
                     xbg.rotation=a
                 }
-                }
+            }
         }
     }
 
@@ -147,7 +147,7 @@ Item {
         opacity: 0.0
         Behavior on opacity{NumberAnimation{duration:500}}
         text:'<b>Seccion en construcciòn :)</b>'
-       anchors.centerIn: r
+        anchors.centerIn: r
         font.pixelSize: app.fs
         color: app.c2
         font.family: 'FontAwesome'
@@ -161,7 +161,7 @@ Item {
         repeat: true
         interval: 250
         onTriggered: {
-             x1.opacity=app.lnl(0, 6)==='activo'?1.0:0.0
+            x1.opacity=app.lnl(0, 6)==='activo'?1.0:0.0
 
             x2.opacity=app.lnl(6, 70)==='activo'?1.0:0.0
             //Declarativo
@@ -192,25 +192,26 @@ Item {
 
 En esta secciòn, veremos tèrminos o palabras que talves nos parezcan poco relevantes o difìciles de entender. Mencionaremos palabras como ser Declarativo, Imperativo, Reactivo, Señales, Ranuras y otras.
 
-Tambièn puede resultar algo difìcil acostumbrarnos a estas palabras. Tranquilos. No es necesario que aprendas al detalle lo que te enseñaremos a continuaciòn. Tòmalo còmo un apartado informàtivo al cuàl puedes volver en cualquier momento y repasar algunos conceptos. Te explicaremos mìnimamente, a modo de introducciòn algunos detalles tècnicos sobre QML que siempre es bueno conocerlos o tenerlos en cuenta.
+                                                    Tambièn puede resultar algo difìcil acostumbrarnos a estas palabras. Tranquilos. No es necesario que aprendas al detalle lo que te enseñaremos a continuaciòn. Tòmalo còmo un apartado informàtivo al cuàl puedes volver en cualquier momento y repasar algunos conceptos. Te explicaremos mìnimamente, a modo de introducciòn algunos detalles tècnicos sobre QML que siempre es bueno conocerlos o tenerlos en cuenta.
 
 QML es un lenguage de Programaciòn Declarativo basado en JavaScript. Existen lenguajes de programaciòn Declarativos e Imperativos. Vamos a explicar la diferencia entre ellos para entender mejor en que consiste QML.
 
-Para ver la diferencia, es muy importante que entendamos que el lenguaje Declarativo està orientado a resolver problemas o alcanzar objetivos, ambos pre existentes y el lenguaje Imperativo està orientado a resolver en general todo tipo de problemas, incluso uno que nadie antes haya tenido y el programador utilizando el lenguaje imperativo tiene el desafìo de resolver programando funciones y objetos desde cero debido a que antes nunca se programò còdigo para resolver un problema similar.
+                                                Para ver la diferencia, es muy importante que entendamos que el lenguaje Declarativo està orientado a resolver problemas o alcanzar objetivos, ambos pre existentes y el lenguaje Imperativo està orientado a resolver en general todo tipo de problemas, incluso uno que nadie antes haya tenido y el programador utilizando el lenguaje imperativo tiene el desafìo de resolver programando funciones y objetos desde cero debido a que antes nunca se programò còdigo para resolver un problema similar.
 
 Tambièn existe el caso en el cuàl ya exista còdigo para resolver un determinado problema pero no cuentas con èl, no quieres utilizarlo para no tener que pagar derechos de autor, no quieres pagar licencias o simplemente lo quieres hacer tu mismo desde cero. En estos casos se utiliza habitualmente un lenguaje imperativo.
 
-Ejemplos de Lenguajes Imperativos son C++, JavaScript o PHP. Ejemplos de lenguajes Declarativos son QML, SQL, HTML o XSL.
+                                                                            Ejemplos de Lenguajes Imperativos son C++, JavaScript o PHP.
+                                                                            Ejemplos de lenguajes Declarativos son QML, SQL, HTML o XSL.
 
-Un lenguaje Imperativo es aquel que nos permite crear y ejecutar procesos informàticos creando desde cero, objetos, funciones, tipos de datos y todo tipo de recursos programables para dar ordenes a un dispositivo electrònico. Ya sea para resolver o cumplir, problemas u objetivos, comunes o atìpicos.
+                                                                Un lenguaje Imperativo es aquel que nos permite crear y ejecutar procesos informàticos creando desde cero, objetos, funciones, tipos de datos y todo tipo de recursos programables para dar ordenes a un dispositivo electrònico. Ya sea para resolver o cumplir, problemas u objetivos, comunes o atìpicos.
 
-Un lenguaje Declarativo està orientado a resolver o cumplir objetivos pre existentes. Esto significa que el lenguaje de programaciòn declarativo ya cuenta con objetos y funciones pre programadas las cuales son llamadas e instanciadas al momento de escribir en el còdigo la palabra clave que identifica cada objeto o funciòn, reiteramos, pre programados. Este proceso se lo conoce como Declaraciòn de Objeto o Elemento.
+                                Un lenguaje Declarativo està orientado a resolver o cumplir objetivos pre existentes. Esto significa que el lenguaje de programaciòn declarativo ya cuenta con objetos y funciones pre programadas las cuales son llamadas e instanciadas al momento de escribir en el còdigo la palabra clave que identifica cada objeto o funciòn, reiteramos, pre programados. Este proceso se lo denomina como Declaraciòn de Objeto o Elemento.
 
-Al ser basado en JavaScript, dentro de QML podemos incluir como parte del còdigo todo el còdigo JavaScript que querramos. Si bien, una de las caracterìsticas principales de QML, decimos que es un lenguaje declarativo, debido a que està basado en JavaScript el cuàl es un lenguaje imperativo, esto significa que programar en QML es algo tan particular y potente que estamos utilizando un lenguaje declarativo e imperativo en simultàneo.
+                                                Al ser basado en JavaScript, dentro de QML podemos incluir como parte del còdigo todo el còdigo JavaScript que querramos. Si bien, una de las caracterìsticas principales de QML, decimos que es un lenguaje declarativo, debido a que està basado en JavaScript el cuàl es un lenguaje imperativo, esto significa que programar en QML es algo tan particular y potente que estamos utilizando un lenguaje declarativo e imperativo en simultàneo.
 
-Eso no es todo. QML es un lenguaje tan moderno y poderoso que ademàs de abordar conceptos multiparadigmas, estados, animaciòn, controladores de señales y otros que lo definen tanto como un lenguaje declarativo e imperativo, QML ademàs se asocia, se vincula, se conecta y se integra con C++, el lenguaje imperativo màs potente por excelencia. Esto mismo lo hace mediante lo que se denominan signals y slots en castellano señales y ranuras, este concepto creado por Qt lo ejercitaremos a futuro y veràs cuàn ùtil y valioso es para programar aplicaciones potentes a todo nivel.
+                                                Eso no es todo. QML es un lenguaje tan moderno y poderoso que ademàs de abordar conceptos multiparadigmas, estados, animaciòn, controladores de señales y otros que lo definen tanto como un lenguaje declarativo e imperativo, QML ademàs se asocia, se vincula, se conecta y se integra con C++, el lenguaje imperativo màs potente por excelencia. Esto mismo lo hace mediante lo que se denominan signals y slots en castellano señales y ranuras, este concepto creado por Qt lo ejercitaremos a futuro y veràs cuàn ùtil y valioso es para programar aplicaciones potentes a todo nivel.
 
-Por ùltimo mencionaremos la caracterìstica màs innovadora y revolucionaria que tiene QML, son las Property Bindings en castellano Propiedad Vinculada. Este tipo de propiedades permiten que el còdigo QML que escribamos, actualice automàticamente los valores de sus propiedades asignados implìcitamente. ¿Que significa esto?. Significa que tu còdigo calcularà por tì aquellos valores que tu no le hayas explicado plenamente como se deben calcular. Nos referimos a valores de cualquier tipo, no necesariamente matemàticos.
+                                                Por ùltimo mencionaremos la caracterìstica màs innovadora y revolucionaria que tiene QML, son las Property Bindings en castellano Propiedad Vinculada. Este tipo de propiedades permiten que el còdigo QML que escribamos, actualice automàticamente los valores de sus propiedades asignados implìcitamente. ¿Que significa esto?. Significa que tu còdigo calcularà por tì aquellos valores que tu no le hayas explicado plenamente como se deben calcular. Nos referimos a valores de cualquier tipo, no necesariamente matemàticos.
 
 Las propiedades vinculadas dotan a QML de la siguiente caracterìstica. Ademàs de ser Declarativo, Imperativo tambièn es Reactivo.
 
