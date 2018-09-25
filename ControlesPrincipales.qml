@@ -9,6 +9,7 @@ Rectangle {
     border.color: 'black'
     width: app.an
     height: app.fs*2
+    clip:rb.opacity!==1.0
     property url source: mediaPlayer.source
     property alias mp: mediaPlayer
     property alias rb: rb
@@ -117,6 +118,7 @@ Rectangle {
         anchors.bottom: r.bottom
         anchors.bottomMargin: app.fs*0.1
         spacing: app.fs*0.5
+        visible: rb.opacity===1.0
         Boton{
             w:app.fs
             h:w
@@ -148,6 +150,27 @@ Rectangle {
             visible:rb.opacity===1.0
         }
     }
+
+    Row{
+        anchors.right:  r.right
+        anchors.rightMargin: app.fs*0.1
+        anchors.bottom: r.bottom
+        anchors.bottomMargin: app.fs*0.1
+        spacing: app.fs*0.5
+        visible: rb.opacity===1.0
+        Boton{
+            w:app.fs
+            h:w
+            tp:3
+            d:'Apagar'
+            c:app.c3
+            b:app.c2
+            t:'\uf011'
+            onClicking: Qt.quit()
+            visible:rb.opacity===1.0
+        }
+    }
+
 
     Rectangle{
         width: rb.width+app.fs

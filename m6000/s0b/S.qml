@@ -140,21 +140,217 @@ Item {
     }
 
 
-
     //4
-    Text{
+    Column{
         id:x4
-        opacity: 0.0
-        Behavior on opacity{NumberAnimation{duration:500}}
-        text:'<b>Seccion en construcciòn :)</b>'
         anchors.centerIn: r
-        font.pixelSize: app.fs
-        color: app.c2
-        font.family: 'FontAwesome'
-        horizontalAlignment: Text.AlignHCenter
-        textFormat: Text.RichText
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Text{
+            text:'<b>QML</b>'
+            font.pixelSize: app.fs*2
+            color: app.c2
+            font.family: 'FontAwesome'
+            horizontalAlignment: Text.AlignHCenter
+            textFormat: Text.RichText
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+        Text{
+            id:txt1
+            text:'<b>DECLARATIVO</b>'
+            font.pixelSize: app.fs*3
+            color: app.c2
+            font.family: 'FontAwesome'
+            horizontalAlignment: Text.AlignHCenter
+            textFormat: Text.RichText
+            anchors.horizontalCenter: parent.horizontalCenter
+            Behavior on opacity{NumberAnimation{duration:500}}
+        }
+        Text{
+            id:txt2
+            text:'<b>Basado en JavaScript</b>'
+            font.pixelSize: app.fs
+            color: app.c2
+            font.family: 'FontAwesome'
+            horizontalAlignment: Text.AlignHCenter
+            textFormat: Text.RichText
+            anchors.horizontalCenter: parent.horizontalCenter
+            Behavior on opacity{NumberAnimation{duration:500}}
+        }
     }
 
+
+    //5
+    Row{
+        id:x5
+        anchors.centerIn: r
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Text{
+            text:'<b>DECLARATIVO</b>'
+            font.pixelSize: app.fs*2
+            color: app.c2
+            font.family: 'FontAwesome'
+            horizontalAlignment: Text.AlignHCenter
+            textFormat: Text.RichText
+        }
+        Text{
+            text:'<b>o</b>'
+            font.pixelSize: app.fs*2
+            color: app.c2
+            font.family: 'FontAwesome'
+            horizontalAlignment: Text.AlignHCenter
+            textFormat: Text.RichText
+        }
+        Text{
+            text:'<b>IMPERATIVO</b>'
+            font.pixelSize: app.fs*2
+            color: app.c2
+            font.family: 'FontAwesome'
+            horizontalAlignment: Text.AlignHCenter
+            textFormat: Text.RichText
+        }
+    }
+
+    //6
+    Row{
+        id:x6
+        anchors.centerIn: r
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Column{
+            spacing: app.fs
+            Text{
+                text:'<b>DECLARATIVO</b>'
+                font.pixelSize: app.fs*2
+                color: app.c2
+                font.family: 'FontAwesome'
+                horizontalAlignment: Text.AlignHCenter
+                textFormat: Text.RichText
+            }
+            Item{
+                width: app.fs*10
+                height: app.fs*6
+                anchors.horizontalCenter: parent.horizontalCenter
+                Marco{}
+                Text{
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    anchors.centerIn: parent
+                    text:'Para resolver\nproblemas o alcanzar\nobjetivos pre\nexistentes'
+                    font.pixelSize: app.fs
+                    color: app.c2
+                    font.family: 'FontAwesome'
+                    horizontalAlignment: Text.AlignHCenter
+                    textFormat: Text.RichText
+                }
+            }
+        }
+        Column{
+            spacing: app.fs
+            Text{
+                text:'<b>IMPERATIVO</b>'
+                font.pixelSize: app.fs*2
+                color: app.c2
+                font.family: 'FontAwesome'
+                horizontalAlignment: Text.AlignHCenter
+                textFormat: Text.RichText
+            }
+            Item{
+                width: app.fs*10
+                height: app.fs*6
+                anchors.horizontalCenter: parent.horizontalCenter
+                Marco{}
+                Text{
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    anchors.centerIn: parent
+                    text:'Para resolver\nproblemas o alcanzar\nobjetivos nuevos\no que nadie\nha tenido.'
+                    font.pixelSize: app.fs
+                    color: app.c2
+                    font.family: 'FontAwesome'
+                    horizontalAlignment: Text.AlignHCenter
+                    textFormat: Text.RichText
+                }
+            }
+        }
+
+    }
+
+    //7
+    Item{
+        id:x7
+        anchors.centerIn: r
+        opacity: 0.0
+        width:app.fs*8
+        height:width
+        property string s1
+        property string s2
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Text{
+            id:txtT1
+            font.pixelSize: app.fs
+            color: app.c2
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.top
+            anchors.bottomMargin: app.fs
+            horizontalAlignment: Text.AlignHCenter
+        }
+        Marco{
+            clip:true
+            Text{
+                id:txtCE
+                font.pixelSize: app.fs*0.25
+                color: app.c2
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width*0.8
+            }
+        }
+        Column{
+            anchors.centerIn: parent
+            Text{
+                id:txtr1
+                text:'<b>NO ESTA DISPONIBLE!</b>'
+                font.pixelSize: app.fs*2
+                color: 'red'
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            Text{
+                id:txtr2
+                text:'<b>NO ES DE USO LIBRE!</b>'
+                font.pixelSize: app.fs*2
+                color: 'red'
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            Text{
+                id:txtr3
+                text:'<b>DEBES PAGAR LICENCIA!</b>'
+                font.pixelSize: app.fs*2
+                color: 'red'
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+        }
+    }
+
+    //8
+    Row{
+        id:x8
+        anchors.centerIn: r
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Text{
+            text:'<b>IMPERATIVO</b>'
+            font.pixelSize: app.fs*2
+            color: app.c2
+            font.family: 'FontAwesome'
+            horizontalAlignment: Text.AlignHCenter
+            textFormat: Text.RichText
+        }
+    }
     Xa{id:xa}
     Timer{
         running: r.visible
@@ -184,9 +380,26 @@ Item {
             x2.children[5].children[0].color=app.lnl(27.5, 70)==='activo'?app.c3:app.c2
 
             x3.opacity=app.lnl(36, 70)==='activo'?1.0:0.0
-            x4.opacity=app.lnl(70, 200)==='activo'?1.0:0.0
+
+
+            x4.opacity=app.lnl(70, 80)==='activo'?1.0:0.0
+            txt1.opacity=app.lnl(72, 80)==='activo'?1.0:0.0
+            txt2.opacity=app.lnl(75, 80)==='activo'?1.0:0.0
+
+            x5.opacity=app.lnl(80, 93)==='activo'?1.0:0.0
+            x6.opacity=app.lnl(93, 143)==='activo'?1.0:0.0
+
+            x7.opacity=app.lnl(143, 170)==='activo'?1.0:0.0
+            txtr1.opacity=app.lnl(155, 166)==='activo'?1.0:0.0
+            txtr2.opacity=app.lnl(157, 166)==='activo'?1.0:0.0
+            txtr3.opacity=app.lnl(159, 166)==='activo'?1.0:0.0
+            txtT1.text=app.lnl(159, 166)==='activo'?'Ejemplo de un Còdigo Cualquiera':'Programamos còdigo desde cero!'
+            txtCE.text=app.lnl(159, 166)==='activo'?x7.s1:x7.s2
+
+            x8.opacity=app.lnl(170, 177)==='activo'?1.0:0.0
         }
     }
+    KeyNavigation.tab: app
     Component.onCompleted: {
         var at='Caractarìsticas Tècnicas de QML.
 
@@ -217,6 +430,76 @@ Las propiedades vinculadas dotan a QML de la siguiente caracterìstica. Ademàs 
 
 '
         xT.at=at.replace(/\n/g,' ')
+
+        x7.s2='/*Còdigo creado por ...*/'
+        x7.s1='
+
+/* ioapi.c -- IO base function header for compress/uncompress .zip
+   files using zlib + zip or unzip API
+
+   Version 1.01e, February 12th, 2005
+
+   Copyright (C) 1998-2005 Gilles Vollant
+
+   Modified by Sergey A. Tachenov to integrate with Qt.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#ifndef Q_OS_WIN
+#include "zlib.h"
+#else
+#include <QtZlib/zlib.h>
+#endif
+#include "ioapi.h"
+#include "quazip_global.h"
+#include <QIODevice>
+#if (QT_VERSION >= 0x050100)
+#define QUAZIP_QSAVEFILE_BUG_WORKAROUND
+#endif
+#ifdef QUAZIP_QSAVEFILE_BUG_WORKAROUND
+#include <QSaveFile>
+#endif
+
+
+#ifndef SEEK_CUR
+#define SEEK_CUR    1
+#endif
+
+#ifndef SEEK_END
+#define SEEK_END    2
+#endif
+
+#ifndef SEEK_SET
+#define SEEK_SET    0
+#endif
+
+voidpf call_zopen64 (const zlib_filefunc64_32_def* pfilefunc,voidpf file,int mode)
+{
+    if (pfilefunc->zfile_func64.zopen64_file != NULL)
+        return (*(pfilefunc->zfile_func64.zopen64_file)) (pfilefunc->zfile_func64.opaque,file,mode);
+    else
+    {
+        return (*(pfilefunc->zopen32_file))(pfilefunc->zfile_func64.opaque,file,mode);
+    }
+}
+
+int call_zseek64 (const zlib_filefunc64_32_def* pfilefunc,voidpf filestream, ZPOS64_T offset, int origin)
+{
+    if (pfilefunc->zfile_func64.zseek64_file != NULL)
+        return (*(pfilefunc->zfile_func64.zseek64_file)) (pfilefunc->zfile_func64.opaque,filestream,offset,origin);
+    else
+    {
+        uLong offsetTruncated = (uLong)offset;
+        if (offsetTruncated != offset)
+            return -1;
+        else
+            return (*(pfilefunc->zseek32_file))(pfilefunc->zfile_func64.opaque,filestream,offsetTruncated,origin);
+    }
+}
+'
 
         /*var h1= 'La palabra o tèrmino <b>META</b> significa que QML es un lenguaje que està màs allà de preexistente, algo que apareciò luego, algo posterior, superador o de otra forma distinta a lo anterior'
         xa.addBa('¿Que significa META?', h1,'./h/sobre_metta.m4a')
