@@ -303,7 +303,7 @@ Item {
             clip:true
             Text{
                 id:txtCE
-                font.pixelSize: app.fs*0.25
+                font.pixelSize: app.fs*0.5
                 color: app.c2
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width*0.8
@@ -351,6 +351,213 @@ Item {
             textFormat: Text.RichText
         }
     }
+
+    //9
+    Column{
+        id:x9
+        anchors.centerIn: r
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Repeater{
+            model:["C++", "JavaScript", "PHP"]
+            Text{
+                text:'<b>'+modelData+'</b>'
+                font.pixelSize: fs
+                color: app.c2
+                anchors.horizontalCenter: parent.horizontalCenter
+                property int fs: app.fs*3
+                Behavior on fs{NumberAnimation{duration:500}}
+            }
+        }
+    }
+
+    //10
+    Column{
+        id:x10
+        anchors.centerIn: r
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Repeater{
+            model:["QML", "SQL", "HTML", "XSL"]
+            Text{
+                text:'<b>'+modelData+'</b>'
+                font.pixelSize: fs
+                color: app.c2
+                anchors.horizontalCenter: parent.horizontalCenter
+                property int fs: app.fs*3
+                Behavior on fs{NumberAnimation{duration:500}}
+            }
+        }
+    }
+
+    //11
+    Row{
+        id:x11
+        anchors.centerIn: r
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Column{
+            spacing: app.fs
+            width: app.fs*10
+            Text{
+                text:'<b>Codigo con Lenguaje Imperativo</b>'
+                font.pixelSize: parent.width*0.1
+                color: app.c2
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            Item{
+                width: app.fs*10
+                height: app.fs*8
+                Marco{
+                    Text{
+                        text:'<b>Creados desde Cero</b>'
+                        font.pixelSize: app.fs*0.5
+                        color: app.c2
+                        anchors.left: parent.left
+                        anchors.leftMargin: app.fs*0.5
+                        anchors.top: parent.top
+                        anchors.topMargin: app.fs*0.5
+                    }
+                    Column{
+                        anchors.centerIn: parent
+                        spacing: app.fs*0.5
+                        Repeater{
+                            model:["Objetos", "Funciones", "Datos", "Recursos"]
+                            Text{
+                                text:'<b>'+modelData+'</b>'
+                                font.pixelSize: parent.parent.width*0.07
+                                color: app.c2
+                                anchors.horizontalCenter: parent.horizontalCenter
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Text{
+            text:'ordenes \uf061'
+            font.family: 'FontAwesome'
+            font.pixelSize: app.fs
+            color: app.c2
+            anchors.verticalCenter: parent.verticalCenter
+        }
+        Column{
+            width: app.fs*10
+            spacing: app.fs
+            Text{
+                text:'<b>Problemas u Objetivos</b><br><b>Comunes o Atìpicos</b>'
+                font.pixelSize: app.fs*0.65
+                color: app.c2
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            Item{
+                width: app.fs*10
+                height: app.fs*6
+                Marco{}
+                Text{
+                    text:'<b>* Dispositivo</b><br><b>* Ordenador</b><br><b>* Computadora</b><br><b>* Otros...</b><br>'
+                    font.pixelSize:  parent.width*0.05
+                    color: app.c2
+                    anchors.centerIn: parent
+                }
+            }
+        }
+    }
+
+    //12
+    Row{
+        id:x12
+        anchors.centerIn: r
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Column{
+            spacing: app.fs
+            width: app.fs*10
+            Text{
+                text:'<b>Codigo con Lenguaje Declarativo</b>'
+                font.pixelSize: parent.width*0.1
+                color: app.c2
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            Item{
+                width: app.fs*10
+                height: app.fs*8
+                Marco{
+                    Text{
+                        text:'<b>Pre Programados</b>'
+                        font.pixelSize: app.fs*0.5
+                        color: app.c2
+                        anchors.left: parent.left
+                        anchors.leftMargin: app.fs*0.5
+                        anchors.top: parent.top
+                        anchors.topMargin: app.fs*0.5
+                    }
+                    Column{
+                        anchors.centerIn: parent
+                        spacing: app.fs*0.5
+                        Repeater{
+                            model:["Objetos", "Funciones", "Datos", "Recursos"]
+                            Text{
+                                text:'<b>'+modelData+'</b>'
+                                font.pixelSize: parent.parent.width*0.07
+                                color: app.c2
+                                anchors.horizontalCenter: parent.horizontalCenter
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Text{
+            text:'ordenes \uf061'
+            font.family: 'FontAwesome'
+            font.pixelSize: app.fs
+            color: app.c2
+            anchors.verticalCenter: parent.verticalCenter
+        }
+        Column{
+            width: app.fs*10
+            spacing: app.fs
+            anchors.bottom: parent.bottom
+            Text{
+                text:'<b>Problemas u Objetivos</b><br><b>Comunes o Pre existentes</b>'
+                font.pixelSize: app.fs*0.65
+                color: app.c2
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            Item{
+                width: app.fs*10
+                height: app.fs*6
+                Marco{}
+                Text{
+                    text:'<b>* Dispositivo</b><br><b>* Ordenador</b><br><b>* Computadora</b><br><b>* Otros...</b><br>'
+                    font.pixelSize:  app.fs*0.5
+                    color: app.c2
+                    anchors.centerIn: parent
+                }
+            }
+        }
+    }
+
+    //13
+    Row{
+        id:x13
+        anchors.centerIn: r
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Text{
+            text:'<b>Declaraciòn de</b><br><b>Objeto o Elemento</b>'
+            font.pixelSize: app.fs*3
+            color: app.c2
+            }
+    }
+
+
     Xa{id:xa}
     Timer{
         running: r.visible
@@ -393,10 +600,25 @@ Item {
             txtr1.opacity=app.lnl(155, 166)==='activo'?1.0:0.0
             txtr2.opacity=app.lnl(157, 166)==='activo'?1.0:0.0
             txtr3.opacity=app.lnl(159, 166)==='activo'?1.0:0.0
-            txtT1.text=app.lnl(159, 166)==='activo'?'Ejemplo de un Còdigo Cualquiera':'Programamos còdigo desde cero!'
-            txtCE.text=app.lnl(159, 166)==='activo'?x7.s1:x7.s2
+            txtT1.text=app.lnl(165, 170)==='activo'?'Programamos còdigo desde cero!':'Ejemplo de un Còdigo Cualquiera'
+            txtCE.text=app.lnl(165, 170)==='activo'?x7.s2:x7.s1
 
             x8.opacity=app.lnl(170, 177)==='activo'?1.0:0.0
+
+            x9.opacity=app.lnl(177, 190)==='activo'?1.0:0.0
+            x9.children[0].fs=app.lnl(178, 183)==='activo'?app.fs*3:app.fs
+            x9.children[1].fs=app.lnl(183, 186)==='activo'?app.fs*3:app.fs
+            x9.children[2].fs=app.lnl(186, 190)==='activo'?app.fs*3:app.fs
+
+            x10.opacity=app.lnl(190, 200)==='activo'?1.0:0.0
+            x10.children[0].fs=app.lnl(191, 194)==='activo'?app.fs*3:app.fs
+            x10.children[1].fs=app.lnl(194, 196)==='activo'?app.fs*3:app.fs
+            x10.children[2].fs=app.lnl(196, 197)==='activo'?app.fs*3:app.fs
+            x10.children[3].fs=app.lnl(197, 200)==='activo'?app.fs*3:app.fs
+
+            x11.opacity=app.lnl(200, 236)==='activo'?1.0:0.0
+            x12.opacity=app.lnl(236, 270)==='activo'?1.0:0.0
+            x13.opacity=app.lnl(270, 280)==='activo'?1.0:0.0
         }
     }
     KeyNavigation.tab: app
