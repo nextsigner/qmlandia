@@ -182,36 +182,14 @@ Item {
 
 
     //5
-    Row{
+    Text{
         id:x5
+        text:'<b>DECLARATIVO e IMPERATIVO</b>'
+        font.pixelSize: app.fs*2
+        color: app.c2
         anchors.centerIn: r
         opacity: 0.0
-        spacing: app.fs
         Behavior on opacity{NumberAnimation{duration:500}}
-        Text{
-            text:'<b>DECLARATIVO</b>'
-            font.pixelSize: app.fs*2
-            color: app.c2
-            font.family: 'FontAwesome'
-            horizontalAlignment: Text.AlignHCenter
-            textFormat: Text.RichText
-        }
-        Text{
-            text:'<b>o</b>'
-            font.pixelSize: app.fs*2
-            color: app.c2
-            font.family: 'FontAwesome'
-            horizontalAlignment: Text.AlignHCenter
-            textFormat: Text.RichText
-        }
-        Text{
-            text:'<b>IMPERATIVO</b>'
-            font.pixelSize: app.fs*2
-            color: app.c2
-            font.family: 'FontAwesome'
-            horizontalAlignment: Text.AlignHCenter
-            textFormat: Text.RichText
-        }
     }
 
     //6
@@ -554,9 +532,239 @@ Item {
             text:'<b>Declaraciòn de</b><br><b>Objeto o Elemento</b>'
             font.pixelSize: app.fs*3
             color: app.c2
-            }
+        }
     }
 
+
+    //14
+    Column{
+        id:x14
+        width: r.width-app.fs
+        anchors.centerIn: r
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Text{
+            text:'<b>Còdigo QML</b>'
+            font.pixelSize: app.fs
+            color: app.c2
+        }
+        Item{
+            width: parent.width-app.fs*6
+            height: r.height-app.fs*3
+            Marco{
+                id:mm0
+                opacity: 0.0
+                Behavior on opacity{NumberAnimation{duration:500}}
+                Text{
+                    text:'<b>DECLARATIVO</b>'
+                    font.pixelSize: app.fs
+                    color: app.c2
+                    anchors.right: parent.right
+                    anchors.rightMargin: app.fs*0.5
+                    anchors.top: parent.top
+                    anchors.topMargin: app.fs*0.5
+                }
+            }
+            Column{
+                id:colc1
+                spacing: app.fs*0.25
+                Text{
+                    text:'import QtQuick 2.0\nWindow{\n         width:300\n         height:300'
+                    font.pixelSize: app.fs
+                    color: app.c2
+                }
+                Text{
+                    text:'function miFuncionJavaScript(){\n           console.log(\'Hola JavaScript en QML!\')\n}'
+                    font.pixelSize: app.fs
+                    color: 'red'
+                    anchors.left: parent.left
+                    anchors.leftMargin: app.fs*3
+                    Marco{
+                        id:mm1
+                        opacity: 0.0
+                        Behavior on opacity{NumberAnimation{duration:500}}
+                        Text{
+                            text:'<b>IMPERATIVO</b>'
+                            font.pixelSize: app.fs
+                            color: 'red'
+                            anchors.right:  parent.right
+                            anchors.rightMargin: app.fs*0.5
+                            anchors.top: parent.bottom
+                            anchors.bottomMargin: app.fs*0.5
+                        }
+                    }
+                }
+                Text{
+                    text:'}\n'
+                    font.pixelSize: app.fs
+                    color: app.c2
+                }
+            }
+        }
+    }
+
+    //15
+    Column{
+        id:x15
+        anchors.centerIn: r
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Repeater{
+            model:["ESTADOS", "ANIMACIÒN", "CONTROLADOR\nSEÑAL", "Otras"]
+            Text{
+                text:'<b>'+modelData+'</b>'
+                font.pixelSize: fs
+                color: app.c2
+                anchors.horizontalCenter: parent.horizontalCenter
+                property int fs: app.fs*3
+                Behavior on fs{NumberAnimation{duration:500}}
+            }
+        }
+    }
+
+    //16
+    Column{
+        id:x16
+        anchors.centerIn: r
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Repeater{
+            model:["ASOCIA", "VINCULA", "CONECTA", "INTEGRA"]
+            Text{
+                text:'<b>'+modelData+'</b>'
+                font.pixelSize: fs
+                color: app.c2
+                anchors.horizontalCenter: parent.horizontalCenter
+                property int fs: app.fs*3
+                Behavior on fs{NumberAnimation{duration:500}}
+            }
+        }
+    }
+
+    //17
+    Text{
+        id:x17
+        text:'<b>C++</b>'
+        font.pixelSize: app.fs*3
+        color: app.c2
+        anchors.centerIn: r
+        opacity: 0.0
+        Behavior on opacity{NumberAnimation{duration:500}}
+    }
+
+    //18
+    Text{
+        id:x18
+        font.pixelSize: app.fs*3
+        color: app.c2
+        anchors.centerIn: r
+        opacity: 0.0
+        Behavior on opacity{NumberAnimation{duration:500}}
+    }
+    //19
+    Text{
+        id:x19
+        font.pixelSize: app.fs*3
+        color: app.c2
+        anchors.centerIn: r
+        opacity: 0.0
+        Behavior on opacity{NumberAnimation{duration:500}}
+    }
+
+    //20
+    Column{
+        id:x20
+        width: r.width-app.fs
+        anchors.centerIn: r
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Text{
+            text:'<b>Còdigo QML</b>'
+            font.pixelSize: app.fs
+            color: app.c2
+        }
+        Item{
+            width: parent.width-app.fs*6
+            height: r.height-app.fs*3
+            Marco{
+                id:mm3
+                opacity: 0.0
+                Behavior on opacity{NumberAnimation{duration:500}}
+                Text{
+                    text:'<b>DECLARATIVO</b>'
+                    font.pixelSize: app.fs
+                    color: app.c2
+                    anchors.right: parent.right
+                    anchors.rightMargin: app.fs*0.5
+                    anchors.top: parent.top
+                    anchors.topMargin: app.fs*0.5
+                }
+            }
+            Column{
+                id:colc3
+                spacing: app.fs*0.25
+                Text{
+                    text:'import QtQuick 2.0\nWindow{\n         id:app\n         width:300'
+                    font.pixelSize: app.fs
+                    color: app.c2
+                }
+                Text{
+                    text:'         height:altura()'
+                    font.pixelSize: app.fs
+                    color: 'red'
+                    Marco{
+                        id:mm4
+                        opacity: 0.0
+                        Behavior on opacity{NumberAnimation{duration:500}}
+                        Text{
+                            text:'<b>Propiedad Vinculada</b><br><b>Valor Dinàmico</b>'
+                            font.pixelSize: app.fs
+                            color: app.c2
+                            anchors.left:  parent.right
+                            anchors.leftMargin:  app.fs*0.5
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                    }
+                }
+                Text{
+                    text:'function altura(){\n           return app.width/2\n}'
+                    font.pixelSize: app.fs
+                    color: 'red'
+                    anchors.left: parent.left
+                    anchors.leftMargin: app.fs*3
+                }
+                Text{
+                    text:'}\n'
+                    font.pixelSize: app.fs
+                    color: app.c2
+                }
+            }
+        }
+    }
+
+    //21
+    Column{
+        id:x21
+        anchors.centerIn: r
+        opacity: 0.0
+        spacing: app.fs
+        Behavior on opacity{NumberAnimation{duration:500}}
+        Repeater{
+            model:["DECLARATIVO", "IMPERATIVO", "REACTIVO"]
+            Text{
+                text:'<b>'+modelData+'</b>'
+                font.pixelSize: fs
+                color: app.c2
+                anchors.horizontalCenter: parent.horizontalCenter
+                property int fs: app.fs*3
+                Behavior on fs{NumberAnimation{duration:500}}
+            }
+        }
+    }
 
     Xa{id:xa}
     Timer{
@@ -619,6 +827,38 @@ Item {
             x11.opacity=app.lnl(200, 236)==='activo'?1.0:0.0
             x12.opacity=app.lnl(236, 270)==='activo'?1.0:0.0
             x13.opacity=app.lnl(270, 280)==='activo'?1.0:0.0
+
+            x14.opacity=app.lnl(280, 323)==='activo'?1.0:0.0
+            mm0.opacity=app.lnl(284, 323)==='activo'?1.0:0.0
+            mm1.opacity=app.lnl(286, 323)==='activo'?1.0:0.0
+
+            x15.opacity=app.lnl(323, 344)==='activo'?1.0:0.0
+            x15.children[0].fs=app.lnl(334, 335)==='activo'?app.fs*3:app.fs
+            x15.children[1].fs=app.lnl(335, 336)==='activo'?app.fs*3:app.fs
+            x15.children[2].fs=app.lnl(336, 337)==='activo'?app.fs*3:app.fs
+            x15.children[3].fs=app.lnl(337, 338)==='activo'?app.fs*3:app.fs
+
+            x16.opacity=app.lnl(344, 352.5)==='activo'?1.0:0.0
+            x16.children[0].fs=app.lnl(346, 347.5)==='activo'?app.fs*3:app.fs
+            x16.children[1].fs=app.lnl(347.5, 348.5)==='activo'?app.fs*3:app.fs
+            x16.children[2].fs=app.lnl(348.5, 350)==='activo'?app.fs*3:app.fs
+            x16.children[3].fs=app.lnl(350, 352)==='activo'?app.fs*3:app.fs
+
+            x17.opacity=app.lnl(352.5, 363)==='activo'?1.0:0.0
+
+            x18.opacity=app.lnl(363, 387)==='activo'?1.0:0.0
+            x18.text=app.lnl(370, 392)==='activo'?'<b>SEÑALES Y RANURAS</b>':'<b>SIGNAL Y SLOT</b>'
+
+            x19.opacity=app.lnl(387, 402)==='activo'?1.0:0.0
+            x19.text=app.lnl(397, 402)==='activo'?'<b>Propiedad Vinculada</b>':'<b>Property Bindings</b>'
+
+            x20.opacity=app.lnl(402, 444)==='activo'?1.0:0.0
+            mm4.opacity=app.lnl(408, 444)==='activo'?1.0:0.0
+
+            x21.opacity=app.lnl(444, 454)==='activo'?1.0:0.0
+            x21.children[0].fs=app.lnl(447, 449)==='activo'?app.fs*3:app.fs
+            x21.children[1].fs=app.lnl(449, 451)==='activo'?app.fs*3:app.fs
+            x21.children[2].fs=app.lnl(451, 454)==='activo'?app.fs*3:app.fs
         }
     }
     KeyNavigation.tab: app
