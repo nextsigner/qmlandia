@@ -20,9 +20,7 @@ Item {
         anchors.centerIn: r
         font.pixelSize: app.fs*2
         color: app.c2
-        font.family: 'FontAwesome'
         horizontalAlignment: Text.AlignHCenter
-        textFormat: Text.RichText
     }
 
     //bgx2
@@ -31,7 +29,7 @@ Item {
         anchors.centerIn: r
         columns: 30
         spacing: app.fs*0.5
-        visible:x2.opacity>0.0
+        visible:x2.opacity>0.0&&x3.opacity<1.0
         SequentialAnimation{
             running:bgx2.visible&&x3.opacity<1.0
             loops: Animation.Infinite
@@ -134,9 +132,6 @@ Item {
         anchors.topMargin: app.fs
         font.pixelSize: app.fs*3
         color: app.c2
-        font.family: 'FontAwesome'
-        horizontalAlignment: Text.AlignHCenter
-        textFormat: Text.RichText
     }
 
 
@@ -568,7 +563,7 @@ Item {
             }
             Column{
                 id:colc1
-                spacing: app.fs*0.25
+                spacing: app.fs*0.5
                 Text{
                     text:'import QtQuick 2.0\nWindow{\n         width:300\n         height:300'
                     font.pixelSize: app.fs
@@ -583,6 +578,7 @@ Item {
                     Marco{
                         id:mm1
                         opacity: 0.0
+                        padding:app.fs*0.2
                         Behavior on opacity{NumberAnimation{duration:500}}
                         Text{
                             text:'<b>IMPERATIVO</b>'
@@ -706,7 +702,7 @@ Item {
             }
             Column{
                 id:colc3
-                spacing: app.fs*0.25
+                spacing: app.fs*0.5
                 Text{
                     text:'import QtQuick 2.0\nWindow{\n         id:app\n         width:300'
                     font.pixelSize: app.fs
@@ -719,10 +715,11 @@ Item {
                     Marco{
                         id:mm4
                         opacity: 0.0
+                        padding:app.fs*0.2
                         Behavior on opacity{NumberAnimation{duration:500}}
                         Text{
                             text:'<b>Propiedad Vinculada</b><br><b>Valor Dinàmico</b>'
-                            font.pixelSize: app.fs
+                            font.pixelSize: app.fs*0.5
                             color: app.c2
                             anchors.left:  parent.right
                             anchors.leftMargin:  app.fs*0.5
@@ -772,93 +769,93 @@ Item {
         repeat: true
         interval: 250
         onTriggered: {
-            x1.opacity=app.lnl(0, 6)==='activo'?1.0:0.0
+            x1.opacity=app.p(0, 6)?1.0:0.0
 
-            x2.opacity=app.lnl(6, 70)==='activo'?1.0:0.0
+            x2.opacity=app.p(6, 70)?1.0:0.0
             //Declarativo
-            x2.children[0].color=app.lnl(19, 70)==='activo'?app.c2:app.c3
-            x2.children[0].children[0].color=app.lnl(19, 70)==='activo'?app.c3:app.c2
+            x2.children[0].color=app.p(19, 70)?app.c2:app.c3
+            x2.children[0].children[0].color=app.p(19, 70)?app.c3:app.c2
             //Declarativo
-            x2.children[1].color=app.lnl(21, 70)==='activo'?app.c2:app.c3
-            x2.children[1].children[0].color=app.lnl(21, 70)==='activo'?app.c3:app.c2
+            x2.children[1].color=app.p(21, 70)?app.c2:app.c3
+            x2.children[1].children[0].color=app.p(21, 70)?app.c3:app.c2
             //Reactivo
-            x2.children[2].color=app.lnl(23, 70)==='activo'?app.c2:app.c3
-            x2.children[2].children[0].color=app.lnl(23, 70)==='activo'?app.c3:app.c2
+            x2.children[2].color=app.p(23, 70)?app.c2:app.c3
+            x2.children[2].children[0].color=app.p(23, 70)?app.c3:app.c2
             //Señales
-            x2.children[3].color=app.lnl(24.5, 70)==='activo'?app.c2:app.c3
-            x2.children[3].children[0].color=app.lnl(24.5, 70)==='activo'?app.c3:app.c2
+            x2.children[3].color=app.p(24.5, 70)?app.c2:app.c3
+            x2.children[3].children[0].color=app.p(24.5, 70)?app.c3:app.c2
             //Ranuras
-            x2.children[4].color=app.lnl(26, 70)==='activo'?app.c2:app.c3
-            x2.children[4].children[0].color=app.lnl(26, 70)==='activo'?app.c3:app.c2
+            x2.children[4].color=app.p(26, 70)?app.c2:app.c3
+            x2.children[4].children[0].color=app.p(26, 70)?app.c3:app.c2
             //Otras
-            x2.children[5].color=app.lnl(27.5, 70)==='activo'?app.c2:app.c3
-            x2.children[5].children[0].color=app.lnl(27.5, 70)==='activo'?app.c3:app.c2
+            x2.children[5].color=app.p(27.5, 70)?app.c2:app.c3
+            x2.children[5].children[0].color=app.p(27.5, 70)?app.c3:app.c2
 
-            x3.opacity=app.lnl(36, 70)==='activo'?1.0:0.0
+            x3.opacity=app.p(36, 70)?1.0:0.0
 
 
-            x4.opacity=app.lnl(70, 80)==='activo'?1.0:0.0
-            txt1.opacity=app.lnl(72, 80)==='activo'?1.0:0.0
-            txt2.opacity=app.lnl(75, 80)==='activo'?1.0:0.0
+            x4.opacity=app.p(70, 80)?1.0:0.0
+            txt1.opacity=app.p(72, 80)?1.0:0.0
+            txt2.opacity=app.p(75, 80)?1.0:0.0
 
-            x5.opacity=app.lnl(80, 93)==='activo'?1.0:0.0
-            x6.opacity=app.lnl(93, 143)==='activo'?1.0:0.0
+            x5.opacity=app.p(80, 93)?1.0:0.0
+            x6.opacity=app.p(93, 143)?1.0:0.0
 
-            x7.opacity=app.lnl(143, 170)==='activo'?1.0:0.0
-            txtr1.opacity=app.lnl(155, 166)==='activo'?1.0:0.0
-            txtr2.opacity=app.lnl(157, 166)==='activo'?1.0:0.0
-            txtr3.opacity=app.lnl(159, 166)==='activo'?1.0:0.0
-            txtT1.text=app.lnl(165, 170)==='activo'?'Programamos còdigo desde cero!':'Ejemplo de un Còdigo Cualquiera'
-            txtCE.text=app.lnl(165, 170)==='activo'?x7.s2:x7.s1
+            x7.opacity=app.p(143, 170)?1.0:0.0
+            txtr1.opacity=app.p(155, 166)?1.0:0.0
+            txtr2.opacity=app.p(157, 166)?1.0:0.0
+            txtr3.opacity=app.p(159, 166)?1.0:0.0
+            txtT1.text=app.p(165, 170)?'Programamos còdigo desde cero!':'Ejemplo de un Còdigo Cualquiera'
+            txtCE.text=app.p(165, 170)?x7.s2:x7.s1
 
-            x8.opacity=app.lnl(170, 177)==='activo'?1.0:0.0
+            x8.opacity=app.p(170, 177)?1.0:0.0
 
-            x9.opacity=app.lnl(177, 190)==='activo'?1.0:0.0
-            x9.children[0].fs=app.lnl(178, 183)==='activo'?app.fs*3:app.fs
-            x9.children[1].fs=app.lnl(183, 186)==='activo'?app.fs*3:app.fs
-            x9.children[2].fs=app.lnl(186, 190)==='activo'?app.fs*3:app.fs
+            x9.opacity=app.p(177, 190)?1.0:0.0
+            x9.children[0].fs=app.p(178, 183)?app.fs*3:app.fs
+            x9.children[1].fs=app.p(183, 186)?app.fs*3:app.fs
+            x9.children[2].fs=app.p(186, 190)?app.fs*3:app.fs
 
-            x10.opacity=app.lnl(190, 200)==='activo'?1.0:0.0
-            x10.children[0].fs=app.lnl(191, 194)==='activo'?app.fs*3:app.fs
-            x10.children[1].fs=app.lnl(194, 196)==='activo'?app.fs*3:app.fs
-            x10.children[2].fs=app.lnl(196, 197)==='activo'?app.fs*3:app.fs
-            x10.children[3].fs=app.lnl(197, 200)==='activo'?app.fs*3:app.fs
+            x10.opacity=app.p(190, 200)?1.0:0.0
+            x10.children[0].fs=app.p(191, 194)?app.fs*3:app.fs
+            x10.children[1].fs=app.p(194, 196)?app.fs*3:app.fs
+            x10.children[2].fs=app.p(196, 197)?app.fs*3:app.fs
+            x10.children[3].fs=app.p(197, 200)?app.fs*3:app.fs
 
-            x11.opacity=app.lnl(200, 236)==='activo'?1.0:0.0
-            x12.opacity=app.lnl(236, 270)==='activo'?1.0:0.0
-            x13.opacity=app.lnl(270, 280)==='activo'?1.0:0.0
+            x11.opacity=app.p(200, 236)?1.0:0.0
+            x12.opacity=app.p(236, 270)?1.0:0.0
+            x13.opacity=app.p(270, 280)?1.0:0.0
 
-            x14.opacity=app.lnl(280, 323)==='activo'?1.0:0.0
-            mm0.opacity=app.lnl(284, 323)==='activo'?1.0:0.0
-            mm1.opacity=app.lnl(286, 323)==='activo'?1.0:0.0
+            x14.opacity=app.p(280, 323)?1.0:0.0
+            mm0.opacity=app.p(284, 323)?1.0:0.0
+            mm1.opacity=app.p(286, 323)?1.0:0.0
 
-            x15.opacity=app.lnl(323, 344)==='activo'?1.0:0.0
-            x15.children[0].fs=app.lnl(334, 335)==='activo'?app.fs*3:app.fs
-            x15.children[1].fs=app.lnl(335, 336)==='activo'?app.fs*3:app.fs
-            x15.children[2].fs=app.lnl(336, 337)==='activo'?app.fs*3:app.fs
-            x15.children[3].fs=app.lnl(337, 338)==='activo'?app.fs*3:app.fs
+            x15.opacity=app.p(323, 344)?1.0:0.0
+            x15.children[0].fs=app.p(334, 335)?app.fs*3:app.fs
+            x15.children[1].fs=app.p(335, 336)?app.fs*3:app.fs
+            x15.children[2].fs=app.p(336, 337)?app.fs*3:app.fs
+            x15.children[3].fs=app.p(337, 338)?app.fs*3:app.fs
 
-            x16.opacity=app.lnl(344, 352.5)==='activo'?1.0:0.0
-            x16.children[0].fs=app.lnl(346, 347.5)==='activo'?app.fs*3:app.fs
-            x16.children[1].fs=app.lnl(347.5, 348.5)==='activo'?app.fs*3:app.fs
-            x16.children[2].fs=app.lnl(348.5, 350)==='activo'?app.fs*3:app.fs
-            x16.children[3].fs=app.lnl(350, 352)==='activo'?app.fs*3:app.fs
+            x16.opacity=app.p(344, 352.5)?1.0:0.0
+            x16.children[0].fs=app.p(346, 347.5)?app.fs*3:app.fs
+            x16.children[1].fs=app.p(347.5, 348.5)?app.fs*3:app.fs
+            x16.children[2].fs=app.p(348.5, 350)?app.fs*3:app.fs
+            x16.children[3].fs=app.p(350, 352)?app.fs*3:app.fs
 
-            x17.opacity=app.lnl(352.5, 363)==='activo'?1.0:0.0
+            x17.opacity=app.p(352.5, 363)?1.0:0.0
 
-            x18.opacity=app.lnl(363, 387)==='activo'?1.0:0.0
-            x18.text=app.lnl(370, 392)==='activo'?'<b>SEÑALES Y RANURAS</b>':'<b>SIGNAL Y SLOT</b>'
+            x18.opacity=app.p(363, 387)?1.0:0.0
+            x18.text=app.p(370, 392)?'<b>SEÑALES Y RANURAS</b>':'<b>SIGNAL Y SLOT</b>'
 
-            x19.opacity=app.lnl(387, 402)==='activo'?1.0:0.0
-            x19.text=app.lnl(397, 402)==='activo'?'<b>Propiedad Vinculada</b>':'<b>Property Bindings</b>'
+            x19.opacity=app.p(387, 402)?1.0:0.0
+            x19.text=app.p(396, 403)?'<b>Propiedad Vinculada</b>':'<b>Property Bindings</b>'
 
-            x20.opacity=app.lnl(402, 444)==='activo'?1.0:0.0
-            mm4.opacity=app.lnl(408, 444)==='activo'?1.0:0.0
+            x20.opacity=app.p(402, 444)?1.0:0.0
+            mm4.opacity=app.p(408, 444)?1.0:0.0
 
-            x21.opacity=app.lnl(444, 454)==='activo'?1.0:0.0
-            x21.children[0].fs=app.lnl(447, 449)==='activo'?app.fs*3:app.fs
-            x21.children[1].fs=app.lnl(449, 451)==='activo'?app.fs*3:app.fs
-            x21.children[2].fs=app.lnl(451, 454)==='activo'?app.fs*3:app.fs
+            x21.opacity=app.p(444, 454)?1.0:0.0
+            x21.children[0].fs=app.p(447, 449)?app.fs*3:app.fs
+            x21.children[1].fs=app.p(449, 451)?app.fs*3:app.fs
+            x21.children[2].fs=app.p(451, 454)?app.fs*3:app.fs
         }
     }
     KeyNavigation.tab: app
@@ -962,9 +959,6 @@ int call_zseek64 (const zlib_filefunc64_32_def* pfilefunc,voidpf filestream, ZPO
     }
 }
 '
-
-        /*var h1= 'La palabra o tèrmino <b>META</b> significa que QML es un lenguaje que està màs allà de preexistente, algo que apareciò luego, algo posterior, superador o de otra forma distinta a lo anterior'
-        xa.addBa('¿Que significa META?', h1,'./h/sobre_metta.m4a')
-        xa.addBa('Ir al siguiente','','1')*/
+        xa.addBa('Ir al siguiente','','1')
     }
 }

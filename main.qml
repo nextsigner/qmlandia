@@ -254,6 +254,9 @@ ApplicationWindow {
     function lnl(d, h){
         return app.mp.position>d*1000&&app.mp.position<h*1000? 'activo':'inactivo'
     }
+    function p(d, h){
+        return app.mp.position>d*1000&&app.mp.position<h*1000 ? true : false
+    }
     function runQml(c){
         var obj = Qt.createQmlObject(c, xS, 'xm4')
     }
