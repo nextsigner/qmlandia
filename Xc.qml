@@ -83,6 +83,7 @@ Rectangle {
                         onCheckedChanged: {
                             if(checked){
                                 appSettings.tema=1
+                                app.setTema()
                             }
                         }
                         anchors.verticalCenter: parent.verticalCenter
@@ -106,6 +107,7 @@ Rectangle {
                         onCheckedChanged: {
                             if(checked){
                                 appSettings.tema=2
+                                app.setTema()
                             }
                         }
                         anchors.verticalCenter: parent.verticalCenter
@@ -126,6 +128,7 @@ Rectangle {
                         onCheckedChanged: {
                             if(checked){
                                 appSettings.tema=3
+                                app.setTema()
                             }
                         }
                         anchors.verticalCenter: parent.verticalCenter
@@ -146,6 +149,7 @@ Rectangle {
                         onCheckedChanged: {
                             if(checked){
                                 appSettings.tema=4
+                                app.setTema()
                             }
                         }
                         anchors.verticalCenter: parent.verticalCenter
