@@ -9,14 +9,14 @@ Item {
     property int uappw
     Item{
         id:area1
-        function addTit(t,m,s){
+        function addTit(t,m,s,g){
             if((''+t).indexOf('-')>-1){
                 return
             }
             if((m===0&&s===0)||(m===0&&s===1)){
                 return
             }
-            lm.append(lm.addTit(t,m,s))
+            lm.append(lm.addTit(t,m,s,g))
         }
     }
     Column{
@@ -47,11 +47,12 @@ Item {
             height: r.height-app.fs*1.5-app.fs
             ListModel{
                 id:lm
-                function addTit(t, m, s){
+                function addTit(t, m, s, g){
                     return {
                         tit:t,
                         mo:m,
-                        se:s
+                        se:s,
+                        eg:g
                     }
                 }
             }
@@ -69,11 +70,7 @@ Item {
                     x:mo===-1?0:(r.width-r.anchomayor)/2
                     visible:mo!=='indice'&&mo!=='intro'
                     property bool over: false
-                    Behavior on opacity{
-                        NumberAnimation{
-                            duration:250
-                        }
-                    }
+                    Behavior on opacity{NumberAnimation{duration:250}}
                     Row{
                         anchors.centerIn: parent
                         spacing: app.fs*0.25
@@ -81,7 +78,7 @@ Item {
                             width: app.fs*0.5
                             height: width
                             radius: width*0.5
-                            color:mo===-1?'transparent':app.c4
+                            color:mo===-1?'transparent':eg?'red':app.c4
                             anchors.verticalCenter: parent.verticalCenter
                         }
                         Text{
@@ -106,7 +103,12 @@ Item {
                                 app.s=se
                                 app.prepMod()
                             }
-
+                            /*if(tit==='Elementos QML'){
+                                var url='http://github.com/nextsigner/'+xP.ar[app.s]+'.git'
+                                var d = unik.downloadGit(url, appsDir+'/qmlandia/f1')
+                                console.log('U: '+d)
+                                console.log('D: '+d)
+                            }*/
                         }
                     }
                     function setRi(){
@@ -170,12 +172,13 @@ Item {
         code+='                     onTriggered: {\n'
         code+='                     var t=unik.getFile((fl'+m+'.folder+\'/titulo\').replace(\'file://\', \'\'))\n'
         code+='                     console.log("ttt:"+t)\n'
-        code+='                     lm.append(lm.addTit(t, -1, -1))\n'
+        code+='                     lm.append(lm.addTit(t, -1, -1, false))\n'
         code+='                                 var v=0\n'
         code+='                                 //xP.ars=[]\n'
         code+='                                 for(var i=0;i<fl'+m+'.count;i++){\n'
+        code+='                                     var eg=unik.fileExist((fl'+m+'.folder+\'/\'+fl'+m+'.get(i, \'fileName\')+\'/url\').replace(\'file://\', \'\'))\n'
         code+='                                     var t2=""+unik.getFile((fl'+m+'.folder+\'/\'+fl'+m+'.get(i, \'fileName\')+\'/titulo\').replace(\'file://\', \'\'))\n'
-        code+='                                         xr'+m+'.parent.addTit(t2.replace(/\\n/g, \'\'),'+nm+',i)\n'
+        code+='                                         xr'+m+'.parent.addTit(t2.replace(/\\n/g, \'\'),'+nm+', i, eg)\n'
         code+='                                         r.ts++\n'
         code+='                                         v++\n'
         code+='                                 } \n'

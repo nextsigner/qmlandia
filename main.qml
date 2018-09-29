@@ -23,8 +23,12 @@ ApplicationWindow {
 
     property int mod: 0
     property int cantmod//: mods.children.length
+    property string gitfolder
 
     //Variables Globales
+    property bool iniciada: false
+    property bool gd: false //Git Downloaded
+
     property int s: 0
     property int cants: 0
     property bool verAyuda: false
@@ -53,7 +57,7 @@ ApplicationWindow {
         property int pcs
 
         property int tema
-        onTemaChanged: setTema()
+        //onTemaChanged: setTema()
     }
     FontLoader {name: "FontAwesome";source: "qrc:/fontawesome-webfont.ttf";}
     Rectangle{
@@ -73,8 +77,22 @@ ApplicationWindow {
             height: controles.visible?parent.height-app.fs*2:parent.height
             clip:true
         }
+        Rectangle{
+            anchors.fill: parent
+            color:app.c3
+            visible:xEstado.text!==''
+            Text {
+                id: xEstado
+                text: 'Qmlandia'
+                font.pixelSize: app.fs
+                anchors.centerIn: parent
+                color:app.c2
+                width: parent.width*0.6
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+            }
+        }
         Xp{id:xP}
-
         Xt{id:xT;visible:appSettings.tamlector!==-1&&at!==''}
         ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;}
         Xc{id:xC}
@@ -146,8 +164,24 @@ ApplicationWindow {
                 console.log('Modulos Listados...')
                 console.log('Modulo a cargar: '+app.mod)
                 console.log('Seccion a cargar: '+app.s)
-                prepMod()
+                app.iniciada=true
                 tinit.stop()
+                prepMod()
+            }
+        }
+    }
+    Timer{
+        id:tshowGit
+        running: false
+        repeat: true
+        interval: 500
+        onTriggered: {
+            if(app.gd){
+                console.log('Git Downloaded!')
+                tshowGit.stop()
+                showS()
+            }else{
+                console.log('Git No Downloaded!')
             }
         }
     }
@@ -158,8 +192,10 @@ ApplicationWindow {
         }
     }
     onSChanged:{
-        prepMod()
-        appSettings.ucs=s
+        //if(app.iniciada){
+            prepMod()
+            appSettings.ucs=s
+        //}
     }
     onModChanged: appSettings.umod=mod
 
@@ -173,16 +209,18 @@ ApplicationWindow {
         }
         app.mod=appSettings.umod
         app.s=appSettings.ucs
-        tinit.start()
 
         if(appSettings.tema<=0){
             appSettings.tema=1
         }
-        setTema()
+        tinit.start()
+        //setTema()
+        //unik.downloadGit('https://github.com/nextsigner/qmlandiamod1.git', '/home/nextsigner/aaa')
     }
     function prepMod(){
         xT.at=''
         xT.ex=0
+        xEstado.text='Preparando '+appsDir+'/qmlandia/'+xP.am[app.mod]
         for(var i=0;i<xS.children.length;i++){
             xS.children[i].destroy(1)
         }
@@ -213,7 +251,7 @@ ApplicationWindow {
         code+='                                 } \n'
         code+='                                 app.cants=v\n'
         code+='                                 //console.log("El modulo "+app.mod+" tiene "+v+" secciones.")\n'
-        code+='                                 showS()\n'
+        code+='                                 prepShowS()\n'
         code+='                      }\n'
         code+='               }\n'
 
@@ -225,21 +263,65 @@ ApplicationWindow {
         var obj = Qt.createQmlObject(code, xS, 'xm2')
         controles.visible=true
     }
+    function prepShowS(){
+        app.gd=false
+        app.gitfolder=''
+
+        var f=''+xP.am[app.mod]+'/'+xP.ars[app.s]
+        var uf=appsDir+'/qmlandia/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/url'
+        var url=(''+unik.getFile(uf)).replace(/\n/g, '')
+
+
+        var eg=unik.fileExist(uf)
+        if(eg){
+            var m0=url.split('/')
+            var m1=''+m0[m0.length-1]
+            var m2=m1.replace('.git', '')
+            app.gitfolder=m2
+            f+='/'+m2
+            var sf=appsDir+'/qmlandia/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/'+app.gitfolder+'/S.qml'
+            //console.log('Descargando Mòdulo desde '+url)
+            var folder=appsDir+'/qmlandia/'+xP.am[app.mod]+'/'+xP.ars[app.s]
+            xEstado.text='Cargando secciòn '+folder
+            //console.log('Descargando Mòdulo en '+folder)
+
+            var uf2=f+'/S.qml'
+            var fe=unik.fileExist(sf)
+            if(!fe){
+                console.log('app.gitfolder: '+app.gitfolder)
+                xEstado.text='Descargando '+url
+                app.gd= unik.downloadGit(url, folder)
+                tshowGit.start()
+            }else{
+                showS()
+            }
+        }else{
+            showS()
+        }
+    }
+
     function showS(){
+
         for(var i=0;i<xS.children.length;i++){
             xS.children[i].destroy(1)
         }
+        var f=''+xP.am[app.mod]+'/'+xP.ars[app.s]
+        if(app.gitfolder!==''){
+            f+='/'+app.gitfolder
+        }
+        xEstado.text='Renderizando...  '+f
         var code='import QtQuick 2.0\n'
-        code+='import "'+xP.am[app.mod]+'/'+xP.ars[app.s]+'" as SX\n'
+        code+='import "'+f+'" as SX\n'
         code+='Item{\n'
         code+='anchors.fill:parent\n'
         code+='     SX.S{}\n'
         code+='}\n'
-        app.mp.source=''+xP.am[app.mod]+'/'+xP.ars[app.s]+'/a1.m4a'
+        app.mp.source=''+f+'/a1.m4a'
         app.mp.play()
         console.log('Code: '+code)
         var obj = Qt.createQmlObject(code, xS, 'xm2')
         xC.z=xS.z+1
+        xEstado.text=''
         //console.log('Mostrando Secciòn desde carpeta: '+xP.am[app.mod]+'/'+xP.ars[app.s])
         //appSettings.usec=app.s
         //appSettings.umod=app.mod
@@ -285,6 +367,5 @@ ApplicationWindow {
             c3="black"
             c4="white"
         }
-        prepMod()
     }
 }
