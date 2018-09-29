@@ -1,1 +1,0 @@
-# qmlandiamod1
