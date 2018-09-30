@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import QtQuick.Controls 2.0
 import Qt.labs.settings 1.0
 import QtWebView 1.1
@@ -46,6 +46,8 @@ ApplicationWindow {
         property bool fullScreen
         property real volume
         property int tamlector
+        property bool cbs //Control Bar Section or Audio
+        property bool logViewVisible
 
         //Variables de Actualizaciòn
         property string uRS
@@ -97,7 +99,36 @@ ApplicationWindow {
         ControlesPrincipales{id:controles;anchors.bottom: xApp.bottom;}
         Xc{id:xC}
         Xu{id:xU}
+        LogView{
+            width: parent.width
+            height: app.fs*0.5
+            fontSize: app.fs
+            topHandlerHeight: app.fs*0.25
+            anchors.bottom: parent.bottom
+            visible: appSettings.logViewVisible
+        }
         focus: true
+        property bool shift: false
+        Shortcut {
+            sequence: "Shift+Right"
+            onActivated: {
+                if(appSettings.cbs){
+                    app.mp.seek(app.mp.position+1000)
+                }else{
+                    controles.next()
+                }
+            }
+        }
+        Shortcut {
+            sequence: "Shift+Left"
+            onActivated: {
+                if(appSettings.cbs){
+                    app.mp.seek(app.mp.position-1000)
+                }else{
+                    controles.back()
+                }
+            }
+        }
         Keys.onSpacePressed:  {
             if(!app.mp.p){
                 app.mp.play()
@@ -106,10 +137,18 @@ ApplicationWindow {
             }
         }
         Keys.onRightPressed: {
-            app.mp.seek(app.mp.position+1000)
+            if(!appSettings.cbs){
+                app.mp.seek(app.mp.position+1000)
+            }else{
+                controles.next()
+            }
         }
         Keys.onLeftPressed:  {
-            app.mp.seek(app.mp.position-1000)
+            if(!appSettings.cbs){
+                app.mp.seek(app.mp.position-1000)
+            }else{
+                controles.back()
+            }
         }
         Keys.onEscapePressed: {
             if(app.visibility===ApplicationWindow.FullScreen){
@@ -117,7 +156,6 @@ ApplicationWindow {
             }else{
                 Qt.quit()
             }
-
         }
     }
     Timer{
@@ -193,8 +231,8 @@ ApplicationWindow {
     }
     onSChanged:{
         //if(app.iniciada){
-            prepMod()
-            appSettings.ucs=s
+        prepMod()
+        appSettings.ucs=s
         //}
     }
     onModChanged: appSettings.umod=mod
@@ -214,8 +252,7 @@ ApplicationWindow {
             appSettings.tema=1
         }
         tinit.start()
-        //setTema()
-        //unik.downloadGit('https://github.com/nextsigner/qmlandiamod1.git', '/home/nextsigner/aaa')
+        console.log('appSettings.cbs='+appSettings.cbs)
     }
     function prepMod(){
         xT.at=''

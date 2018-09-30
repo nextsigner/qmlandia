@@ -4,9 +4,6 @@ import Qt.labs.folderlistmodel 2.2
 Rectangle {
     id: r
     color: "transparent"
-    radius: app.fs*0.1
-    border.width: 2
-    border.color: 'black'
     width: app.an
     height: app.fs*2
     clip:rb.opacity!==1.0
@@ -14,6 +11,8 @@ Rectangle {
     property alias mp: mediaPlayer
     property alias rb: rb
     property bool cpvisible: rb.opacity===1.0
+    property var asec: [] //Array Seconds
+    property int  nasec: 0
     MediaPlayer {
         id: mediaPlayer
         property bool p
@@ -23,7 +22,7 @@ Rectangle {
             p=true
             paused=false
             app.verAyuda=false
-
+            //setAsecs()
         }
         onPaused: {
             p=false
@@ -41,11 +40,20 @@ Rectangle {
         onPositionChanged: {
             seekSlider.playPosition=position
             xT.setPx()
+            if(r.nasec!==r.asec.length-1){
+                setAsec(position)
+            }
         }
         onDurationChanged: {
             seekSlider.duration = duration
+            setAsecs()
         }
         Component.onCompleted: app.mp=mediaPlayer
+        function setAsec(p){
+            if(p>parseInt(r.asec[r.nasec+1]*1000)){
+                r.nasec++
+            }
+        }
     }
 
     Timer{
@@ -91,6 +99,7 @@ Rectangle {
             mediaPlayer.seek(playPosition)
         }
     }
+
     MouseArea{
         anchors.fill: r
         enabled: rb.opacity!==1.0
@@ -100,6 +109,13 @@ Rectangle {
         onClicked: {
             rb.opacity=1.0
         }
+    }
+    Rectangle{
+        id:xAsecs
+        anchors.fill: seekSlider
+        border.color: app.c2
+        border.width: 2
+        color: 'transparent'
     }
     Text {
         id: txtInfo
@@ -114,9 +130,9 @@ Rectangle {
 
     Row{
         anchors.left: r.left
-        anchors.leftMargin: app.fs*0.1
+        anchors.leftMargin: app.fs*0.25
         anchors.bottom: r.bottom
-        anchors.bottomMargin: app.fs*0.1
+        anchors.bottomMargin: app.fs*0.25
         spacing: app.fs*0.5
         visible: rb.opacity===1.0
         Boton{
@@ -147,6 +163,18 @@ Rectangle {
             t:'\uf013'
             onClicking: xC.visible=!xC.visible
             opacity: xC.visible?1.0:0.5
+            visible:rb.opacity===1.0
+        }
+        Boton{
+            w:app.fs
+            h:w
+            tp:3
+            d:'Confugurar'
+            c:app.c3
+            b:app.c2
+            t:'\uf013'
+            onClicking: appSettings.cbs=!appSettings.cbs
+            opacity: appSettings.cbs?1.0:0.5
             visible:rb.opacity===1.0
         }
     }
@@ -215,7 +243,7 @@ Rectangle {
             w:app.fs*1.5
             h:w
             tp:3
-            d:'Ir a Secciòn Anterior'
+            d:!appSettings.cbs?'Ir a Secciòn Anterior':'Ir al Anterior Item de Secciòn'
             c:app.c3
             b:app.c2
             t:'\uf04a'
@@ -223,7 +251,7 @@ Rectangle {
                 trb.restart()
                 back()
             }
-            enabled: app.s!==0||app.mod!==0
+            enabled: !appSettings.cbs?app.s!==0||app.mod!==0:r.nasec>0
             opacity: enabled?1.0:0.5
         }
         Boton{
@@ -243,7 +271,7 @@ Rectangle {
             w:app.fs*1.5
             h:w
             tp:3
-            d:'Ir a la Secciòn Siguiente'
+            d:!appSettings.cbs?'Ir a la Secciòn Siguiente':'Ir al Siguiente Item de Secciòn'
             c:app.c3
             b:app.c2
             t:'\uf04e'
@@ -251,7 +279,7 @@ Rectangle {
                 trb.restart()
                 next()
             }
-            enabled: app.mod<app.cantmod-1||app.s<app.cants-1
+            enabled: !appSettings.cbs?app.mod<app.cantmod-1||app.s<app.cants-1:r.nasec<r.asec.length
             opacity: enabled?1.0:0.5
         }
         Boton{
@@ -284,6 +312,49 @@ Rectangle {
             opacity: app.verAyuda?1.0:0.5
         }
     }
+    onAsecChanged: {
+        //setAsecs()
+    }
+    function setAsecs(){
+        for(var i=0;i<xAsecs.children.length;i++){
+            xAsecs.children[i].destroy(1)
+        }
+        for(var i=0;i<r.asec.length;i++){
+            var c='import QtQuick 2.0
+                        Rectangle{
+                                width: 4
+                                height: parent.height
+                                color:"red"
+                                Rectangle{
+                                    width: app.fs
+                                    height: width
+                                    color:"red"
+                                    radius:width*0.5
+                                    anchors.bottom:parent.top
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    visible: rb.opacity===1.0
+                                    Text{
+                                        text:""+parseInt('+i+'+1)
+                                        font.pixelSize:app.fs*0.6
+                                        color: "white"
+                                        anchors.centerIn: parent
+                                    }
+                                    MouseArea{
+                                           anchors.fill: parent
+                                           onClicked:{
+                                                    r.nasec='+i+'
+                                                    mediaPlayer.seek(r.asec[r.nasec]*1000)
+                                            }
+                                    }
+                                }
+                        }
+        '
+            var obj = Qt.createQmlObject(c, xAsecs, 'xasecs')
+            var d1=mediaPlayer.duration-(r.asec[i]*1000)
+            var d2=d1/mediaPlayer.duration
+            obj.x=seekSlider.width*(1.0-d2)
+        }
+    }
     function play(){
         if(mediaPlayer.p){
             mediaPlayer.pause()
@@ -292,36 +363,55 @@ Rectangle {
         }
     }
     function next(){
-        appSettings.pcs=app.cants
-        mediaPlayer.stop()
-        if(app.s===app.cants-1){
-            app.s=0
-            app.mod++
+        if(!appSettings.cbs){
+            appSettings.pcs=app.cants
+            mediaPlayer.stop()
+            if(app.s===app.cants-1){
+                app.s=0
+                app.mod++
+            }else{
+                app.s++
+            }
         }else{
-            app.s++
+            r.nasec++
+            mediaPlayer.seek(r.asec[r.nasec]*1000)
         }
     }
     function back(){
-        mediaPlayer.stop()
-        if(app.s>0){
-            app.s--
-        }else{
-            if(app.mod>0){
-                app.mod--
+        if(!appSettings.cbs){
+            mediaPlayer.stop()
+            if(app.s>0){
+                app.s--
+            }else{
+                if(app.mod>0){
+                    app.mod--
+                }
+                app.s=appSettings.pcs-1
             }
-            app.s=appSettings.pcs-1
+        }else{
+            r.nasec--
+            mediaPlayer.seek(r.asec[r.nasec]*1000)
         }
-
     }
     function toBackMod(){
-        mediaPlayer.stop()
-        app.mod--
-        app.prepMod()
+        if(!appSettings.cbs){
+            mediaPlayer.stop()
+            app.mod--
+            app.prepMod()
+        }else{
+            r.nasec-=2
+            mediaPlayer.seek(r.asec[r.nasec]*1000)
+        }
     }
     function toNextMod(){
-        appSettings.pcs=app.cants
-        app.s=0
-        app.mod++
-        app.prepMod()
+        if(!appSettings.cbs){
+            appSettings.pcs=app.cants
+            app.s=0
+            app.mod++
+            app.prepMod()
+        }else{
+            r.nasec+=2
+            mediaPlayer.seek(r.asec[r.nasec]*1000)
+        }
     }
 }
