@@ -102,13 +102,7 @@ Item {
                             }else{
                                 app.s=se
                                 app.prepMod()
-                            }
-                            /*if(tit==='Elementos QML'){
-                                var url='http://github.com/nextsigner/'+xP.ar[app.s]+'.git'
-                                var d = unik.downloadGit(url, appsDir+'/qmlandia/f1')
-                                console.log('U: '+d)
-                                console.log('D: '+d)
-                            }*/
+                            }                            
                         }
                     }
                     function setRi(){
@@ -155,7 +149,7 @@ Item {
         code+='Item{\n'
         code+=' id:xr'+m+'\n'
         code+='         FolderListModel{\n'
-        code+='         folder: Qt.platform.os!==\'windows\'?appsDir+\'/qmlandia/'+m+'\':\'file:///\'+appsDir+\'/qmlandia/'+m+'\'\n'
+        code+='         folder: Qt.platform.os!==\'windows\'?unik.getPath(5)+\'/'+m+'\':\'file:///\'+unik.getPath(5)+\'/'+m+'\'\n'
         code+='                 id:fl'+m+'\n'
         code+='                 showFiles: false\n'
         code+='                 sortField: FolderListModel.Name\n'

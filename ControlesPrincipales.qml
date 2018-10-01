@@ -113,8 +113,6 @@ Rectangle {
     Rectangle{
         id:xAsecs
         anchors.fill: seekSlider
-        border.color: app.c2
-        border.width: 2
         color: 'transparent'
     }
     Text {
