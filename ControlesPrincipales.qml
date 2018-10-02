@@ -120,9 +120,9 @@ Rectangle {
         font.pixelSize: app.fs*0.5
         anchors.bottom: r.bottom
         anchors.bottomMargin: app.fs*0.1
-        anchors.left: seekSlider.left
+        anchors.horizontalCenter: seekSlider.horizontalCenter
         color: app.c4
-        text: 'Modulo '+parseInt(app.mod+1)+' de '+app.cantmod+'\nSecciòn '+parseInt(app.s+1)+' de '+app.cants
+        text: 'Modulo '+parseInt(app.mod+1)+' de '+app.cantmod+' Secciòn '+parseInt(app.s+1)+' de '+app.cants
         visible:rb.opacity===1.0
     }
 
@@ -167,10 +167,10 @@ Rectangle {
             w:app.fs
             h:w
             tp:3
-            d:'Confugurar'
+            d:'Ver Segmentos de Audio'
             c:app.c3
             b:app.c2
-            t:'\uf013'
+            t:'A'
             onClicking: appSettings.cbs=!appSettings.cbs
             opacity: appSettings.cbs?1.0:0.5
             visible:rb.opacity===1.0
