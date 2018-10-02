@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtGraphicalEffects 1.0
-import  "../../"
+import  "../../../"
 Item {
     id: r
     width: app.an
@@ -126,7 +126,7 @@ Item {
         }
         Image {
             id: img1
-            source: "../../h/js.png"
+            source: "../../../h/js.png"
             width: app.fs*16
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
@@ -140,7 +140,7 @@ Item {
         }
         Image {
             id: img3
-            source: "../../h/editor_3.png"
+            source: "../../../h/editor_3.png"
             width: app.fs*18
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
@@ -382,7 +382,7 @@ Item {
         anchors.centerIn: parent
         Image {
             id: img8
-            source: "../../h/me_gusta.png"
+            source: "../../../h/me_gusta.png"
             width: parent.width
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent

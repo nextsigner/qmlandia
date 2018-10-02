@@ -308,8 +308,6 @@ ApplicationWindow {
 
         code+='}\n'
 
-
-
         var obj = Qt.createQmlObject(code, xS, 'xm2')
         controles.visible=true
     }
@@ -350,8 +348,25 @@ ApplicationWindow {
         }else{
             showS()
         }
+        checkCommit(url)
     }
 
+    function checkCommit(url){
+        /*var d = new Date(Date.now())
+        var u1=url.replace('.git', '')
+        var u2=u1+'/commits/master?r='+d.getTime()
+        var ur0 = ''+unik.getHttpFile(u2)
+        var m0=ur0.split("commit-title")
+        var m1=(''+m0[1]).split('</p>')
+        var m2=(''+m1[0]).split('\">')
+        var m3=(''+m2[2]).split('<')
+        var ur = ''+m3[0]
+        var uf=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/commit'
+        if(!unik.fileExist(uf)){
+            unik.setFile(ur, uf)
+        }*/
+
+    }
     function showS(){
 
         for(var i=0;i<xS.children.length;i++){
