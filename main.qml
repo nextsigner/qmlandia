@@ -243,9 +243,9 @@ ApplicationWindow {
         appSettings.cantRun++
 
         if(Qt.platform.os==='android'){
-            qlandPath=appsDir+'/qmlandia/'
+            qlandPath=appsDir+'/qmlandia'
         }else{
-            qlandPath=unik.getPath(5)+'/'
+            qlandPath=unik.getPath(5)
         }
 
         //Volume
