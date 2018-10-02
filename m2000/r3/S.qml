@@ -149,7 +149,7 @@ Item {
         code+='Item{\n'
         code+=' id:xr'+m+'\n'
         code+='         FolderListModel{\n'
-        code+='         folder: Qt.platform.os!==\'windows\'?unik.getPath(5)+\'/'+m+'\':\'file:///\'+unik.getPath(5)+\'/'+m+'\'\n'
+        code+='         folder: Qt.platform.os!==\'windows\'?app.qlandPath+\'/'+m+'\':\'file:///\'+app.qlandPath+\'/'+m+'\'\n'
         code+='                 id:fl'+m+'\n'
         code+='                 showFiles: false\n'
         code+='                 sortField: FolderListModel.Name\n'

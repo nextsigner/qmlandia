@@ -28,6 +28,7 @@ ApplicationWindow {
     //Variables Globales
     property bool iniciada: false
     property bool gd: false //Git Downloaded
+    property string qlandPath
 
     property int s: 0
     property int cants: 0
@@ -241,6 +242,12 @@ ApplicationWindow {
         console.log('Ejecuciòn nùmero: '+appSettings.cantRun)
         appSettings.cantRun++
 
+        if(Qt.platform.os==='android'){
+            qlandPath=appsDir+'/qmlandia/'
+        }else{
+            qlandPath=unik.getPath(5)+'/'
+        }
+
         //Volume
         if(appSettings.volume<0&&appSettings.volume>1){
             appSettings.volume=0.8
@@ -259,7 +266,7 @@ ApplicationWindow {
         xT.ex=0
         controles.asec=[]
         controles.mp.stop()
-        xEstado.text='Preparando '+unik.getPath(5)+'/'+xP.am[app.mod]
+        xEstado.text='Preparando '+app.qlandPath+'/'+xP.am[app.mod]
         for(var i=0;i<xS.children.length;i++){
             xS.children[i].destroy(1)
         }
@@ -267,7 +274,7 @@ ApplicationWindow {
         code+='import Qt.labs.folderlistmodel 2.2\n'
         code+='Item{\n'
         code+='         FolderListModel{\n'
-        code+='         folder: Qt.platform.os!==\'windows\'&&Qt.platform.os!==\'osx\'?unik.getPath(5)+\'/\'+xP.am[app.mod]:\'file://\'+unik.getPath(5)+\'/\'+xP.am[app.mod]\n'
+        code+='         folder: Qt.platform.os!==\'windows\'&&Qt.platform.os!==\'osx\'?app.qlandPath+\'/\'+xP.am[app.mod]:\'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
         //code+='         folder: "file:///Users/qt/nsp/unik-dev-apps/qmlandia/"+xP.am[app.mod]\n'
         code+='                 id:fl2\n'
         code+='                 showFiles: false\n'
@@ -289,7 +296,7 @@ ApplicationWindow {
         code+='                                         xP.ars.push(fl2.get(i, \'fileName\'))\n'
         code+='                                         console.log(\'NXP.ars=\'+fl2.get(i, \'fileName\'))\n'
         code+='                                         console.log(\'fl2.folder=\'+fl2.folder)\n'
-        code+='                                         console.log(\'appsDir.folder=\'+unik.getPath(5))\n'
+        code+='                                         console.log(\'appsDir.folder=\'+app.qlandPath)\n'
         code+='                                         v++\n'
         code+='                                 } \n'
         code+='                                 app.cants=v\n'
@@ -311,7 +318,7 @@ ApplicationWindow {
         app.gitfolder=''
 
         var f=''+xP.am[app.mod]+'/'+xP.ars[app.s]
-        var uf=unik.getPath(5)+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/url'
+        var uf=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/url'
         var url=(''+unik.getFile(uf)).replace(/\n/g, '')
         console.log('app.gitfolder from: '+uf)
         console.log('Git url: '+url)
@@ -324,9 +331,9 @@ ApplicationWindow {
             app.gitfolder=m2
             console.log('app.gitfolder='+app.gitfolder)
             f+='/'+m2
-            var sf=unik.getPath(5)+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/'+app.gitfolder+'/S.qml'
+            var sf=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/'+app.gitfolder+'/S.qml'
             console.log('Descargando Mòdulo desde '+url)
-            var folder=unik.getPath(5)+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]
+            var folder=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]
             xEstado.text='Cargando secciòn '+folder
             console.log('Descargando Mòdulo en '+folder)
 
