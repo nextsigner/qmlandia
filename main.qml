@@ -349,10 +349,11 @@ ApplicationWindow {
         var uf=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/url'
         var url=(''+unik.getFile(uf)).replace(/\n/g, '')
         console.log('app.gitfolder from: '+uf)
-        console.log('Git url: '+url)
+        console.log('Git url: '+url+' en '+uf)
 
         var eg=unik.fileExist(uf)
         if(eg){
+           console.log('Preparando Url Git...')
             var m0=url.split('/')
             var m1=''+m0[m0.length-1]
             var m2=m1.replace('.git', '')
@@ -373,18 +374,21 @@ ApplicationWindow {
                 app.gd= unik.downloadGit(url, folder)
                 tshowGit.start()
             }else{
-                if(!unik.fileExist(uf)){
+               console.log('Preparando Modulo Presente')
+                /*if(!unik.fileExist(uf)){
                     showS()
                 }else{
                     checkCommit(url)
-                }
+                }*/
+                checkCommit(url)
             }
         }else{
-            if(!unik.fileExist(uf)){
+            /*if(!unik.fileExist(uf)){
                 showS()
             }else{
                 checkCommit(url)
-            }
+            }*/
+            checkCommit(url)
         }
         //checkCommit(url)
     }
