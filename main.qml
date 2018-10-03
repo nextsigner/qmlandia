@@ -59,6 +59,8 @@ ApplicationWindow {
         property int umod
         property int pcs
 
+        property int lvh
+
         property int tema
         //onTemaChanged: setTema()
     }
@@ -94,6 +96,14 @@ ApplicationWindow {
                 wrapMode: Text.WordWrap
                 horizontalAlignment: Text.AlignHCenter
             }
+            MouseArea{
+                anchors.fill: parent
+                onDoubleClicked: {
+                    app.mod=0
+                    app.s=0
+                }
+                onClicked: xEstado.text=''
+            }
         }
         Xp{id:xP}
         Xt{id:xT;visible:appSettings.tamlector!==-1&&at!==''}
@@ -102,11 +112,28 @@ ApplicationWindow {
         Xu{id:xU}
         LogView{
             width: parent.width
-            height: app.fs*0.5
+            height: appSettings.lvh
             fontSize: app.fs
             topHandlerHeight: app.fs*0.25
             anchors.bottom: parent.bottom
-            //visible: appSettings.logViewVisible
+            visible: appSettings.logViewVisible
+        }
+        Xm{id:xM}
+        Boton{
+            w:app.fs
+            h:w
+            tp:3
+            d:'Indice'
+            c:app.c3
+            b:app.c2
+            t:'\uf022'
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: app.fs*0.5
+            anchors.right: parent.right
+            anchors.rightMargin: app.fs*0.5
+            onClicking: {
+                xM.opacity=xM.opacity===0.0?1.0:0.0
+            }
         }
         focus: true
         property bool shift: false
@@ -258,6 +285,9 @@ ApplicationWindow {
         if(appSettings.tema<=0){
             appSettings.tema=1
         }
+        if(appSettings.lvh<=0){
+            appSettings.lvh=100
+        }
         tinit.start()
         console.log('appSettings.cbs='+appSettings.cbs)
     }
@@ -343,29 +373,60 @@ ApplicationWindow {
                 app.gd= unik.downloadGit(url, folder)
                 tshowGit.start()
             }else{
-                showS()
+                //showS()
+                checkCommit(url)
             }
         }else{
-            showS()
+            //showS()
+            checkCommit(url)
         }
-        checkCommit(url)
+        //checkCommit(url)
     }
 
     function checkCommit(url){
-        /*var d = new Date(Date.now())
+        var folder=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]
+        var d = new Date(Date.now())
         var u1=url.replace('.git', '')
         var u2=u1+'/commits/master?r='+d.getTime()
-        var ur0 = ''+unik.getHttpFile(u2)
-        var m0=ur0.split("commit-title")
-        var m1=(''+m0[1]).split('</p>')
-        var m2=(''+m1[0]).split('\">')
-        var m3=(''+m2[2]).split('<')
-        var ur = ''+m3[0]
-        var uf=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/commit'
-        if(!unik.fileExist(uf)){
-            unik.setFile(ur, uf)
-        }*/
-
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', u2);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var ur0 = ''+xhr.responseText
+                //console.log('checkCommit response '+ur0)
+                var m0=ur0.split("commit-title")
+                if(m0.length===1){
+                    return
+                }
+                var m1=(''+m0[1]).split('</p>')
+                var m2=(''+m1[0]).split('\">')
+                if(m2.length<=2){
+                    return
+                }
+                var m3=(''+m2[2]).split('<')
+                var ur = ''+m3[0]
+                console.log(ur)
+                var uf=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/commit'
+                console.log('uf:'+uf)
+                if(!unik.fileExist(uf)){
+                    unik.setFile(uf, ur)
+                }else{
+                    var aur=''+unik.getFile(uf)
+                    if(aur===ur){
+                        console.log('Section Commit Equal')
+                        showS()
+                    }else{
+                        console.log('Section Commit NO Equal')
+                        console.log('app.gitfolder: '+app.gitfolder)
+                        xEstado.text='Descargando '+url
+                        app.gd= unik.downloadGit(url, folder)
+                        tshowGit.start()
+                        unik.setFile(uf, ur)
+                    }
+                }
+            }
+        }
+        xhr.send(null);
     }
     function showS(){
 

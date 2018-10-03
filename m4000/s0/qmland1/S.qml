@@ -10,8 +10,8 @@ Item {
         id:x1
         opacity: 0.0
         Behavior on opacity{NumberAnimation{duration:500}}
-        text:'<b>Elemento QML</b><br><b>Item{}</b>'
-        anchors.centerIn: r
+        text:'<b>Elemento QML</b><br><b>2 Item{}</b>'
+        anchors.centerIn: r 
         font.pixelSize: app.fs*2
         color: app.c2
         horizontalAlignment: Text.AlignHCenter

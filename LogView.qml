@@ -238,6 +238,7 @@ Rectangle{
         }
     }
 
+    onHeightChanged: appSettings.lvh=height
     Component.onCompleted: {
         if(raiz.showUnikInitMessages){
             var s=(''+unik.initStdString).replace(/\n/g, '<br />')

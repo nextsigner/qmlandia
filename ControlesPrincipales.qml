@@ -114,6 +114,7 @@ Rectangle {
         id:xAsecs
         anchors.fill: seekSlider
         color: 'transparent'
+        visible: !appSettings.cbs
     }
     Text {
         id: txtInfo
@@ -126,7 +127,7 @@ Rectangle {
         visible:rb.opacity===1.0
     }
 
-    Row{
+    /*Row{
         anchors.left: r.left
         anchors.leftMargin: app.fs*0.25
         anchors.bottom: r.bottom
@@ -142,61 +143,10 @@ Rectangle {
             b:app.c2
             t:'\uf022'
             onClicking: {
-                app.mod=0
-                if(app.s!==1){
-                    app.s=1
-                }else{
-                    app.s=1
-                    app.prepMod()
-                }
+                xM.opacity=xM.opacity===0.0?1.0:0.0
             }
         }
-        Boton{
-            w:app.fs
-            h:w
-            tp:3
-            d:'Confugurar'
-            c:app.c3
-            b:app.c2
-            t:'\uf013'
-            onClicking: xC.visible=!xC.visible
-            opacity: xC.visible?1.0:0.5
-            visible:rb.opacity===1.0
-        }
-        Boton{
-            w:app.fs
-            h:w
-            tp:3
-            d:'Ver Segmentos de Audio'
-            c:app.c3
-            b:app.c2
-            t:'A'
-            onClicking: appSettings.cbs=!appSettings.cbs
-            opacity: appSettings.cbs?1.0:0.5
-            visible:rb.opacity===1.0
-        }
-    }
-
-    Row{
-        anchors.right:  r.right
-        anchors.rightMargin: app.fs*0.1
-        anchors.bottom: r.bottom
-        anchors.bottomMargin: app.fs*0.1
-        spacing: app.fs*0.5
-        visible: rb.opacity===1.0
-        Boton{
-            w:app.fs
-            h:w
-            tp:3
-            d:'Apagar'
-            c:app.c3
-            b:app.c2
-            t:'\uf011'
-            onClicking: Qt.quit()
-            visible:rb.opacity===1.0
-        }
-    }
-
+        }*/
 
     Rectangle{
         width: rb.width+app.fs
