@@ -304,7 +304,7 @@ ApplicationWindow {
         code+='import Qt.labs.folderlistmodel 2.2\n'
         code+='Item{\n'
         code+='         FolderListModel{\n'
-        code+='         folder: Qt.platform.os!==\'windows\'&&Qt.platform.os!==\'osx\'?app.qlandPath+\'/\'+xP.am[app.mod]:\'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
+        code+='         folder: Qt.platform.os!==\'windows\'&&Qt.platform.os!==\'osx\'&&Qt.platform.os!==\'android\'?app.qlandPath+\'/\'+xP.am[app.mod]:\'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
         //code+='         folder: "file:///Users/qt/nsp/unik-dev-apps/qmlandia/"+xP.am[app.mod]\n'
         code+='                 id:fl2\n'
         code+='                 showFiles: false\n'
