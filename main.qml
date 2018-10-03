@@ -373,12 +373,18 @@ ApplicationWindow {
                 app.gd= unik.downloadGit(url, folder)
                 tshowGit.start()
             }else{
-                //showS()
-                checkCommit(url)
+                if(!unik.fileExist(uf)){
+                    showS()
+                }else{
+                    checkCommit(url)
+                }
             }
         }else{
-            //showS()
-            checkCommit(url)
+            if(!unik.fileExist(uf)){
+                showS()
+            }else{
+                checkCommit(url)
+            }
         }
         //checkCommit(url)
     }

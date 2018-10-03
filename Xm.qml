@@ -66,7 +66,7 @@ Item{
         anchors.fill: r
         enabled: r.opacity===1.0
         hoverEnabled: true
-        onEntered: rb.opacity=1.0
+        onEntered: r.opacity=1.0
         onPositionChanged: trb2.restart()
     }
     Column{
