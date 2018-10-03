@@ -129,8 +129,8 @@ ApplicationWindow {
             t:'\uf022'
             anchors.bottom: parent.bottom
             anchors.bottomMargin: app.fs*0.5
-            anchors.right: parent.right
-            anchors.rightMargin: app.fs*0.5
+            anchors.left: parent.left
+            anchors.leftMargin: app.fs*0.5
             onClicking: {
                 xM.opacity=xM.opacity===0.0?1.0:0.0
             }
@@ -304,17 +304,13 @@ ApplicationWindow {
         code+='import Qt.labs.folderlistmodel 2.2\n'
         code+='Item{\n'
         code+='         FolderListModel{\n'
-        //code+='         folder: Qt.platform.os!==\'windows\'&&Qt.platform.os!==\'osx\'&&Qt.platform.os!==\'android\'?app.qlandPath+\'/\'+xP.am[app.mod]:\'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
-        if(Qt.platform.os==='android'){
-            //code+='         folder:"file:///storage/emulated/0/Documents/unik/qmlandia"\n'
-            code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
+         if(Qt.platform.os==='android'){
+             code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
         }else if(Qt.platform.os==='android'){
             code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
         }else{
             code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
         }
-
-        //code+='         folder: "file:///Users/qt/nsp/unik-dev-apps/qmlandia/"+xP.am[app.mod]\n'
         code+='                 id:fl2\n'
         code+='                 showFiles: false\n'
         code+='                 sortField: FolderListModel.Name\n'
@@ -374,7 +370,6 @@ ApplicationWindow {
             var folder=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]
             xEstado.text='Cargando secciòn '+folder
             console.log('Descargando Mòdulo en '+folder)
-
             var uf2=f+'/S.qml'
             var fe=unik.fileExist(sf)
             if(!fe){
@@ -383,23 +378,19 @@ ApplicationWindow {
                 app.gd= unik.downloadGit(url, folder)
                 tshowGit.start()
             }else{
-               console.log('Preparando Modulo Presente')
+                xEstado.text+='\nPreparando Modulo Presente '+folder
                 if(!unik.fileExist(uf)){
+                    xEstado.text+='\nNo se detecta url... '
                     showS()
                 }else{
+                    xEstado.text+='\nChequeando commit desde '+url
                     checkCommit(url)
                 }
-                //checkCommit(url)
             }
         }else{
-            if(!unik.fileExist(uf)){
-                showS()
-            }else{
-                checkCommit(url)
-            }
-            //checkCommit(url)
+            xEstado.text+='\nMostrando secciòn presente en '+folder
+            showS()
         }
-        //checkCommit(url)
     }
 
     function checkCommit(url){
