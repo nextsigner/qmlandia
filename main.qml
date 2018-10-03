@@ -305,7 +305,15 @@ ApplicationWindow {
         code+='Item{\n'
         code+='         FolderListModel{\n'
         //code+='         folder: Qt.platform.os!==\'windows\'&&Qt.platform.os!==\'osx\'&&Qt.platform.os!==\'android\'?app.qlandPath+\'/\'+xP.am[app.mod]:\'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
-        code+='         folder: /storage/emulated/0/Documents/unik/qmlandia\n'
+        if(Qt.platform.os==='android'){
+            //code+='         folder:"file:///storage/emulated/0/Documents/unik/qmlandia"\n'
+            code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
+        }else if(Qt.platform.os==='android'){
+            code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
+        }else{
+            code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
+        }
+
         //code+='         folder: "file:///Users/qt/nsp/unik-dev-apps/qmlandia/"+xP.am[app.mod]\n'
         code+='                 id:fl2\n'
         code+='                 showFiles: false\n'
