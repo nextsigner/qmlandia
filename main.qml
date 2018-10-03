@@ -375,20 +375,20 @@ ApplicationWindow {
                 tshowGit.start()
             }else{
                console.log('Preparando Modulo Presente')
-                /*if(!unik.fileExist(uf)){
+                if(!unik.fileExist(uf)){
                     showS()
                 }else{
                     checkCommit(url)
-                }*/
-                checkCommit(url)
+                }
+                //checkCommit(url)
             }
         }else{
-            /*if(!unik.fileExist(uf)){
+            if(!unik.fileExist(uf)){
                 showS()
             }else{
                 checkCommit(url)
-            }*/
-            checkCommit(url)
+            }
+            //checkCommit(url)
         }
         //checkCommit(url)
     }
