@@ -1,1 +1,0 @@
-/Users/qt/nsp/unik-dev-apps/qmlandia/m2000/s3/commit
