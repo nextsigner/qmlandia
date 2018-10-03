@@ -270,7 +270,7 @@ ApplicationWindow {
         appSettings.cantRun++
 
         if(Qt.platform.os==='android'){
-            qlandPath=appsDir
+            qlandPath=appsDir+'/qmlandia'
         }else{
             qlandPath=unik.getPath(5)
         }

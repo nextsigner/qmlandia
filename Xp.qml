@@ -17,10 +17,20 @@ Item{
         showFiles: false
         sortField: FolderListModel.Name
         //folder: r.cm? xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia': xP.folder=Qt.platform.os!=='windows'?appsDir+'/qmlandia':'file:///'+appsDir+'/qmlandia/'+am[app.mod]
-        folder: Qt.platform.os!=='windows'&&Qt.platform.os!=='osx'&&Qt.platform.os!=='android'?app.qlandPath:'file://'+app.qlandPath
+        //folder: Qt.platform.os!=='windows'&&Qt.platform.os!=='osx'&&Qt.platform.os!=='android'?app.qlandPath+'/qmlandia':'file://'+app.qlandPath+'/qmlandia'
+        //folder: Qt.platform.os!=='android'?'file://'+app.qlandPath+'/qmlandia':'file://'+app.qlandPath
 
         onCountChanged: {
             tfl.restart()
+        }
+        Component.onCompleted: {
+            if(Qt.platform.os==='linux'){
+                fl.folder=app.qlandPath+'/qmlandia'
+            }else if(Qt.platform.os==='android'){
+                fl.folder='file://'+app.qlandPath
+            }else{
+                fl.folder='file://'+app.qlandPath
+            }
         }
     }
     Timer{
