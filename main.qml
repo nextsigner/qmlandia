@@ -114,7 +114,7 @@ ApplicationWindow {
             width: parent.width
             height: appSettings.lvh
             fontSize: app.fs
-            topHandlerHeight: app.fs*0.25
+            topHandlerHeight: Qt.platform.os!=='android'?app.fs*0.25:app.fs*0.5
             anchors.bottom: parent.bottom
             visible: appSettings.logViewVisible
         }
@@ -123,10 +123,10 @@ ApplicationWindow {
             w:app.fs
             h:w
             tp:3
-            d:'Indice'
+            d:'Menu'
             c:app.c3
             b:app.c2
-            t:'\uf022'
+            t:'\uf142'
             anchors.bottom: parent.bottom
             anchors.bottomMargin: app.fs*0.5
             anchors.left: parent.left

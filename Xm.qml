@@ -45,8 +45,9 @@ Item{
             d:'Indice'
             c:app.c3
             b:app.c2
-            t:'\uf022'
+            t:'\uf0c9'
             onClicking: {
+                trb2.restart()
                 app.mod=0
                 if(app.s!==1){
                     app.s=1
@@ -64,32 +65,46 @@ Item{
             c:app.c3
             b:app.c2
             t:'\uf013'
-            onClicking: xC.visible=!xC.visible
-            opacity: xC.visible?1.0:0.5
+            onClicking: {
+                xC.visible=!xC.visible
+                trb2.restart()
+            }
             }
         Boton{
             w:app.fs
             h:w
             tp:3
-            d:'Ver Segmentos de Audio'
+            d:'Ver LogView'
             c:app.c3
             b:app.c2
-            t:'\uf188'
-            onClicking: appSettings.logViewVisible=!appSettings.logViewVisible
-            opacity: appSettings.logViewVisible?1.0:0.5
+            t:''
+            onClicking: {
+                trb2.restart()
+                appSettings.logViewVisible=!appSettings.logViewVisible
+            }
+            Text {
+                id: txtb100
+                text: '\uf188'
+                font.pixelSize: app.fs*0.7
+                color:appSettings.logViewVisible?'red':app.c3
+                font.family: 'FontAwesome'
+                anchors.centerIn: parent
+            }
         }
 
         Boton{
             w:app.fs
             h:w
             tp:3
-            d:'Ver Segmentos de Audio'
+            d:appSettings.cbs?'Modo Ver Segmentos de Audio':'Modo Normal'
             c:app.c3
             b:app.c2
-            t:'A'
-            onClicking: appSettings.cbs=!appSettings.cbs
-            opacity: appSettings.cbs?1.0:0.5
+            t:appSettings.cbs?'1':'0'
+            onClicking: {
+                trb2.restart()
+                appSettings.cbs=!appSettings.cbs
             }
+        }
         Boton{
             w:app.fs
             h:w

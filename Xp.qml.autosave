@@ -9,7 +9,6 @@ Item{
     property var am: []
     property var ars: []
     property bool cm: false
-    //signal listado()
     FolderListModel{
         id:fl
         showHidden: false
