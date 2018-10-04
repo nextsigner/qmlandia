@@ -28,8 +28,11 @@ Item{
                 fl.folder=app.qlandPath+'/qmlandia'
             }else if(Qt.platform.os==='android'){
                 fl.folder='file://'+app.qlandPath
+            }else if(Qt.platform.os==='windows'){
+                fl.folder='file:///'+app.qlandPath
             }else{
-                fl.folder='file://'+app.qlandPath
+                fl.folder='file:///'+app.qlandPath
+                //fl.folder='E:/nsp'
             }
         }
     }

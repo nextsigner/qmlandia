@@ -269,10 +269,20 @@ ApplicationWindow {
         console.log('Ejecuciòn nùmero: '+appSettings.cantRun)
         appSettings.cantRun++
 
-        if(Qt.platform.os==='android'){
+        /*if(Qt.platform.os==='android'){
             qlandPath=appsDir+'/qmlandia'
         }else{
             qlandPath=unik.getPath(5)
+        }*/
+
+        if(Qt.platform.os==='linux'){
+            qlandPath=unik.getPath(5)
+        }else if(Qt.platform.os==='android'){
+            qlandPath=appsDir+'/qmlandia'
+        }else{
+            //qlandPath='file:///'+unik.getPath(5)
+            qlandPath=unik.getPath(5)
+            console.log('Windows qlandPath: '+app.qlandPath)
         }
 
         //Volume
@@ -308,8 +318,10 @@ ApplicationWindow {
              code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
         }else if(Qt.platform.os==='android'){
             code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
-        }else{
-            code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
+         }else if(Qt.platform.os==='windows'){
+             code+='         folder: \'file:///\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
+         }else{
+             code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
         }
         code+='                 id:fl2\n'
         code+='                 showFiles: false\n'
@@ -378,6 +390,7 @@ ApplicationWindow {
                 app.gd= unik.downloadGit(url, folder)
                 tshowGit.start()
             }else{
+                console.log('Preparando Modulo Presente '+folder)
                 xEstado.text+='\nPreparando Modulo Presente '+folder
                 if(!unik.fileExist(uf)){
                     xEstado.text+='\nNo se detecta url... '
@@ -388,6 +401,7 @@ ApplicationWindow {
                 }
             }
         }else{
+            console.log('Mostrando secciòn presente en '+folder)
             xEstado.text+='\nMostrando secciòn presente en '+folder
             showS()
         }
