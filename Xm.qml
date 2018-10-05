@@ -96,6 +96,36 @@ Item{
             w:app.fs
             h:w
             tp:3
+            d:'Forzar Actualizaciòn de Seccion'
+            c:app.c3
+            b:app.c2
+            t:'\uf021'
+            onClicking: {
+                var f=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]
+                var fms=''+f+'/fms'
+                var afms=(''+unik.getFile(fms)).replace(/\n/g, '')
+                var nfms=parseInt(afms)+(1000*60*60*24)
+                var fms2=Qt.platform.os==='android'?fms.replace('file:///', ''):fms.replace('file://', '')
+                var commit=f+'/commit'
+                var commit2=Qt.platform.os==='android'?commit.replace('file:///', ''):commit.replace('file://', '')
+
+                var cl=''
+                cl+='\n\n\n\n\nActualizando Secciòn'
+                cl+='\n\nfms: '+fms2
+                cl+='\n\ncommit: '+commit2
+                cl+='\n\nafms: '+afms
+                cl+='\n\nnfms: '+nfms
+                cl+='\n\n\n\n'
+                console.log(cl)
+                unik.setFile(fms2, ''+nfms)
+                unik.setFile(commit2, 'clean')
+                prepMod()
+            }
+        }
+        Boton{
+            w:app.fs
+            h:w
+            tp:3
             d:appSettings.cbs?'Modo Ver Segmentos de Audio':'Modo Normal'
             c:app.c3
             b:app.c2
