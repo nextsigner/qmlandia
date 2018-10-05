@@ -95,6 +95,11 @@ ApplicationWindow {
                 width: parent.width*0.6
                 wrapMode: Text.WordWrap
                 horizontalAlignment: Text.AlignHCenter
+                onTextChanged: {
+                    if(text!==''){
+                        tShowS.restart()
+                    }
+                }
             }
             MouseArea{
                 anchors.fill: parent
@@ -237,18 +242,12 @@ ApplicationWindow {
         }
     }
     Timer{
-        id:tshowGit
+        id:tShowS
         running: false
-        repeat: true
-        interval: 500
+        repeat: false
+        interval: 25000
         onTriggered: {
-            if(app.gd){
-                console.log('Git Downloaded!')
-                tshowGit.stop()
-                showS()
-            }else{
-                console.log('Git No Downloaded!')
-            }
+            prepMod()
         }
     }
     onVerAyudaChanged: {
@@ -258,22 +257,14 @@ ApplicationWindow {
         }
     }
     onSChanged:{
-        //if(app.iniciada){
         prepMod()
         appSettings.ucs=s
-        //}
     }
     onModChanged: appSettings.umod=mod
 
     Component.onCompleted: {
         console.log('Ejecuciòn nùmero: '+appSettings.cantRun)
         appSettings.cantRun++
-
-        /*if(Qt.platform.os==='android'){
-            qlandPath=appsDir+'/qmlandia'
-        }else{
-            qlandPath=unik.getPath(5)
-        }*/
 
         if(Qt.platform.os==='linux'){
             qlandPath=unik.getPath(5)
@@ -306,7 +297,7 @@ ApplicationWindow {
         xT.ex=0
         controles.asec=[]
         controles.mp.stop()
-        xEstado.text='Preparando '+app.qlandPath+'/'+xP.am[app.mod]
+        xEstado.text='Preparando Modulo: '+parseInt(app.mod+1)+'\nCarpeta: '+app.qlandPath+'/'+xP.am[app.mod]
         for(var i=0;i<xS.children.length;i++){
             xS.children[i].destroy(1)
         }
@@ -361,8 +352,10 @@ ApplicationWindow {
     function prepShowS(){
         app.gd=false
         app.gitfolder=''
-
         var f=''+xP.am[app.mod]+'/'+xP.ars[app.s]
+        if(f.indexOf('undefined')>=0){
+            return
+        }
         var uf=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/url'
         var url=(''+unik.getFile(uf)).replace(/\n/g, '')
         console.log('app.gitfolder from: '+uf)
@@ -380,29 +373,30 @@ ApplicationWindow {
             var sf=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/'+app.gitfolder+'/S.qml'
             console.log('Descargando Mòdulo desde '+url)
             var folder=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]
-            xEstado.text='Cargando secciòn '+folder
             console.log('Descargando Mòdulo en '+folder)
             var uf2=f+'/S.qml'
             var fe=unik.fileExist(sf)
             if(!fe){
                 console.log('app.gitfolder: '+app.gitfolder)
-                xEstado.text='Descargando '+url
-                app.gd= unik.downloadGit(url, folder)
-                tshowGit.start()
+                xEstado.text='Descargando '+url+'\nen '+folder
+                app.gd = unik.downloadGit(url, folder)
+                showS()
             }else{
-                console.log('Preparando Modulo Presente '+folder)
-                xEstado.text+='\nPreparando Modulo Presente '+folder
+                var msg1='Revisando '+folder+'...'
+                console.log(msg1)
+                xEstado.text+=msg1
                 if(!unik.fileExist(uf)){
                     xEstado.text+='\nNo se detecta url... '
                     showS()
                 }else{
-                    xEstado.text+='\nChequeando commit desde '+url
+                    xEstado.text+='\nChequeando Actualizacion desde '+url
                     checkCommit(url)
                 }
             }
         }else{
-            console.log('Mostrando secciòn presente en '+folder)
-            xEstado.text+='\nMostrando secciòn presente en '+folder
+            msg1='Mostrando secciòn presente en '+folder
+            console.log(msg1)
+            xEstado.text+='\n'+msg1
             showS()
         }
     }
@@ -410,8 +404,21 @@ ApplicationWindow {
     function checkCommit(url){
         var folder=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]
         var d = new Date(Date.now())
+        var ms=d.getTime()
+        //var pp=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]
+        var uf=folder+'/commit'
+        console.log('uf:'+uf)
+        var fms=folder+'/fms'
+        var afms=(''+unik.getFile(fms)).replace(/\n/g,'')
+        console.log('afms: '+afms+' fms: '+fms)
+        unik.setFile(fms, ''+ms)
+        if(afms!=='error'&&(parseInt(afms)-ms)<1000*60*60*4){
+            console.log('afms activo: '+afms)
+            showS()
+            return
+        }
         var u1=url.replace('.git', '')
-        var u2=u1+'/commits/master?r='+d.getTime()
+        var u2=u1+'/commits/master?r='+ms
         var xhr = new XMLHttpRequest();
         xhr.open('GET', u2);
         xhr.onreadystatechange = function() {
@@ -430,8 +437,7 @@ ApplicationWindow {
                 var m3=(''+m2[2]).split('<')
                 var ur = ''+m3[0]
                 console.log(ur)
-                var uf=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]+'/commit'
-                console.log('uf:'+uf)
+
                 if(!unik.fileExist(uf)){
                     unik.setFile(uf, ur)
                 }else{
@@ -444,8 +450,8 @@ ApplicationWindow {
                         console.log('app.gitfolder: '+app.gitfolder)
                         xEstado.text='Descargando '+url
                         app.gd= unik.downloadGit(url, folder)
-                        tshowGit.start()
                         unik.setFile(uf, ur)
+                        showS()
                     }
                 }
             }
@@ -474,6 +480,7 @@ ApplicationWindow {
         var obj = Qt.createQmlObject(code, xS, 'xm2')
         xC.z=xS.z+1
         xEstado.text=''
+        tShowS.stop()
         //console.log('Mostrando Secciòn desde carpeta: '+xP.am[app.mod]+'/'+xP.ars[app.s])
         //appSettings.usec=app.s
         //appSettings.umod=app.mod
