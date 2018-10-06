@@ -25,7 +25,7 @@ else
 		echo "Folder destination not exist"
 	else
 		echo "Folder destination is ready..."
-		#cp $DIR/templates/readme $F2/
+		cp $DIR/templates/S.qml $F2/
 		MODULE=""
 		noms=$(echo $F1 | tr "/" "\n")
 		for nn in $noms
