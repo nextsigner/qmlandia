@@ -468,16 +468,18 @@ ApplicationWindow {
             f+='/'+app.gitfolder
         }
         xEstado.text='Renderizando...  '+f
+        var d = new Date(Date.now())
+        var nid=d.getTime()
         var code='import QtQuick 2.0\n'
-        code+='import "'+f+'" as SX\n'
+        code+='import "'+f+'" as SX'+nid+'\n'
         code+='Item{\n'
         code+='anchors.fill:parent\n'
-        code+='     SX.S{}\n'
+        code+='     SX'+nid+'.S{}\n'
         code+='}\n'
         app.mp.source=''+f+'/a1.m4a'
         app.mp.play()
         console.log('Code: '+code)
-        var obj = Qt.createQmlObject(code, xS, 'xm2')
+        var obj = Qt.createQmlObject(code, xS, 'xm2'+nid)
         xC.z=xS.z+1
         xEstado.text=''
         tShowS.stop()
