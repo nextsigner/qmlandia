@@ -101,6 +101,7 @@ Item{
             b:app.c2
             t:'\uf021'
             onClicking: {
+                unik.clearComponentCache()
                 var f=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]
                 var fms=''+f+'/fms'
                 var afms=(''+unik.getFile(fms)).replace(/\n/g, '')
