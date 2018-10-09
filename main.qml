@@ -107,7 +107,9 @@ ApplicationWindow {
                     app.mod=0
                     app.s=0
                 }
-                onClicked: xEstado.text=''
+                onClicked: {
+                    prepMod()
+                }
             }
         }
         Xp{id:xP}
@@ -145,7 +147,7 @@ ApplicationWindow {
         Shortcut {
             sequence: "Shift+Right"
             onActivated: {
-                if(appSettings.cbs){
+                if(!appSettings.cbs){
                     app.mp.seek(app.mp.position+1000)
                 }else{
                     controles.next()
@@ -155,7 +157,7 @@ ApplicationWindow {
         Shortcut {
             sequence: "Shift+Left"
             onActivated: {
-                if(appSettings.cbs){
+                if(!appSettings.cbs){
                     app.mp.seek(app.mp.position-1000)
                 }else{
                     controles.back()
@@ -170,14 +172,14 @@ ApplicationWindow {
             }
         }
         Keys.onRightPressed: {
-            if(!appSettings.cbs){
+            if(appSettings.cbs){
                 app.mp.seek(app.mp.position+1000)
             }else{
                 controles.next()
             }
         }
         Keys.onLeftPressed:  {
-            if(!appSettings.cbs){
+            if(appSettings.cbs){
                 app.mp.seek(app.mp.position-1000)
             }else{
                 controles.back()
@@ -297,6 +299,15 @@ ApplicationWindow {
         xT.ex=0
         controles.asec=[]
         controles.mp.stop()
+        var mod=''+xP.am[app.mod]
+        if(xP.am.length===0){
+            xEstado.text='Error al leer carpetas del sistema...'
+            return
+        }
+        if(mod==='undefined'){
+            xEstado.text='Restaurando modulo...'
+            app.mod=0
+        }
         xEstado.text='Preparando Modulo: '+parseInt(app.mod+1)+'\nCarpeta: '+app.qlandPath+'/'+xP.am[app.mod]
         for(var i=0;i<xS.children.length;i++){
             xS.children[i].destroy(1)

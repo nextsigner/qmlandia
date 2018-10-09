@@ -311,7 +311,7 @@ Rectangle {
         }
     }
     function next(){
-        if(!appSettings.cbs){
+        if(appSettings.cbs){
             appSettings.pcs=app.cants
             mediaPlayer.stop()
             if(app.s===app.cants-1){
@@ -326,7 +326,7 @@ Rectangle {
         }
     }
     function back(){
-        if(!appSettings.cbs){
+        if(appSettings.cbs){
             mediaPlayer.stop()
             if(app.s>0){
                 app.s--
@@ -342,7 +342,7 @@ Rectangle {
         }
     }
     function toBackMod(){
-        if(!appSettings.cbs){
+        if(appSettings.cbs){
             mediaPlayer.stop()
             app.mod--
             app.prepMod()
@@ -352,7 +352,7 @@ Rectangle {
         }
     }
     function toNextMod(){
-        if(!appSettings.cbs){
+        if(appSettings.cbs){
             appSettings.pcs=app.cants
             app.s=0
             app.mod++
