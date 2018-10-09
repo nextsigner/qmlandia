@@ -44,8 +44,8 @@ Item{
                 }
             }
             app.cantmod=r.am.length
-            console.log('1Total de Modulos: '+r.am.length)
-            console.log('1Modulos: '+r.am)
+            console.log('XP Total de Modulos: '+r.am.length)
+            console.log('XP Modulos: '+r.am)
             if(app.cantmod>=2){
                 r.cm=true
             }
