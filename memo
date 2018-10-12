@@ -1,0 +1,4 @@
+Para agregar submodulos
+
+Desde la carpeta qmlandia ejecutar el comando:
+git submodule add https://github.com/nextsigner/qdm1 ./m4000/s0/qdm1
