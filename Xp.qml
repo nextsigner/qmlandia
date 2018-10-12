@@ -21,7 +21,7 @@ Item{
         }
         Component.onCompleted: {
             if(Qt.platform.os==='linux'){
-                fl.folder=app.qlandPath+'/qmlandia'
+                fl.folder=app.qlandPath
             }else if(Qt.platform.os==='android'){
                 fl.folder='file://'+app.qlandPath
             }else if(Qt.platform.os==='windows'){
