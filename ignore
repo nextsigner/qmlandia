@@ -1,8 +1,0 @@
-*.qmlc
-*.qmlc*
-*/*/*
-*/*/qmland*/
-*/*/qland*/
-!*/*/url
-!*/*/titulo
-!*/*/qdm*
