@@ -321,7 +321,11 @@ Rectangle {
                 app.s++
             }
         }else{
-            r.nasec++
+            if(r.asec.length>r.nasec){
+                r.nasec++
+            }else{
+                r.nasec=0
+            }
             mediaPlayer.seek(r.asec[r.nasec]*1000)
         }
     }
@@ -337,7 +341,11 @@ Rectangle {
                 app.s=appSettings.pcs-1
             }
         }else{
-            r.nasec--
+            if(r.nasec>0){
+                r.nasec--
+            }else{
+                r.nasec=0
+            }
             mediaPlayer.seek(r.asec[r.nasec]*1000)
         }
     }
