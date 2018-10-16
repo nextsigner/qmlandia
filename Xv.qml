@@ -6,7 +6,7 @@ Rectangle{
     radius: app.fs*0.15
     color: 'transparent'
     clip:true
-    property int tvh: tv.height
+    property alias tvh: tv.height
     Rectangle{
         id:tv
         width: r.width
