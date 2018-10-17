@@ -268,6 +268,34 @@ ApplicationWindow {
         console.log('Ejecuciòn nùmero: '+appSettings.cantRun)
         appSettings.cantRun++
 
+        var mods1= unik.getFile("ms.json")
+        var modulos
+        try {
+            modulos = JSON.parse(mods1);
+            xEstado.text='Procesando ms.json...'
+        } catch(e) {
+            xEstado.text='Error al cargar ms.json\n'+e
+            return
+         }
+        //xEstado.font.pixelSize=16
+        var mods = modulos['modulos']
+        var cms =Object.keys(mods)
+        for(var i=0;i<cms.length;i++){
+            var r1=Object.keys(mods)[i]
+            var r2=mods[r1]
+            unik.mkdir(r1)
+            var r3=Object.keys(r2)
+            for(var i2=0;i2<r3.length;i2++){
+                var p=r1+'/'+r3[i2]
+                unik.mkdir(p)
+                var d0=r2[''+r3[i2]]
+                var tit=r2[''+r3[i2]][0]
+                var url=r2[''+r3[i2]][1]
+                unik.setFile(p+'/url', url)
+                unik.setFile(p+'/titulo', tit)
+            }
+        }
+        //return
         if(Qt.platform.os==='linux'){
             qlandPath=unik.getPath(5)
         }else if(Qt.platform.os==='android'){
@@ -316,14 +344,14 @@ ApplicationWindow {
         code+='import Qt.labs.folderlistmodel 2.2\n'
         code+='Item{\n'
         code+='         FolderListModel{\n'
-         if(Qt.platform.os==='android'){
-             code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
+        if(Qt.platform.os==='android'){
+            code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
         }else if(Qt.platform.os==='android'){
             code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
-         }else if(Qt.platform.os==='windows'){
-             code+='         folder: \'file:///\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
-         }else{
-             code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
+        }else if(Qt.platform.os==='windows'){
+            code+='         folder: \'file:///\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
+        }else{
+            code+='         folder: \'file://\'+app.qlandPath+\'/\'+xP.am[app.mod]\n'
         }
         code+='                 id:fl2\n'
         code+='                 showFiles: false\n'
@@ -374,7 +402,7 @@ ApplicationWindow {
 
         var eg=unik.fileExist(uf)
         if(eg){
-           console.log('Preparando Url Git...')
+            console.log('Preparando Url Git...')
             var m0=url.split('/')
             var m1=''+m0[m0.length-1]
             var m2=m1.replace('.git', '')

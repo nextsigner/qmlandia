@@ -1,0 +1,10 @@
+{
+    "modulos":{
+        "z0001":{
+            "s0":["Hemos llegado al Fin del Curso", "https://github.com/nextsigner/qdm1000.git"],
+             "s1":["Ver còdigo fuente de este Curso", "https://github.com/nextsigner/qdm1001.git"],
+            "s2":["Mas info en unikode.org - Ver Pàgina", "https://github.com/nextsigner/qdm1002.git"]
+        }
+    },
+    "info":["Curso Interactivo creado por @nextsigner"]
+}
