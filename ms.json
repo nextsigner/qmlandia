@@ -1,5 +1,17 @@
 {
     "modulos":{
+        "m2000":{
+            "r2":["intro", "https://github.com/nextsigner/qland101.git"],
+             "r3":["indice", "https://github.com/nextsigner/qland102.git"],
+            "s0":["Contexto y Caractirìsticas de este Curso", "https://github.com/nextsigner/qland103.git"],
+            "s1":["Este es un Curso Interactivo", "https://github.com/nextsigner/qland104.git"],
+            "s2":["¿En que consiste este Curso?", "https://github.com/nextsigner/qland105.git"],
+            "s3":["¿Què herramientas necesito para este Curso?", "https://github.com/nextsigner/qland106.git"],
+            "s4":["¿Què conocimientos previos debo tener para este Curso?", "https://github.com/nextsigner/qland107.git"]
+             },
+        "m4000":{
+            "s0":["Elemento Item", "https://github.com/nextsigner/qland001.git"]
+             },
         "z0001":{
             "s0":["Hemos llegado al Fin del Curso", "https://github.com/nextsigner/qdm1000.git"],
              "s1":["Ver còdigo fuente de este Curso", "https://github.com/nextsigner/qdm1001.git"],
