@@ -12,6 +12,16 @@
         "m4000":{
             "s0":["Elemento Item", "https://github.com/nextsigner/qland001.git"]
              },
+        "m6000":{
+            "s0":["¿Què es QML?", "https://github.com/nextsigner/qland200.git"],
+            "s0b":["Caractarìsticas Tècnicas de QML", "https://github.com/nextsigner/qland202.git"],
+            "s1":["Què es un Documento QML", "https://github.com/nextsigner/qland203.git"],
+            "s2":["Declaraciones de Importaciòn", "https://github.com/nextsigner/qland204.git"],
+            "s3":["Còmo utilizar la Declaraciòn IMPORT", "https://github.com/nextsigner/qland205.git"],
+            "s4":["Còmo importar un archivo JavaScript", "https://github.com/nextsigner/qland206.git"],
+            "s5":["Còmo Depurar o Encontrar Errores en el Còdigo", "https://github.com/nextsigner/qland207.git"],
+            "t5":["Aviso sobre futuras secciones y modulos", "https://github.com/nextsigner/qland208.git"]
+             },        
         "z0001":{
             "s0":["Hemos llegado al Fin del Curso", "https://github.com/nextsigner/qdm1000.git"],
              "s1":["Ver còdigo fuente de este Curso", "https://github.com/nextsigner/qdm1001.git"],
