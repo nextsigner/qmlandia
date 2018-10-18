@@ -305,7 +305,7 @@ ApplicationWindow {
                 unik.setFile(p+'/titulo', tit)
             }
         }
-        return
+        //return
 
 
         //Volume
