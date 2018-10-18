@@ -268,13 +268,23 @@ ApplicationWindow {
         console.log('Ejecuciòn nùmero: '+appSettings.cantRun)
         appSettings.cantRun++
 
-        var mods1= unik.getFile("ms.json")
+        if(Qt.platform.os==='linux'){
+            qlandPath=unik.getPath(5)
+        }else if(Qt.platform.os==='android'){
+            qlandPath=appsDir+'/qmlandia'
+        }else{
+            //qlandPath='file:///'+unik.getPath(5)
+            qlandPath=unik.getPath(5)
+            console.log('Windows qlandPath: '+app.qlandPath)
+        }
+
+        var mods1= unik.getFile(qlandPath+"/ms.json")
         var modulos
         try {
             modulos = JSON.parse(mods1);
-            xEstado.text='Procesando ms.json...'
+            xEstado.text='Procesando\n'+qlandPath+'/ms.json...'
         } catch(e) {
-            xEstado.text='Error al cargar ms.json\n'+e
+            xEstado.text='Error al cargar ms.json\n'+e+'\n'+qlandPath+'/ms.json...'
             return
          }
         //xEstado.font.pixelSize=16
@@ -295,16 +305,8 @@ ApplicationWindow {
                 unik.setFile(p+'/titulo', tit)
             }
         }
-        //return
-        if(Qt.platform.os==='linux'){
-            qlandPath=unik.getPath(5)
-        }else if(Qt.platform.os==='android'){
-            qlandPath=appsDir+'/qmlandia'
-        }else{
-            //qlandPath='file:///'+unik.getPath(5)
-            qlandPath=unik.getPath(5)
-            console.log('Windows qlandPath: '+app.qlandPath)
-        }
+        return
+
 
         //Volume
         if(appSettings.volume<0&&appSettings.volume>1){
