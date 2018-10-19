@@ -10,14 +10,15 @@ Rectangle {
     clip:true
     visible: false
     z:9999
-    Rectangle{
+    Flickable{
         id:xS
         width: r.width*0.98
         height: r.height*0.98
         anchors.centerIn: r
-        color: app.c3
+       contentWidth: colCentral.width
+       contentHeight: colCentral.height
         Column{
-            anchors.centerIn: parent
+            id:colCentral
             spacing: app.fs*2
             Text {
                 text: '<b>Confuguracion</b>'
@@ -242,6 +243,56 @@ Rectangle {
 
             }
 
+            Row{
+                height: app.fs*0.5
+                Text {
+                    text: "Resetear Qmlandia: "
+                    font.pixelSize: app.fs*0.5
+                    color: app.c2
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                Boton{
+                    anchors.verticalCenter: parent.verticalCenter
+                    w:tb1.contentWidth+app.fs
+                    h:app.fs
+                    tp:3
+                    d:'Regenerar el archivo cfg.json'
+                    c:app.c2
+                    b:app.c2
+                    t:''
+                    onClicking: {
+                        var j=appsDir+'/cfg.json'
+                        var c='{"arg0":"-folder='+appsDir+'/qmlandia", "arg1":"-dir='+appsDir+'/qmlandia"}'
+                        unik.setFile(j, c)
+
+                        /*var ncode='"import QtQuick 2.0\\n'
+                        ncode+='Item\\n{
+                                Component.onCompleted:app.restartApp()\\n
+                        }\\n"'*/
+                        var ncode='"import QtQuick 2.0\\nItem{\\nComponent.onCompleted:unik.restartApp()\\n}"'
+                        var code='import QtQuick 2.0\n'
+                        code+='Item{\n'
+                        code+='     id:xdc111\n'
+                        code+='     anchors.fill:parent\n'
+                        code+='     Xdc{\n'
+                        code+='     consulta: "Se ha reconfigurado Qmlandia\\nPara cargar la \\nnueva configuraciòn\\nes necesario reiniciar la aplicaciòn.\\n\\n¿Desea reiniciar ahora?"\n'
+                        code+='     code: '+ncode+'\n'
+                        code+='}\n'
+                        code+='}\n'
+
+                        var obj = Qt.createQmlObject(code, r, 'xm2222')
+                        //obj.z=999999
+                    }
+                    Text {
+                        id:tb1
+                        text: "Resetear Archivo de Configuraciòn"
+                        font.pixelSize: app.fs*0.5
+                        color: app.c3
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                }
+
+            }
 
         }
         Boton{

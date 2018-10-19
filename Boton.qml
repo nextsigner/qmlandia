@@ -17,7 +17,7 @@ Item {
     Rectangle{
         id: rect
         width:  raiz.width
-        height: width
+        height: raiz.height
         color: 'transparent'
         radius: raiz.r
         anchors.centerIn: raiz        
