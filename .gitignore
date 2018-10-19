@@ -1,5 +1,10 @@
+*.autosave
 *.qmlc
 *.qmlc*
+*/
+!*.qml
+!h/
+!*/titulo
 */*/*
 */*/qmland*/
 */*/qland*/
