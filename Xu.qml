@@ -47,7 +47,7 @@ Item{
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        var j=appsDir+'/temp_config.json'
+                        var j=appsDir+'/temp_cfg.json'
                         var c='{"arg":"-git=https://github.com/nextsigner/qmlandia.git", "arg1":"-dir='+appsDir+'/qmlandia"}'
                         unik.setFile(j, c)
                         unik.restartApp()
