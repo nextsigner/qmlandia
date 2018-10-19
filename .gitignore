@@ -1,13 +1,6 @@
-*.autosave
-*.qmlc
-*.qmlc*
-!*.qml
+*
 */
-*/*/*
 !h/
-!*/titulo
-*/*/qmland*/
-*/*/qland*/
-!*/*/url
-!*/*/titulo
-
+!*.qml
+!.gitignore
+!ms.json
