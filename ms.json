@@ -1,6 +1,7 @@
 {
     "modulos":{
         "m2000":{
+            "par":["En que consiste este Curso Interactivo"],
             "r2":["intro", "https://github.com/nextsigner/qland101.git"],
              "r3":["indice", "https://github.com/nextsigner/qland102.git"],
             "s0":["Contexto y Caractirìsticas de este Curso", "https://github.com/nextsigner/qland103.git"],
@@ -10,9 +11,11 @@
             "s4":["¿Què conocimientos previos debo tener para este Curso?", "https://github.com/nextsigner/qland107.git"]
              },
         "m4000":{
+            "par":["Elementos QML"],
             "s0":["Elemento Item", "https://github.com/nextsigner/qland001.git"]
              },
         "m6000":{
+            "par":["Primeros Conceptos"],
             "s0":["¿Què es QML?", "https://github.com/nextsigner/qland200.git"],
             "s0b":["Caractarìsticas Tècnicas de QML", "https://github.com/nextsigner/qland202.git"],
             "s1":["Què es un Documento QML", "https://github.com/nextsigner/qland203.git"],
@@ -23,6 +26,7 @@
             "t5":["Aviso sobre futuras secciones y modulos", "https://github.com/nextsigner/qland208.git"]
              },        
         "z0001":{
+            "par":["Informaciòn adicional"],
             "s0":["Hemos llegado al Fin del Curso", "https://github.com/nextsigner/qdm1000.git"],
              "s1":["Ver còdigo fuente de este Curso", "https://github.com/nextsigner/qdm1001.git"],
             "s2":["Mas info en unikode.org - Ver Pàgina", "https://github.com/nextsigner/qdm1002.git"]

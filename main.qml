@@ -296,13 +296,19 @@ ApplicationWindow {
             unik.mkdir(r1)
             var r3=Object.keys(r2)
             for(var i2=0;i2<r3.length;i2++){
-                var p=r1+'/'+r3[i2]
-                unik.mkdir(p)
-                var d0=r2[''+r3[i2]]
-                var tit=r2[''+r3[i2]][0]
-                var url=r2[''+r3[i2]][1]
-                unik.setFile(p+'/url', url)
-                unik.setFile(p+'/titulo', tit)
+                if(i2>0){
+                    var p=r1+'/'+r3[i2]
+                    unik.mkdir(p)
+                    var d0=r2[''+r3[i2]]
+                    var tit=r2[''+r3[i2]][0]
+                    var url=r2[''+r3[i2]][1]
+                    unik.setFile(p+'/url', url)
+                    unik.setFile(p+'/titulo', tit)
+                }else{
+                    var tf=r1+'/titulo'
+                    var tit=r2[''+r3[i2]][0]
+                    unik.setFile(tf, tit)
+                }
             }
         }
         //return
