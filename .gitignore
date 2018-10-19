@@ -4,3 +4,5 @@
 !*.qml
 !.gitignore
 !ms.json
+!screenshot.png
+!README.md
