@@ -48,7 +48,7 @@ Item{
                     anchors.fill: parent
                     onClicked: {
                         var j=appsDir+'/temp_config.json'
-                        var c='{"mode":"-git", "arg1": "https://github.com/nextsigner/qmlandia.git"}'
+                        var c='{"arg":"-git=https://github.com/nextsigner/qmlandia.git"}'
                         unik.setFile(j, c)
                         unik.restartApp()
                     }
