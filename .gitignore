@@ -1,7 +1,6 @@
 *.autosave
 *.qmlc
 *.qmlc*
-*/
 !*.qml
 !h/
 !*/titulo
