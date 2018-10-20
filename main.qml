@@ -278,41 +278,42 @@ ApplicationWindow {
             console.log('Windows qlandPath: '+app.qlandPath)
         }
 
-        var mods1= unik.getFile(qlandPath+"/ms.json")
-        var modulos
-        try {
-            modulos = JSON.parse(mods1);
-            xEstado.text='Procesando\n'+qlandPath+'/ms.json...'
-        } catch(e) {
-            xEstado.text='Error al cargar ms.json\n'+e+'\n'+qlandPath+'/ms.json...'
-            return
-         }
-        //xEstado.font.pixelSize=16
-        var mods = modulos['modulos']
-        var cms =Object.keys(mods)
-        for(var i=0;i<cms.length;i++){
-            var r1=Object.keys(mods)[i]
-            var r2=mods[r1]
-            unik.mkdir(r1)
-            var r3=Object.keys(r2)
-            for(var i2=0;i2<r3.length;i2++){
-                if(i2>0){
-                    var p=r1+'/'+r3[i2]
-                    unik.mkdir(p)
-                    var d0=r2[''+r3[i2]]
-                    var tit=r2[''+r3[i2]][0]
-                    var url=r2[''+r3[i2]][1]
-                    unik.setFile(p+'/url', url)
-                    unik.setFile(p+'/titulo', tit)
-                }else{
-                    var tf=r1+'/titulo'
-                    var tit=r2[''+r3[i2]][0]
-                    unik.setFile(tf, tit)
+        if(Qt.platform.os!=="android"){
+            var mods1= unik.getFile(qlandPath+"/ms.json")
+            var modulos
+            try {
+                modulos = JSON.parse(mods1);
+                xEstado.text='Procesando\n'+qlandPath+'/ms.json...'
+            } catch(e) {
+                xEstado.text='Error al cargar ms.json\n'+e+'\n'+qlandPath+'/ms.json...'
+                return
+            }
+            //xEstado.font.pixelSize=16
+            var mods = modulos['modulos']
+            var cms =Object.keys(mods)
+            for(var i=0;i<cms.length;i++){
+                var r1=Object.keys(mods)[i]
+                var r2=mods[r1]
+                unik.mkdir(r1)
+                var r3=Object.keys(r2)
+                for(var i2=0;i2<r3.length;i2++){
+                    if(i2>0){
+                        var p=r1+'/'+r3[i2]
+                        unik.mkdir(p)
+                        var d0=r2[''+r3[i2]]
+                        var tit=r2[''+r3[i2]][0]
+                        var url=r2[''+r3[i2]][1]
+                        unik.setFile(p+'/url', url)
+                        unik.setFile(p+'/titulo', tit)
+                    }else{
+                        var tf=r1+'/titulo'
+                        var tit=r2[''+r3[i2]][0]
+                        unik.setFile(tf, tit)
+                    }
                 }
             }
+            //return
         }
-        //return
-
 
         //Volume
         if(appSettings.volume<0&&appSettings.volume>1){
