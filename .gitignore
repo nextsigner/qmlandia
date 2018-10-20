@@ -1,5 +1,6 @@
-*
-*/
+*.qmlc
+*.autosave
+*/*/*/
 !h/
 !*.qml
 !.gitignore
