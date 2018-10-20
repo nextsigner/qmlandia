@@ -121,25 +121,45 @@ ApplicationWindow {
             width: parent.width
             height: appSettings.lvh
             fontSize: app.fs
-            topHandlerHeight: Qt.platform.os!=='android'?app.fs*0.25:app.fs*0.5
+            topHandlerHeight: Qt.platform.os!=='android'?app.fs*0.25:app.fs*0.75
             anchors.bottom: parent.bottom
             visible: appSettings.logViewVisible
         }
-        Xm{id:xM}
-        Boton{
-            w:app.fs
-            h:w
-            tp:3
-            d:'Menu'
-            c:app.c3
-            b:app.c2
-            t:'\uf142'
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: app.fs*0.5
+        Xm{id:xM;onPressed: xBM.opacity=0.3;}
+        Item{
+            id:xBM
+            width: xM.botSize
+            height: width
+            anchors.top: parent.top
+            anchors.topMargin: app.fs*0.1
             anchors.left: parent.left
-            anchors.leftMargin: app.fs*0.5
-            onClicking: {
-                xM.opacity=xM.opacity===0.0?1.0:0.0
+            anchors.leftMargin: xM.botSize*0.1
+            opacity: 0.3
+            Behavior on opacity{NumberAnimation{duration:750}}
+            Timer{
+                running: xBM.opacity<1.0
+                repeat: false
+                interval: 5000
+                onTriggered: xBM.opacity=0.3
+            }
+            Boton{
+                w:xM.botSize
+                h:w
+                tp:3
+                d:'Menu'
+                c:app.c3
+                b:app.c2
+                t:'\uf142'
+            }
+            MouseArea{
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered:xBM.opacity=1.0
+                onExited: xBM.opacity=0.3
+                onClicked: {
+                    xBM.opacity=1.0
+                    xM.opacity=xM.opacity===0.0?1.0:0.0
+                }
             }
         }
         focus: true
@@ -316,7 +336,7 @@ ApplicationWindow {
         }
 
         //Volume
-        if(appSettings.volume<0&&appSettings.volume>1){
+        if(appSettings.cantRun===1){
             appSettings.volume=0.8
         }
         app.mod=appSettings.umod

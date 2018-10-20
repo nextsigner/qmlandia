@@ -12,12 +12,12 @@ Rectangle {
     z:9999
     Flickable{
         id:xS
-        width: r.width*0.98
-        height: r.height*0.98
-        anchors.centerIn: r
+        width: colCentral.width
+        height: r.height
        contentWidth: colCentral.width
        contentHeight: colCentral.height
-        Column{
+       anchors.horizontalCenter: r.horizontalCenter
+       Column{
             id:colCentral
             spacing: app.fs*2
             Text {
@@ -282,7 +282,7 @@ Rectangle {
                         text: "Resetear Archivo de Configuraciòn"
                         font.pixelSize: app.fs*0.5
                         color: app.c3
-                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.verticalCenter: parent
                     }
                 }
 
@@ -299,7 +299,7 @@ Rectangle {
                 }
                 Boton{
                     anchors.verticalCenter: parent.verticalCenter
-                    w:tb1.contentWidth+app.fs
+                    w:tb2.contentWidth+app.fs
                     h:app.fs
                     tp:3
                     d:'Descargar desde Github.com'
@@ -314,10 +314,10 @@ Rectangle {
                     }
                     Text {
                         id:tb2
-                        text: "Resetear Archivo de Configuraciòn"
+                        text: "Descargar"
                         font.pixelSize: app.fs*0.5
                         color: app.c3
-                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.verticalCenter: parent
                     }
                 }
 

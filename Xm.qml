@@ -2,13 +2,17 @@ import QtQuick 2.0
 Item{
     id:r
     width: app.fs*2
-    height: app.al-app.fs*2
-    anchors.left: r.left
-    anchors.leftMargin: app.fs*0.25
+    height: colbots.height+app.fs
+    //anchors.left: r.left
+    //anchors.leftMargin: app.fs*0.25
+    x:opacity!==0.0?app.fs*0.25:0-width
     anchors.verticalCenter: parent.verticalCenter
     opacity:0.0
     enabled:r.opacity>0.0
-    Behavior on opacity{NumberAnimation{duration:500}}
+    property int botSize: Qt.platform.os==='android'?app.fs*2:app.fs
+    signal pressed
+    Behavior on opacity{NumberAnimation{duration:250}}
+    Behavior on x{NumberAnimation{duration:250}}
     onOpacityChanged: {
         if(opacity===1.0){
             trb2.restart()
@@ -28,6 +32,15 @@ Item{
             r.opacity=0.0
         }
     }
+    Rectangle{
+        width: r.width*2
+        height: r.height+app.fs
+        color: app.c3
+        opacity: 0.5
+        anchors.verticalCenter: r.verticalCenter
+        anchors.right: r.right
+        anchors.rightMargin: 0-app.fs*0.5
+    }
     MouseArea{
         anchors.fill: r
         enabled: r.opacity===1.0
@@ -36,17 +49,20 @@ Item{
         onPositionChanged: trb2.restart()
     }
     Column{
+        id:colbots
         anchors.centerIn: parent
         spacing: app.fs*0.5
         Boton{
-            w:app.fs
+            w:r.botSize
             h:w
             tp:3
             d:'Indice'
             c:app.c3
             b:app.c2
             t:'\uf0c9'
+            visible:app.mod===0&&app.s===1?false:true
             onClicking: {
+                r.pressed()
                 trb2.restart()
                 app.mod=0
                 if(app.s!==1){
@@ -58,7 +74,7 @@ Item{
             }
         }
         Boton{
-            w:app.fs
+            w:r.botSize
             h:w
             tp:3
             d:'Confugurar'
@@ -66,12 +82,13 @@ Item{
             b:app.c2
             t:'\uf013'
             onClicking: {
+                r.pressed()
                 xC.visible=!xC.visible
                 trb2.restart()
             }
-            }
+        }
         Boton{
-            w:app.fs
+            w:r.botSize
             h:w
             tp:3
             d:'Ver LogView'
@@ -79,13 +96,14 @@ Item{
             b:app.c2
             t:''
             onClicking: {
+                r.pressed()
                 trb2.restart()
                 appSettings.logViewVisible=!appSettings.logViewVisible
             }
             Text {
                 id: txtb100
                 text: '\uf188'
-                font.pixelSize: app.fs*0.7
+                font.pixelSize: r.botSize*0.7
                 color:appSettings.logViewVisible?'red':app.c3
                 font.family: 'FontAwesome'
                 anchors.centerIn: parent
@@ -93,7 +111,7 @@ Item{
         }
 
         Boton{
-            w:app.fs
+            w:r.botSize
             h:w
             tp:3
             d:'Forzar Actualizaciòn de Seccion'
@@ -101,6 +119,7 @@ Item{
             b:app.c2
             t:'\uf021'
             onClicking: {
+                r.pressed()
                 unik.clearComponentCache()
                 var f=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]
                 var fms=''+f+'/fms'
@@ -124,7 +143,7 @@ Item{
             }
         }
         Boton{
-            w:app.fs
+            w:r.botSize
             h:w
             tp:3
             d:appSettings.cbs?'Modo Ver Segmentos de Audio':'Modo Normal'
@@ -132,19 +151,23 @@ Item{
             b:app.c2
             t:appSettings.cbs?'1':'0'
             onClicking: {
+                r.pressed()
                 trb2.restart()
                 appSettings.cbs=!appSettings.cbs
             }
         }
         Boton{
-            w:app.fs
+            w:r.botSize
             h:w
             tp:3
             d:'Apagar'
             c:app.c3
             b:app.c2
             t:'\uf011'
-            onClicking: Qt.quit()
+            onClicking: {
+                r.pressed()
+                Qt.quit()
             }
+        }
     }
 }

@@ -70,6 +70,12 @@ Rectangle {
             rb.opacity=0.0
         }
     }
+    Rectangle{
+        id:xAsecs
+        anchors.fill: seekSlider
+        color: 'transparent'
+        visible: !appSettings.cbs
+    }
     SeekControlFinal{
         id: seekSlider
         width: parent.width*0.8
@@ -110,12 +116,6 @@ Rectangle {
             rb.opacity=1.0
         }
     }
-    Rectangle{
-        id:xAsecs
-        anchors.fill: seekSlider
-        color: 'transparent'
-        visible: !appSettings.cbs
-    }
     Text {
         id: txtInfo
         font.pixelSize: app.fs*0.5
@@ -126,27 +126,6 @@ Rectangle {
         text: 'Modulo '+parseInt(app.mod+1)+' de '+app.cantmod+' Secciòn '+parseInt(app.s+1)+' de '+app.cants
         visible:rb.opacity===1.0
     }
-
-    /*Row{
-        anchors.left: r.left
-        anchors.leftMargin: app.fs*0.25
-        anchors.bottom: r.bottom
-        anchors.bottomMargin: app.fs*0.25
-        spacing: app.fs*0.5
-        visible: rb.opacity===1.0
-        Boton{
-            w:app.fs
-            h:w
-            tp:3
-            d:'Indice'
-            c:app.c3
-            b:app.c2
-            t:'\uf022'
-            onClicking: {
-                xM.opacity=xM.opacity===0.0?1.0:0.0
-            }
-        }
-        }*/
 
     Rectangle{
         width: rb.width+app.fs
@@ -267,20 +246,35 @@ Rectangle {
         for(var i=0;i<xAsecs.children.length;i++){
             xAsecs.children[i].destroy(1)
         }
+
+        var npx=0-app.fs+1;
+        var alt=0;
+        var xan=0;
         for(var i=0;i<r.asec.length;i++){
+            var d1=mediaPlayer.duration-(r.asec[i]*1000)
+            var d2=d1/mediaPlayer.duration
+            npx=seekSlider.width*(1.0-d2)
+            if(npx<=xan&&i!==0){
+                alt++
+            }else{
+                alt=1
+            }
             var c='import QtQuick 2.0
                         Rectangle{
                                 width: 4
-                                height: parent.height
+                                height: r.rb.opacity===1.0?parent.height*'+alt+':seekSlider.height
                                 color:"red"
+                                anchors.bottom:parent.verticalCenter
+                                Behavior on height {NumberAnimation{duration:250}}
                                 Rectangle{
-                                    width: app.fs
+                                    width: r.rb.opacity===1.0?app.fs:0
                                     height: width
                                     color:"red"
                                     radius:width*0.5
                                     anchors.bottom:parent.top
                                     anchors.horizontalCenter: parent.horizontalCenter
                                     visible: rb.opacity===1.0
+                                    Behavior on width {NumberAnimation{duration:250}}
                                     Text{
                                         text:""+parseInt('+i+'+1)
                                         font.pixelSize:app.fs*0.6
@@ -289,6 +283,9 @@ Rectangle {
                                     }
                                     MouseArea{
                                            anchors.fill: parent
+                                            hoverEnabled: true
+                                            onEntered: trb.stop()
+                                            onExited: trb.restart()
                                            onClicked:{
                                                     r.nasec='+i+'
                                                     mediaPlayer.seek(r.asec[r.nasec]*1000)
@@ -298,9 +295,52 @@ Rectangle {
                         }
         '
             var obj = Qt.createQmlObject(c, xAsecs, 'xasecs')
+            obj.x=npx
+            xan=obj.x+app.fs
+            /*var xan=0;
             var d1=mediaPlayer.duration-(r.asec[i]*1000)
             var d2=d1/mediaPlayer.duration
-            obj.x=seekSlider.width*(1.0-d2)
+            var npx=seekSlider.width*(1.0-d2)
+            var alt=0;
+            for(var i=0;i<r.asec.length;i++){
+                if(xan+app.fs>npx){
+                    alt=0
+                }else{
+                    alt++
+                }
+                var c='import QtQuick 2.0
+                            Rectangle{
+                                    width: 4
+                                    height: parent.height*'+alt+'
+                                    color:"red"
+                                    anchors.bottom:parent.verticalCenter
+                                    Rectangle{
+                                        width: app.fs
+                                        height: width
+                                        color:"red"
+                                        radius:width*0.5
+                                        anchors.bottom:parent.top
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                        visible: rb.opacity===1.0
+                                        Text{
+                                            text:""+parseInt('+i+'+1)
+                                            font.pixelSize:app.fs*0.6
+                                            color: "white"
+                                            anchors.centerIn: parent
+                                        }
+                                        MouseArea{
+                                               anchors.fill: parent
+                                               onClicked:{
+                                                        r.nasec='+i+'
+                                                        mediaPlayer.seek(r.asec[r.nasec]*1000)
+                                                }
+                                        }
+                                    }
+                            }
+            '
+                var obj = Qt.createQmlObject(c, xAsecs, 'xasecs')
+                obj.x=seekSlider.width*(1.0-d2)
+                xan=obj.x+app.fs*/
         }
     }
     function play(){
