@@ -249,7 +249,7 @@ ApplicationWindow {
         repeat: false
         interval: 25000
         onTriggered: {
-            prepMod()
+            xEstado.text='La carga de la secciòn\nha tenido problemas para cargarse\ncorrentamente.\n\nTocar la pantalla para reintentar.'
         }
     }
     onVerAyudaChanged: {
