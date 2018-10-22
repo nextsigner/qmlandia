@@ -125,6 +125,11 @@ ApplicationWindow {
             anchors.bottom: parent.bottom
             visible: appSettings.logViewVisible
         }
+        Xb{
+            id:xB
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: xT.top
+        }
         Xm{id:xM;onPressed: xBM.opacity=0.3;}
         Item{
             id:xBM
@@ -279,8 +284,10 @@ ApplicationWindow {
         }
     }
     onSChanged:{
-        prepMod()
-        appSettings.ucs=s
+        if(xP.cm){
+            prepMod()
+            appSettings.ucs=s
+        }
     }
     onModChanged: appSettings.umod=mod
 
@@ -293,7 +300,6 @@ ApplicationWindow {
         }else if(Qt.platform.os==='android'){
             qlandPath=appsDir+'/qmlandia'
         }else{
-            //qlandPath='file:///'+unik.getPath(5)
             qlandPath=unik.getPath(5)
             console.log('Windows qlandPath: '+app.qlandPath)
         }
@@ -447,6 +453,7 @@ ApplicationWindow {
             if(!fe){
                 console.log('app.gitfolder: '+app.gitfolder)
                 xEstado.text='Descargando '+url+'\nen '+folder
+                xB.visible=true
                 app.gd = unik.downloadGit(url, folder)
                 showS()
             }else{
@@ -468,8 +475,7 @@ ApplicationWindow {
             showS()
         }
     }
-
-    function checkCommit(url){
+     function checkCommit(url){
         var folder=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]
         var d = new Date(Date.now())
         var ms=d.getTime()
