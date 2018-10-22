@@ -13,6 +13,7 @@ Rectangle {
     property bool cpvisible: rb.opacity===1.0
     property var asec: [] //Array Seconds
     property int  nasec: 0
+    property int botSize: Qt.platform.os==='android'?app.fs*2:app.fs
     MediaPlayer {
         id: mediaPlayer
         property bool p
@@ -126,7 +127,6 @@ Rectangle {
         text: 'Modulo '+parseInt(app.mod+1)+' de '+app.cantmod+' Secciòn '+parseInt(app.s+1)+' de '+app.cants
         visible:rb.opacity===1.0
     }
-
     Rectangle{
         width: rb.width+app.fs
         height: rb.height+app.fs
@@ -178,7 +178,7 @@ Rectangle {
                 trb.restart()
                 back()
             }
-            enabled: !appSettings.cbs?app.s!==0||app.mod!==0:r.nasec>0
+            enabled: appSettings.cbs?app.s!==0||app.mod!==0:r.nasec>0
             opacity: enabled?1.0:0.5
         }
         Boton{
@@ -206,7 +206,7 @@ Rectangle {
                 trb.restart()
                 next()
             }
-            enabled: !appSettings.cbs?app.mod<app.cantmod-1||app.s<app.cants-1:r.nasec<r.asec.length
+            enabled: appSettings.cbs?app.mod<app.cantmod-1||app.s<app.cants-1:r.nasec<r.asec.length
             opacity: enabled?1.0:0.5
         }
         Boton{
@@ -228,6 +228,28 @@ Rectangle {
             w:app.fs*1.5
             h:w
             tp:3
+            d:appSettings.cbs?'Modo Ver Segmentos de Audio':'Modo Normal'
+            c:app.c3
+            b:app.c2
+            t:'\uf024'
+            visible: controles.asec.length!==0
+            onClicking: {
+
+                appSettings.cbs=!appSettings.cbs
+            }
+            Text {
+                text: '\uf05e'
+                font.family: "FontAwesome"
+                font.pixelSize:app.fs*1.5
+                color:'red'
+                visible:appSettings.cbs
+                anchors.centerIn: parent
+            }
+        }
+        Boton{
+            w:app.fs*1.5
+            h:w
+            tp:3
             d:'Ayuda de esta secciòn'
             c:app.c3
             b:app.c2
@@ -240,14 +262,16 @@ Rectangle {
         }
     }
     onAsecChanged: {
-        //setAsecs()
+        if(asec.length>0){
+            appSettings.cbs=false
+        }
     }
     function setAsecs(){
         for(var i=0;i<xAsecs.children.length;i++){
             xAsecs.children[i].destroy(1)
         }
 
-        var npx=0-app.fs+1;
+        var npx=0-r.botSize+1;
         var alt=0;
         var xan=0;
         for(var i=0;i<r.asec.length;i++){
@@ -262,12 +286,19 @@ Rectangle {
             var c='import QtQuick 2.0
                         Rectangle{
                                 width: 4
-                                height: r.rb.opacity===1.0?parent.height*'+alt+':seekSlider.height
-                                color:"red"
+                                height: r.rb.opacity===1.0?r.botSize*'+alt+':seekSlider.height
+                                color:r.rb.opacity===0.0?"transparent":"red"
                                 anchors.bottom:parent.verticalCenter
                                 Behavior on height {NumberAnimation{duration:250}}
+                                Text {
+                                        text:"\uf024"
+                                        font.family: "FontAwesome"
+                                        font.pixelSize:parent.height
+                                        color:"red"
+                                        visible:r.rb.opacity==0.0
+                                }
                                 Rectangle{
-                                    width: r.rb.opacity===1.0?app.fs:0
+                                    width: r.rb.opacity===1.0?r.botSize:0
                                     height: width
                                     color:"red"
                                     radius:width*0.5
@@ -277,7 +308,7 @@ Rectangle {
                                     Behavior on width {NumberAnimation{duration:250}}
                                     Text{
                                         text:""+parseInt('+i+'+1)
-                                        font.pixelSize:app.fs*0.6
+                                        font.pixelSize:r.botSize*0.6
                                         color: "white"
                                         anchors.centerIn: parent
                                     }
@@ -296,52 +327,8 @@ Rectangle {
         '
             var obj = Qt.createQmlObject(c, xAsecs, 'xasecs')
             obj.x=npx
-            xan=obj.x+app.fs
-            /*var xan=0;
-            var d1=mediaPlayer.duration-(r.asec[i]*1000)
-            var d2=d1/mediaPlayer.duration
-            var npx=seekSlider.width*(1.0-d2)
-            var alt=0;
-            for(var i=0;i<r.asec.length;i++){
-                if(xan+app.fs>npx){
-                    alt=0
-                }else{
-                    alt++
-                }
-                var c='import QtQuick 2.0
-                            Rectangle{
-                                    width: 4
-                                    height: parent.height*'+alt+'
-                                    color:"red"
-                                    anchors.bottom:parent.verticalCenter
-                                    Rectangle{
-                                        width: app.fs
-                                        height: width
-                                        color:"red"
-                                        radius:width*0.5
-                                        anchors.bottom:parent.top
-                                        anchors.horizontalCenter: parent.horizontalCenter
-                                        visible: rb.opacity===1.0
-                                        Text{
-                                            text:""+parseInt('+i+'+1)
-                                            font.pixelSize:app.fs*0.6
-                                            color: "white"
-                                            anchors.centerIn: parent
-                                        }
-                                        MouseArea{
-                                               anchors.fill: parent
-                                               onClicked:{
-                                                        r.nasec='+i+'
-                                                        mediaPlayer.seek(r.asec[r.nasec]*1000)
-                                                }
-                                        }
-                                    }
-                            }
-            '
-                var obj = Qt.createQmlObject(c, xAsecs, 'xasecs')
-                obj.x=seekSlider.width*(1.0-d2)
-                xan=obj.x+app.fs*/
-        }
+            xan=obj.x+r.botSize
+         }
     }
     function play(){
         if(mediaPlayer.p){

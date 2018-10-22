@@ -159,7 +159,10 @@ ApplicationWindow {
             MouseArea{
                 anchors.fill: parent
                 hoverEnabled: true
-                onEntered:xBM.opacity=1.0
+                onEntered:{
+                    xBM.opacity=1.0
+                    xM.opacity=xM.opacity===0.0?1.0:0.0
+                }
                 onExited: xBM.opacity=0.3
                 onClicked: {
                     xBM.opacity=1.0
@@ -361,6 +364,7 @@ ApplicationWindow {
         xT.at=''
         xT.ex=0
         controles.asec=[]
+        appSettings.cbs=true
         controles.mp.stop()
         var mod=''+xP.am[app.mod]
         if(xP.am.length===0){
@@ -453,6 +457,7 @@ ApplicationWindow {
             if(!fe){
                 console.log('app.gitfolder: '+app.gitfolder)
                 xEstado.text='Descargando '+url+'\nen '+folder
+                xB.tit='Descargando '+url
                 xB.visible=true
                 app.gd = unik.downloadGit(url, folder)
                 showS()
@@ -522,7 +527,9 @@ ApplicationWindow {
                     }else{
                         console.log('Section Commit NO Equal')
                         console.log('app.gitfolder: '+app.gitfolder)
-                        xEstado.text='Descargando '+url
+                        xEstado.text='Actualizando desde '+url
+                        xB.tit='Descargando '+url
+                        xB.visible=true
                         app.gd= unik.downloadGit(url, folder)
                         unik.setFile(uf, ur)
                         showS()
@@ -533,7 +540,6 @@ ApplicationWindow {
         xhr.send(null);
     }
     function showS(){
-
         for(var i=0;i<xS.children.length;i++){
             xS.children[i].destroy(1)
         }
@@ -556,10 +562,7 @@ ApplicationWindow {
         var obj = Qt.createQmlObject(code, xS, 'xm2'+nid)
         xC.z=xS.z+1
         xEstado.text=''
-        tShowS.stop()
-        //console.log('Mostrando Secciòn desde carpeta: '+xP.am[app.mod]+'/'+xP.ars[app.s])
-        //appSettings.usec=app.s
-        //appSettings.umod=app.mod
+        tShowS.stop()       
     }
     function showCab(){
         app.cb.tit="Modulo "+parseInt(app.mod+1)+" de "+app.cantmod+" Secciòn "+parseInt(app.s+1)+" de "+app.cants

@@ -109,7 +109,6 @@ Item{
                 anchors.centerIn: parent
             }
         }
-
         Boton{
             w:r.botSize
             h:w
@@ -142,21 +141,7 @@ Item{
                 prepMod()
             }
         }
-        Boton{
-            w:r.botSize
-            h:w
-            tp:3
-            d:appSettings.cbs?'Modo Ver Segmentos de Audio':'Modo Normal'
-            c:app.c3
-            b:app.c2
-            t:appSettings.cbs?'1':'0'
-            onClicking: {
-                r.pressed()
-                trb2.restart()
-                appSettings.cbs=!appSettings.cbs
-            }
-        }
-        Boton{
+       Boton{
             w:r.botSize
             h:w
             tp:3

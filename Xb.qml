@@ -1,10 +1,11 @@
 import QtQuick 2.0
 Item{
     id:r
-    width: app.fs*10
-    height: app.fs
+    width: txtTit.width<r.parent.width-app.fs?txtTit.width+app.fs*0.5:parent.width-app.fs
+    height: app.fs*0.5
     opacity:visible?1.0:0.0
     visible:false
+    property alias tit: txtTit.text
     Behavior on opacity{NumberAnimation{duration:250}}
     Connections {target: unik;onUkStdChanged:r.setPb(''+unik.ukStd);}
     Connections {target: unik;onUkStdChanged:r.setPb(''+unik.ukStd); }
@@ -16,15 +17,15 @@ Item{
     onOpacityChanged: {
         if(opacity===0.0){
             txtPb.text='%0'
-        }
+       }
     }
     Rectangle{
         width: r.width
         height: r.height
         color: app.c3
-        radius: app.fs*0.5
+        radius: app.fs*0.25
         clip: true
-        border.width: app.fs*0.1
+        border.width: 1
         border.color: app.c2
         Item{
             width: r.width-app.fs*0.1
@@ -41,18 +42,38 @@ Item{
         Text {
             id: txtPb
             text:'%0'
-            font.pixelSize: app.fs*0.8
+            font.pixelSize: parent.height*0.8
             color: app.c2
             anchors.centerIn: parent
             onTextChanged: {
                 if(text==='%100'){
                     toc.start()
+                    tit='Descargando...'
                 }
                 if(text!=='%100'&&text!=='%0'){
                     r.visible=true
                     tShowS.restart()
                 }
             }
+        }
+    }
+    Text {
+        id: txtTit
+        text:'Descargando...'
+        font.pixelSize: app.fs*0.5
+        color: app.c2
+        anchors.horizontalCenter: r.horizontalCenter
+        anchors.bottom: r.top
+        anchors.bottomMargin: app.fs*0.25
+        Rectangle{
+            width: txtTit.contentWidth+app.fs*0.5
+            height:txtTit.contentHeight+app.fs*0.5
+            color: app.c3
+            anchors.centerIn: parent
+            z:parent.z-1
+            radius: app.fs*0.25
+            border.width: 1
+            border.color: app.c2
         }
     }
     Timer{
