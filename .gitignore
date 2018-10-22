@@ -1,5 +1,7 @@
 *.qmlc
 *.autosave
+*/*/commit
+*/*/fms
 */*/*/
 !h/
 !*.qml
