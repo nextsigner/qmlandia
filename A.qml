@@ -63,6 +63,7 @@ Item {
             SeekControlFinal{
                 id: seekSlider1
                 width: parent.width*0.8
+                height: app.fs
                 anchors.centerIn: parent
                 verFondo: true
                 onClickSeek: {

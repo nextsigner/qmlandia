@@ -1,3 +1,6 @@
 [submodule "m4000/s0/qdm1"]
 	path = m4000/s0/qdm1
 	url = https://github.com/nextsigner/qdm1
+[submodule "m4000/s1/qdm2"]
+	path = m4000/s1/qdm2
+	url = https://github.com/nextsigner/qdm2

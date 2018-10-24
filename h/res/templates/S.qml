@@ -25,12 +25,19 @@ Item {
             x1.opacity=app.p(0, 6)?1.0:0.0
         }
     }
-
+    function e(n){
+        var sp=''
+        for(var i=0;i<n;i++){
+            sp+='   '
+        }
+        return sp
+    }
     Component.onCompleted: {
         controles.asec=[0,10,31]
         var at=''
         //Pr
         at+='Elemento Item'
+        at+=e(10)
         //Req
         at+='Para utilizar este elemento es necesario importar la librerìa QtQuick. Podemos utilizar la versiòn 1.4, 2.0 hasta 2.5. Para unik recomendamos la versiòn 2.0 '
         //Q

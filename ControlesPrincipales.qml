@@ -71,52 +71,6 @@ Rectangle {
             rb.opacity=0.0
         }
     }
-    Rectangle{
-        id:xAsecs
-        anchors.fill: seekSlider
-        color: 'transparent'
-        visible: !appSettings.cbs
-    }
-    SeekControlFinal{
-        id: seekSlider
-        width: parent.width*0.8
-        height: rb.opacity===1.0?app.fs:app.fs*0.5
-        anchors.horizontalCenter: parent.horizontalCenter
-        y:rb.opacity===1.0?0:r.height-app.fs
-        verFondo: true
-        onClickSeek: {
-            app.verAyuda=false
-            trb.restart()
-            mediaPlayer.seek(position);
-            //r.p=false
-        }
-        onSeekingChanged: {
-            app.verAyuda=false
-            trb.restart()
-            if(seeking){
-                mediaPlayer.pause()
-            }else{
-                mediaPlayer.play()
-            }
-        }
-
-        onSeekPositionChanged: {
-            app.verAyuda=false
-            trb.restart()
-            mediaPlayer.seek(playPosition)
-        }
-    }
-
-    MouseArea{
-        anchors.fill: r
-        enabled: rb.opacity!==1.0
-        hoverEnabled: true
-        onEntered: rb.opacity=1.0
-        onPositionChanged: rb.opacity=1.0
-        onClicked: {
-            rb.opacity=1.0
-        }
-    }
     Text {
         id: txtInfo
         font.pixelSize: app.fs*0.5
@@ -261,6 +215,52 @@ Rectangle {
             opacity: app.verAyuda?1.0:0.5
         }
     }
+    Rectangle{
+        id:xAsecs
+        anchors.fill: seekSlider
+        color: 'transparent'
+        visible: !appSettings.cbs
+    }
+    SeekControlFinal{
+        id: seekSlider
+        width: parent.width*0.8
+        height: rb.opacity===1.0?app.fs:app.fs*0.5
+        anchors.horizontalCenter: parent.horizontalCenter
+        y:rb.opacity===1.0?0:r.height-app.fs
+        verFondo: true
+        onClickSeek: {
+            app.verAyuda=false
+            trb.restart()
+            mediaPlayer.seek(position);
+            //r.p=false
+        }
+        onSeekingChanged: {
+            app.verAyuda=false
+            trb.restart()
+            if(seeking){
+                mediaPlayer.pause()
+            }else{
+                mediaPlayer.play()
+            }
+        }
+
+        onSeekPositionChanged: {
+            app.verAyuda=false
+            trb.restart()
+            mediaPlayer.seek(playPosition)
+        }
+    }
+    MouseArea{
+        anchors.fill: r
+        enabled: rb.opacity!==1.0
+        hoverEnabled: true
+        onEntered: rb.opacity=1.0
+        onPositionChanged: rb.opacity=1.0
+        onClicked: {
+            rb.opacity=1.0
+        }
+    }
+
     onAsecChanged: {
         if(asec.length>0){
             appSettings.cbs=false
