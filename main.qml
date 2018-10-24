@@ -519,6 +519,7 @@ ApplicationWindow {
 
                 if(!unik.fileExist(uf)){
                     unik.setFile(uf, ur)
+                    showS()
                 }else{
                     var aur=''+unik.getFile(uf)
                     if(aur===ur){
