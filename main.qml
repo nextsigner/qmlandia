@@ -1,3 +1,6 @@
+/*
+This code was created by @nextsigner
+*/
 import QtQuick 2.5
 import QtQuick.Controls 2.0
 import Qt.labs.settings 1.0
