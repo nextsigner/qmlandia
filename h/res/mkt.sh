@@ -26,6 +26,7 @@ else
 	else
 		echo "Folder destination is ready..."
 		cp $DIR/templates/S.qml $F2/
+		cp $DIR/templates/a1.m4a $F2/
 		MODULE=""
 		noms=$(echo $F1 | tr "/" "\n")
 		for nn in $noms
