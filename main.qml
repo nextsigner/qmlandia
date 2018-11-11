@@ -15,7 +15,7 @@ ApplicationWindow {
     height: 480
     color: app.c3
     property real ffs: Qt.platform.os!=='android'?0.027:0.03
-    property int fs: app.width>app.height?app.width*ffs:app.height*ffs
+    property int fs: app.width>app.height?app.width*ffs:app.height*ffs//App Font Size Value
     property int an: app.width>app.height?app.width:app.height
     property int al: app.width>app.height?app.height:app.width
 
