@@ -14,6 +14,7 @@ ApplicationWindow {
     width: 720
     height: 480
     color: app.c3
+    property string moduleName: 'qmlandia'
     property real ffs: Qt.platform.os!=='android'?0.027:0.03
     property int fs: app.width>app.height?app.width*ffs:app.height*ffs//App Font Size Value
     property int an: app.width>app.height?app.width:app.height
@@ -298,6 +299,10 @@ ApplicationWindow {
     onModChanged: appSettings.umod=mod
 
     Component.onCompleted: {
+        var ukldata='-folder='+appsDir+'/'+app.moduleName+' -cfg'
+        var ukl=appsDir+'/link_'+app.moduleName+'.ukl'
+        unik.setFile(ukl, ukldata)
+
         console.log('Ejecuciòn nùmero: '+appSettings.cantRun)
         appSettings.cantRun++
 
@@ -483,7 +488,7 @@ ApplicationWindow {
             showS()
         }
     }
-     function checkCommit(url){
+    function checkCommit(url){
         var folder=app.qlandPath+'/'+xP.am[app.mod]+'/'+xP.ars[app.s]
         var d = new Date(Date.now())
         var ms=d.getTime()
