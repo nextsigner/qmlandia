@@ -263,9 +263,9 @@ Rectangle {
                     t:''
                     onClicking: {
                         var j=appsDir+'/cfg.json'
-                        var c='{"arg0":"-folder='+appsDir+'/qmlandia", "arg1":"-dir='+appsDir+'/qmlandia"}'
+                        var c='{"arg0":"-folder='+appsDir+'/qmlandia", "arg1":"-dir='+appsDir+'/qmlandia", "arg2":"-cfg"}'
                         unik.setFile(j, c)
-                        var ncode='"import QtQuick 2.0\\nItem{\\nComponent.onCompleted:unik.restartApp()\\n}"'
+                        var ncode='"import QtQuick 2.0\\nItem{\\nComponent.onCompleted:unik.restartApp("-cfg")\\n}"'
                         var code='import QtQuick 2.0\n'
                         code+='Item{\n'
                         code+='     id:xdc111\n'
@@ -308,9 +308,9 @@ Rectangle {
                     t:''
                     onClicking: {
                         var j=appsDir+'/cfg.json'
-                        var c='{"arg0":"-git=https://github.com/nextsigner/qmlandia.git", "arg1":"-dir='+appsDir+'/qmlandia"}'
+                        var c='{"arg0":"-git=https://github.com/nextsigner/qmlandia.git", "arg1":"-dir='+appsDir+'/qmlandia", "arg2":"-cfg"}'
                         unik.setFile(j, c)
-                        unik.restartApp()
+                        unik.restartApp("-cfg")
                     }
                     Text {
                         id:tb2
