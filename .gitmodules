@@ -7,3 +7,6 @@
 [submodule "qdm3"]
 	path = m4000/s2/qdm3
 	url = https://github.com/nextsigner/qdm3
+[submodule "m4000/s3/qdm4"]
+	path = m4000/s3/qdm4
+	url = https://github.com/nextsigner/qdm4

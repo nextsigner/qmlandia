@@ -35,6 +35,7 @@ Rectangle {
         anchors.bottom:r.bottom
     }
     property alias at:txt.text
+    property alias t:txt
 
     function setPx(){
         if(!r.pause){
