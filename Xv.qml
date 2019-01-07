@@ -31,11 +31,12 @@ Rectangle{
                 color: app.c3
                 radius: app.fs*0.1
                Rectangle {
-                   width: parent.width*0.8
-                   height: app.fs*0.05
+                   width: parent.width*0.65
+                   height: app.fs*0.065
                    anchors.bottom: parent.bottom
-                   anchors.bottomMargin: app.fs*0.05
-                    color:app.c2
+                   anchors.bottomMargin: app.fs*0.075
+                   anchors.horizontalCenter: parent.horizontalCenter
+                   color:app.c2
                 }
             }
             Rectangle{
