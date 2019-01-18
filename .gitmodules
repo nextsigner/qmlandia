@@ -10,3 +10,6 @@
 [submodule "m4000/s3/qdm4"]
 	path = m4000/s3/qdm4
 	url = https://github.com/nextsigner/qdm4
+[submodule "m6000/s0/qdm6-0"]
+	path = m6000/s0/qdm6-0
+	url = git@github.com:nextsigner/qdm6-0.git
