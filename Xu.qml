@@ -47,10 +47,23 @@ Item{
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        var j=appsDir+'/temp_cfg.json'
-                        var c='{"arg":"-git=https://github.com/nextsigner/qmlandia.git", "arg1":"-dir='+appsDir+'/qmlandia"}'
-                        unik.setFile(j, c)
-                        unik.restartApp()
+                        var urlGit='https://github.com/nextsigner/qmlandia.git'
+                        var params=urlGit
+                        var m0=urlGit.split('/')
+                        var s1=(''+m0[m0.length-1]).replace('.git', '')
+                        var uklFileLocation=pws+'/link_'+s1+'.ukl'
+                        var uklData=''+urlGit
+                        uklData+=' -folder='+pws+'/'+s1+' \n'
+                        unik.setFile(uklFileLocation, uklData)
+                        params+=', -folder='+pws+'/'+s1
+                        //params+=', -dir='+pws+'/'+s1
+                        unik.setUnikStartSettings(params)
+                        if(Qt.platform.os==='android'){
+                            unik.restartApp()
+                        }else{
+                            unik.restartApp("")
+                        }
+
                     }
                 }
             }

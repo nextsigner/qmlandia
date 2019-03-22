@@ -13,3 +13,27 @@
 [submodule "m6000/s0/qdm6-0"]
 	path = m6000/s0/qdm6-0
 	url = git@github.com:nextsigner/qdm6-0.git
+[submodule "m3000/s5/qland207"]
+	path = m3000/s5/qland207
+	url = git@github.com:nextsigner/qland207.git
+[submodule "m3000/s4/qland206"]
+	path = m3000/s4/qland206
+	url = git@github.com:nextsigner/qland206.git
+[submodule "m3000/s3/qland205"]
+	path = m3000/s3/qland205
+	url = git@github.com:nextsigner/qland205.git
+[submodule "m3000/s2/qland204"]
+	path = m3000/s2/qland204
+	url = git@github.com:nextsigner/qland204.git
+[submodule "m3000/s1/qland203"]
+	path = m3000/s1/qland203
+	url = git@github.com:nextsigner/qland203.git
+[submodule "m3000/s0/qland200"]
+	path = m3000/s0/qland200
+	url = git@github.com:nextsigner/qland200.git
+[submodule "m3000/s0b/qland202"]
+	path = m3000/s0b/qland202
+	url = git@github.com:nextsigner/qland202.git
+[submodule "m3000/t5/qland208"]
+	path = m3000/t5/qland208
+	url = git@github.com:nextsigner/qland208.git
